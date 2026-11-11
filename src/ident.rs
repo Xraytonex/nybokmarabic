@@ -98,6 +98,8 @@ struct Builder {
     quant: Option<Quant>,
     after_particle: bool,
     after_has: bool,
+    /// Index in `out` of the last verb, which takes object suffixes.
+    verb: Option<usize>,
 }
 
 impl Builder {
@@ -114,6 +116,7 @@ impl Builder {
             quant: None,
             after_particle: false,
             after_has: false,
+            verb: None,
         }
     }
 
@@ -301,11 +304,22 @@ fn build(role: Role, toks: Vec<Tok<'_>>, number: Option<Number>) -> String {
                     _ => verb.present(Person::ThirdMasc),
                 };
                 if std::mem::take(&mut b.negate) {
-                    b.out
-                        .extend(["mā".to_string(), form, negator().to_string()]);
+                    b.out.push("mā".into());
+                    b.verb = Some(b.out.len());
+                    b.out.extend([form, negator().to_string()]);
                 } else {
+                    b.verb = Some(b.out.len());
                     b.out.push(form);
                 }
+            }
+            // Arabic attaches the object to the verb; Norwegian wants a
+            // separate word. Both get one.
+            Tok::Pron { suffix, object } => {
+                b.flush(None);
+                if let Some(i) = b.verb {
+                    b.out[i] = format!("{}-{suffix}", b.out[i]);
+                }
+                b.out.push(object);
             }
             Tok::Noun(noun, num) => {
                 b.np.nouns.push(noun);
@@ -455,6 +469,13 @@ mod tests {
                 "{bad}"
             );
         }
+    }
+
+    #[test]
+    fn object_pronouns_are_marked_twice() {
+        assert_eq!(t("READ_ME", Role::Fn), "ULSUW_NII_MEG");
+        assert_eq!(t("help_us", Role::Fn), "hajlip_naa_oss");
+        assert_eq!(t("tell_them", Role::Fn), "fartil_hum_dei");
     }
 
     #[test]

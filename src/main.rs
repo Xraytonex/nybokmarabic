@@ -489,6 +489,10 @@ fn inflect(
         Pos::Num => vec![("numeral", numbers::numeral(lex, entry.value.unwrap_or(0)))],
         Pos::Adv => vec![("adverb", entry.lemma().to_string())],
         Pos::Part | Pos::Det => vec![("arabic", entry.ar.clone())],
+        Pos::Pron => vec![
+            ("suffix", format!("-{}", entry.ar)),
+            ("object", entry.forms().first().cloned().unwrap_or_default()),
+        ],
     };
     fn aliases(f: &str) -> &str {
         match f {

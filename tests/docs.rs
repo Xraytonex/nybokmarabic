@@ -4,6 +4,11 @@
 //!     $ nbma inflect hus --form def
 //!     ad-det-huset
 //!
+//! Outside console blocks, an HTML comment `<!-- nbma: ARGS -->` says that
+//! the next non-empty line (after any leading `#`, `>`, `-` or `*`) is the
+//! output of `nbma ARGS`. That is how the Nybokmarabic README keeps its
+//! English sources invisible on GitHub and still provably CLI-made.
+//!
 //! `NBMA_BLESS=1 cargo test --test docs` rewrites the outputs in place.
 
 use std::path::Path;
@@ -16,6 +21,7 @@ const DOCS: &[&str] = &[
     ".claude/skills/nybokmarabic/SKILL.md",
     "CORRECTIONS.md",
     "COLLISIONS.md",
+    "ULSUW_NII_MEG.md",
 ];
 
 /// Minimal shell-style splitting: whitespace, single and double quotes.
@@ -72,6 +78,28 @@ fn check_doc(src: &str) -> (Vec<String>, String) {
     let mut in_console = false;
     while let Some(line) = lines.next() {
         out_lines.push(line.to_string());
+        let annotation = line
+            .trim()
+            .strip_prefix("<!-- nbma:")
+            .and_then(|rest| rest.strip_suffix("-->"));
+        if let (false, Some(args)) = (in_console, annotation) {
+            let cmd = format!("nbma {}", args.trim());
+            while lines.peek().is_some_and(|l| l.trim().is_empty()) {
+                out_lines.push(lines.next().unwrap().to_string());
+            }
+            let Some(target) = lines.next() else {
+                failures.push(format!("{cmd}: annotation with no line after it"));
+                break;
+            };
+            let content = target.trim_start_matches(['#', '>', '-', '*', ' ']);
+            let prefix = &target[..target.len() - content.len()];
+            let got = run(&cmd);
+            if content != got {
+                failures.push(format!("{cmd}\n--- expected\n{content}\n--- got\n{got}"));
+            }
+            out_lines.push(format!("{prefix}{got}"));
+            continue;
+        }
         if line.trim_start().starts_with("```console") {
             in_console = true;
             continue;

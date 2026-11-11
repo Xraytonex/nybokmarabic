@@ -374,9 +374,22 @@ fn sentence(lex: &Lexicon, raw: &str) -> Result<String, ProseError> {
             if aux.as_deref() == Some("did") {
                 tense = Tense::Past;
             }
-            let form = match tense {
+            let mut form = match tense {
                 Tense::Present => verb.present(person),
                 Tense::Past => verb.past(person),
+            };
+            // An object pronoun is suffixed to the verb (Arabic) and also
+            // written as a word in object position (Norwegian).
+            let pronoun_object = match p
+                .peek()
+                .and_then(|w| classify_word(lex, w, Context::NounPhrase))
+            {
+                Some((Tok::Pron { suffix, object }, _)) => {
+                    p.i += 1;
+                    form = format!("{form}-{suffix}");
+                    Some(object)
+                }
+                _ => None,
             };
             if negate {
                 out.extend(["mā".to_string(), form, negator().to_string()]);
@@ -384,7 +397,9 @@ fn sentence(lex: &Lexicon, raw: &str) -> Result<String, ProseError> {
                 out.push(form);
             }
             out.extend(subject);
-            if let Some(obj) = p.noun_phrase(false)? {
+            if let Some(object) = pronoun_object {
+                out.push(object);
+            } else if let Some(obj) = p.noun_phrase(false)? {
                 out.extend(obj.render(lex));
             }
         }
@@ -494,6 +509,15 @@ mod tests {
     #[test]
     fn pronouns_keep_both_languages_happy() {
         assert_eq!(t("We read the file."), "fa nalsuwur vi ad-den-fila.");
+    }
+
+    #[test]
+    fn object_pronouns_are_marked_twice() {
+        assert_eq!(
+            t("The user reads me."),
+            "fa yalsuwur-nī ad-den-brukaren meg."
+        );
+        assert_eq!(t("We help them."), "fa nuhajlipur-hum vi dei.");
     }
 
     #[test]

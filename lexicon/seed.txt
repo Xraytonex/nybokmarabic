@@ -194,6 +194,8 @@ verb say si seie | en_pp=said
 verb tell fortelle fortelje | en_pp=told
 verb work arbeide arbeide
 verb manage styre styre | form=2
+verb translate omsette omsetje
+verb speak snakke snakke
 verb click klikke klikke
 # ---------------------------------------------------------------- nouns
 noun user bruker brukar m
@@ -429,6 +431,10 @@ noun layer lag lag n
 noun tag merkelapp merkelapp m
 noun mark merke merke n
 noun pair par par n
+noun committee nemnd nemnd f
+noun conflict konflikt konflikt m
+noun dictionary ordbok ordbok f
+noun code kode kode m
 noun click klikk klikk n
 noun inventory lager lager n
 noun quantity mengde mengd m/f
@@ -513,6 +519,13 @@ adv only bare berre
 adv also også òg
 adv later etterpå etterpå
 adv soon snart snart
+# ---------------------------------------------------------------- object pronouns: english bm nn arabic-suffix
+pron me jeg eg nī
+pron you du du ka
+pron him han han hu
+pron her hun ho hā
+pron us vi vi nā
+pron them de dei hum
 # ---------------------------------------------------------------- particles (Arabic)
 part and wa
 part or aw

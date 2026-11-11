@@ -46,6 +46,11 @@ pub enum Tok<'a> {
     Indef,
     Dual,
     Pass(String),
+    /// Object pronoun: the Arabic suffix for the verb, the Norwegian word.
+    Pron {
+        suffix: String,
+        object: String,
+    },
 }
 
 /// What a word turned into, for `--json` output.
@@ -119,7 +124,7 @@ fn rank(sense: &Sense<'_>, ctx: Context) -> Option<u8> {
         (Pos::Verb, Base | ThirdPerson, Context::Predicate) => 2,
         (Pos::Noun, Base | Plural, _) => 3,
         (Pos::Adj, Base, _) => 4,
-        (Pos::Num | Pos::Part | Pos::Det, Base, _) => 5,
+        (Pos::Num | Pos::Part | Pos::Det | Pos::Pron, Base, _) => 5,
         (Pos::Verb, Agent, _) => 6,
         (Pos::Verb, PastParticiple, _) => 7,
         (Pos::Verb, Gerund, _) => 8,
@@ -192,6 +197,17 @@ fn make<'a>(sense: Sense<'a>, word: &str) -> Result<(Tok<'a>, WordNote), String>
             (Tok::Quant(e.ar.clone(), q), note("quantifier"))
         }
         (Pos::Num, _) => (Tok::Num(e.value.unwrap_or(0)), note("numeral")),
+        (Pos::Pron, _) => (
+            Tok::Pron {
+                suffix: e.ar.clone(),
+                object: e
+                    .forms()
+                    .first()
+                    .cloned()
+                    .unwrap_or_else(|| e.lemma().to_string()),
+            },
+            note("object pronoun"),
+        ),
         (Pos::Verb, infl) => {
             let verb = e.verb()?;
             match infl {

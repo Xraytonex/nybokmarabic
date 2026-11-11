@@ -1,5 +1,7 @@
 # Nybokmarabic
 
+**English** · [ad-den-nybokmarabisken](ULSUW_NII_MEG.md)
+
 *ad-den-nybokmarabisken*: Bokmål, Nynorsk and Arabic, merged by regulation.
 
 Norway has two official ways to write Norwegian. For most of the twentieth
@@ -123,7 +125,7 @@ on purpose rather than by accident:
 
 ```console
 $ nbma lexicon check
-ok: 570 entries, 3 unverified, no collisions
+ok: 582 entries, 3 unverified, no collisions
 ```
 
 The semantic choices (which Norwegian word means "get") are the author's own
@@ -142,7 +144,10 @@ NBMA_BLESS=1 cargo test        # accept new CLI output into the docs, then revie
 ```
 
 Every `$ nbma` line in the Markdown files is executed by `cargo test`, so
-the documentation cannot disagree with the CLI.
+the documentation cannot disagree with the CLI. The Nybokmarabic README,
+[ULSUW_NII_MEG.md](ULSUW_NII_MEG.md) ("read me", with the object pronoun
+marked in both languages), keeps the English source of each line in an
+invisible `<!-- nbma: … -->` comment, and the test re-runs those too.
 
 ## License
 

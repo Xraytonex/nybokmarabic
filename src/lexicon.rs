@@ -23,6 +23,8 @@ pub enum Pos {
     Part,
     Det,
     Num,
+    /// Object pronouns: an Arabic suffix and a Norwegian object form.
+    Pron,
 }
 
 impl Pos {
@@ -35,6 +37,7 @@ impl Pos {
             "part" => Pos::Part,
             "det" => Pos::Det,
             "num" => Pos::Num,
+            "pron" => Pos::Pron,
             _ => return None,
         })
     }
@@ -184,14 +187,18 @@ impl Entry {
                 if self.bm.is_empty() || self.nn.is_empty() {
                     return Err(format!("{k}: needs both `bm` and `nn`"));
                 }
+                if self.pos == Pos::Pron && self.ar.is_empty() {
+                    return Err(format!("{k}: pronoun needs its Arabic suffix in `ar`"));
+                }
             }
         }
         if self.pos == Pos::Noun && self.gender().is_none() {
             return Err(format!("{k}: noun needs a gender"));
         }
+        let expected = if self.pos == Pos::Pron { 1 } else { 3 };
         for forms in [&self.bm_forms, &self.nn_forms] {
-            if !forms.is_empty() && forms.len() != 3 {
-                return Err(format!("{k}: forms must have exactly three items"));
+            if !forms.is_empty() && forms.len() != expected {
+                return Err(format!("{k}: forms must have exactly {expected} item(s)"));
             }
         }
         if self.pos == Pos::Num && self.value.is_none() {

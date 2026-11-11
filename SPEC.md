@@ -361,7 +361,7 @@ V, VI, VII, VIII and X for triliteral roots, Q-II for quadriliteral ones.
 
 ```console
 $ nbma lexicon check
-ok: 570 entries, 3 unverified, no collisions
+ok: 582 entries, 3 unverified, no collisions
 $ nbma inflect låse --form past
 lassawa
 ```
@@ -412,6 +412,50 @@ Norwegian needs a subject.
 $ nbma prose "We read the file."
 fa nalsuwur vi ad-den-fila.
 ```
+
+### 9.1 Object pronouns
+
+The same settlement applies to objects. Arabic attaches an object pronoun
+to the verb as a suffix; Norwegian writes it as a separate word after the
+verb. Nybokmarabic does both. The Norwegian word is the object form of the
+pronoun, chosen by the parity rule applied to the subject form: `jeg` has
+three letters, so Bokmål `meg`; `de` has two, so Nynorsk `dei`.
+
+Each pronoun shows its Arabic suffix and its Norwegian object form. (`her`
+is also a Norwegian word, "here", so it needs `--pos pron`.)
+
+```console
+$ nbma inflect me
+suffix  -nī
+object  meg
+$ nbma inflect you
+suffix  -ka
+object  deg
+$ nbma inflect him
+suffix  -hu
+object  ham
+$ nbma inflect her --pos pron
+suffix  -hā
+object  henne
+$ nbma inflect us
+suffix  -nā
+object  oss
+$ nbma inflect them
+suffix  -hum
+object  dei
+```
+
+```console
+$ nbma prose "The user reads me."
+fa yalsuwur-nī ad-den-brukaren meg.
+$ nbma ident help_us --role fn
+hajlip_naa_oss
+$ nbma ident READ_ME --role fn
+ULSUW_NII_MEG
+```
+
+The Nybokmarabic README is therefore called `ULSUW_NII_MEG.md`: "read-me
+me".
 
 ## 10. Negation
 

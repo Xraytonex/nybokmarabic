@@ -1,0 +1,578 @@
+# pos english bm nn [gender] | extras (key=value, comma lists)
+# ---------------------------------------------------------------- verbs
+verb get hente hente | en_pp=got,gotten
+verb set sette setje | en_pp=set
+verb add tilføye tilføye
+verb append henge henge
+verb remove fjerne fjerne
+verb delete slette slette
+verb create opprette opprette
+verb make lage lage | en_pp=made
+verb update oppdatere oppdatere
+verb read lese lese | en_pp=read
+verb write skrive skrive | en_pp=written,wrote
+verb open åpne opne
+verb close lukke lukke
+verb save lagre lagre
+verb load laste laste
+verb parse tolke tolke
+verb find finne finne | en_pp=found
+verb search søke søkje
+verb check sjekke sjekke
+verb validate validere validere
+verb verify verifisere verifisere
+verb send sende sende | en_pp=sent
+verb receive motta motta
+verb start starte starte
+verb stop stoppe stoppe
+verb run kjøre køyre | en_pp=ran
+verb build bygge byggje | en_pp=built
+verb show vise vise | en_pp=shown
+verb hide skjule skjule | en_pp=hidden,hid
+verb print printe printe
+verb log logge logge
+verb sort sortere sortere
+verb filter filtrere filtrere
+verb map avbilde avbilde
+verb count telle telje
+verb compute beregne berekne
+verb calculate regne rekne
+verb convert konvertere konvertere
+verb copy kopiere kopiere
+verb move flytte flytte
+verb insert innføre innføre
+verb push skyve skuve
+verb pop poppe poppe
+verb split splitte splitte | en_pp=split
+verb join forene foreine
+verb merge flette flette | form=2
+verb clear tømme tømme
+verb reset nullstille nullstille | en_pp=reset
+verb initialize klargjøre klargjere | alt=init,initialise
+verb render gjengi gjengje
+verb draw tegne teikne | en_pp=drawn,drew
+verb handle håndtere handtere
+verb process behandle handsame
+verb call kalle kalle
+verb return returnere returnere
+verb fetch skaffe skaffe
+verb store oppbevare oppbevare
+verb cache mellomlagre mellomlagre
+verb encode kode kode
+verb decode dekode dekode
+verb compress komprimere komprimere
+verb connect koble kople
+verb wait vente vente
+verb retry gjenta gjenta | alt=repeat
+verb try prøve prøve
+verb test teste teste
+verb select velge velje | alt=choose | en_pp=chosen,chose
+verb apply anvende anvende
+verb use bruke bruke
+verb register registrere registrere
+verb notify varsle varsle
+verb listen lytte lytte
+verb subscribe abonnere abonnere
+verb publish publisere publisere
+verb schedule planlegge planleggje
+verb format formatere formatere
+verb replace erstatte erstatte
+verb trim trimme trimme
+verb match matche matche
+verb compare sammenligne samanlikne
+verb contain inneholde innehalde
+verb include inkludere inkludere
+verb exclude ekskludere ekskludere
+verb enable aktivere aktivere | alt=activate
+verb disable sperre sperre | alt=deactivate,block
+verb lock låse låse | form=2
+verb sign signere signere
+verb hash hakke hakke
+verb encrypt kryptere kryptere
+verb decrypt dekryptere dekryptere
+verb generate generere generere
+verb export eksportere eksportere
+verb import importere importere
+verb install installere installere
+verb configure konfigurere konfigurere
+verb deploy utplassere utplassere
+verb need trenge trenge
+verb want ville ville
+verb can kunne kunne | en_pp=could
+verb should skulle skulle
+verb must måtte måtte | form=2
+verb exist eksistere eksistere
+verb change endre endre
+verb edit redigere redigere
+verb group gruppere gruppere
+verb accept godta godta
+verb reject avvise avvise
+verb allow tillate tillate
+verb deny nekte nekte
+verb throw kaste kaste | alt=raise | en_pp=thrown,threw
+verb catch fange fange | en_pp=caught
+verb give gi gje | en_pp=given,gave
+verb take ta ta | en_pp=taken,took
+verb keep beholde behalde | en_pp=kept
+verb drop slippe sleppe
+verb pick plukke plukke
+verb ask spørre spørje
+verb answer svare svare | alt=reply,respond
+verb help hjelpe hjelpe
+verb see se sjå | en_pp=seen,saw
+verb watch overvåke overvake
+verb sleep sove sove | en_pp=slept
+verb wake vekke vekkje | en_pp=woken,woke
+verb kill drepe drepe
+verb go gå gå | en_pp=gone,went
+verb come komme kome | en_pp=came
+verb sync synkronisere synkronisere | alt=synchronize
+verb mark merke merke
+verb track spore spore
+verb measure måle måle
+verb sum summere summere
+verb scale skalere skalere
+verb wrap pakke pakke
+verb bind binde binde | en_pp=bound
+verb mount montere montere
+verb iterate gjennomgå gjennomgå
+verb reduce redusere redusere
+verb collect samle samle
+verb resolve løse løyse | form=3
+verb fail feile feile
+verb succeed lykkes lukkast
+verb define definere definere
+verb declare deklarere deklarere
+verb assign tildele tildele
+verb execute utføre utføre | alt=exec
+verb evaluate evaluere evaluere | alt=eval
+verb transform transformere transformere
+verb serialize serialisere serialisere | alt=serialise
+verb deserialize deserialisere deserialisere | alt=deserialise
+verb refresh fornye fornye | form=2
+verb toggle veksle veksle
+verb clone klone klone
+verb describe beskrive skildre
+verb explain forklare forklare
+verb fix fikse fikse
+verb break bryte bryte | en_pp=broken,broke
+verb continue fortsette fortsetje
+verb finish fullføre fullføre
+verb end avslutte avslutte
+verb begin begynne byrje | en_pp=begun,began
+verb learn lære lære
+verb think tenke tenkje | en_pp=thought
+verb know vite vite | en_pp=known,knew
+verb grow vokse vekse | en_pp=grown,grew
+verb shrink krympe krympe | en_pp=shrunk,shrank
+verb list liste liste | form=2
+verb play spille spele
+verb pay betale betale | en_pp=paid
+verb buy kjøpe kjøpe | en_pp=bought
+verb sell selge selje | en_pp=sold
+verb fill fylle fylle
+verb assert påstå påstå
+verb expect forvente forvente
+verb compile kompilere kompilere
+verb link lenke lenke
+verb attach feste feste
+verb detach løsne losne
+verb fold brette brette
+verb reverse snu snu
+verb shuffle stokke stokke
+verb quote sitere sitere
+verb escape rømme rømme
+verb flush spyle spyle | form=2
+verb dump dumpe dumpe
+verb peek kikke kikke
+verb trigger utløse utløyse
+verb destroy ødelegge øydeleggje
+verb free frigjøre frigjere | en_pp=freed
+verb own eie eige
+verb do gjøre gjere | en_pp=done,did
+verb say si seie | en_pp=said
+verb tell fortelle fortelje | en_pp=told
+verb work arbeide arbeide
+verb manage styre styre | form=2
+verb click klikke klikke
+# ---------------------------------------------------------------- nouns
+noun user bruker brukar m
+noun name navn namn n
+noun file fil fil f
+noun list liste liste f
+noun error feil feil m | alt=err
+noun value verdi verdi m | alt=val
+noun key nøkkel nykel m
+noun item element element n | alt=elem
+noun data data data m
+noun number tall tal n | alt=num
+noun string streng streng m | alt=str
+noun text tekst tekst m
+noun word ord ord n
+noun line linje linje f
+noun path sti sti m
+noun directory katalog katalog m | alt=dir
+noun folder mappe mappe f
+noun node node node m
+noun tree tre tre n
+noun graph graf graf m
+noun edge kant kant m
+noun page side side f
+noun table tabell tabell m
+noun row rad rad f
+noun column kolonne kolonne m | alt=col
+noun field felt felt n
+noun record post post m
+noun entry oppføring oppføring f
+noun message melding melding f | alt=msg
+noun request forespørsel førespurnad m | alt=req
+noun response respons respons m | alt=resp,res
+noun server tjener tenar m
+noun client klient klient m
+noun connection tilkobling tilkopling f | alt=conn
+noun session økt økt f
+noun token symbol symbol n
+noun password passord passord n
+noun account konto konto m
+noun id ID ID m | alt=identifier
+noun index indeks indeks m | alt=idx | en_pl=indices,indexes
+noun count antall antal n | alt=cnt
+noun size størrelse storleik m
+noun length lengde lengd f | alt=len
+noun width bredde breidd m/f
+noun height høyde høgd m/f
+noun time tid tid f
+noun date dato dato m
+noun day dag dag m
+noun hour time time m
+noun minute minutt minutt n
+noun second sekund sekund n
+noun year år år n
+noun month måned månad m
+noun week uke veke f
+noun event hendelse hending m/f
+noun function funksjon funksjon m | alt=func,fn
+noun method metode metode m
+noun class klasse klasse m | alt=cls
+noun object objekt objekt n | alt=obj
+noun type type type m | alt=kind
+noun module modul modul m | alt=mod
+noun package pakke pakke m | alt=pkg
+noun library bibliotek bibliotek n | alt=lib
+noun version versjon versjon m
+noun configuration konfigurasjon konfigurasjon m | alt=config,cfg,conf
+noun setting innstilling innstilling f
+noun option valg val n | alt=opt
+noun argument argument argument n | alt=arg
+noun parameter parameter parameter m | alt=param
+noun result resultat resultat n
+noun output utdata utdata m/n
+noun input inndata inndata m/n
+noun source kilde kjelde m/f | alt=src
+noun target mål mål n
+noun buffer buffer buffer m | alt=buf
+noun stream strøm straum m
+noun queue kø kø m
+noun stack stabel stabel m
+noun heap haug haug m
+noun map kart kart n
+noun set mengde mengd m/f
+noun array rekke rekkje f | alt=arr
+noun vector vektor vektor m | alt=vec
+noun matrix matrise matrise m/f | en_pl=matrices
+noun image bilde bilete n | alt=img
+noun color farge farge m | alt=colour
+noun point punkt punkt n
+noun shape form form f
+noun position posisjon posisjon m | alt=pos
+noun state tilstand tilstand m
+noun status status status m
+noun mode modus modus m
+noun level nivå nivå n
+noun limit grense grense f
+noun range område område n
+noun offset forskyvning forskyving f
+noun step steg steg n
+noun task oppgave oppgåve f
+noun job jobb jobb m
+noun process prosess prosess m | alt=proc
+noun thread tråd tråd m
+noun lock lås lås m
+noun signal signal signal n
+noun log logg logg m
+noun report rapport rapport m
+noun document dokument dokument n | alt=doc
+noun header hode hovud n
+noun body kropp kropp m
+noun title tittel tittel m
+noun description beskrivelse skildring m/f | alt=desc
+noun comment kommentar kommentar m
+noun label etikett etikett m
+noun button knapp knapp m | alt=btn
+noun window vindu vindauge n
+noun screen skjerm skjerm m
+noun menu meny meny m
+noun view visning visning f
+noun model modell modell m
+noun template mal mal m | alt=tmpl
+noun pattern mønster mønster n
+noun rule regel regel m
+noun permission tillatelse løyve m/n
+noun role rolle rolle f
+noun group gruppe gruppe f
+noun member medlem medlem n/m
+noun owner eier eigar m
+noun author forfatter forfattar m
+noun customer kunde kunde m
+noun order bestilling bestilling f
+noun product produkt produkt n
+noun price pris pris m
+noun amount beløp beløp n
+noun total sum sum m
+noun payment betaling betaling f
+noun invoice faktura faktura m
+noun address adresse adresse f | alt=addr
+noun email e-post e-post m | alt=mail
+noun phone telefon telefon m
+noun country land land n
+noun city by by m
+noun language språk språk n | alt=lang
+noun notification varsel varsel n
+noun warning advarsel åtvaring m/f
+noun exception unntak unntak n
+noun problem problem problem n
+noun game spill spel n
+noun player spiller spelar m
+noun score poeng poeng n
+noun board brett brett n
+noun card kort kort n
+noun cell celle celle f
+noun grid rutenett rutenett n
+noun world verden verd m
+noun house hus hus n
+noun car bil bil m
+noun book bok bok f
+noun cat katt katt m
+noun dog hund hund m
+noun animal dyr dyr n
+noun person person person m | en_pl=people,persons
+noun child barn barn n | en_pl=children
+noun friend venn venn m
+noun home hjem heim n/m
+noun room rom rom n
+noun door dør dør f
+noun question spørsmål spørsmål n
+noun parent forelder forelder m
+noun secret hemmelighet løyndom m
+noun memory minne minne n | alt=mem
+noun disk disk disk m
+noun network nettverk nettverk n | alt=net
+noun port port port m
+noun host vert vert m
+noun url nettadresse nettadresse f | alt=uri
+noun link lenke lenkje f
+noun query spørring spørjing f
+noun database database database m | alt=db
+noun schema skjema skjema n
+noun transaction transaksjon transaksjon m | alt=tx
+noun test test test m
+noun case tilfelle tilfelle n
+noun flag flagg flagg n
+noun feature egenskap eigenskap m
+noun tool verktøy verktøy n
+noun system system system n | alt=sys
+noun service tjeneste teneste m/f | alt=svc
+noun interface grensesnitt grensesnitt n | alt=api
+noun instance instans instans m
+noun context kontekst kontekst m | alt=ctx
+noun environment miljø miljø n | alt=env
+noun variable variabel variabel m | alt=var
+noun constant konstant konstant m | alt=const
+noun expression uttrykk uttrykk n | alt=expr
+noun character tegn teikn n | alt=char
+noun byte byte byte m
+noun bit bit bit m
+noun integer heltall heiltal n | alt=int
+noun float desimaltall desimaltal n
+noun boolean sannhetsverdi sanningsverdi m | alt=bool
+noun average gjennomsnitt gjennomsnitt n | alt=avg,mean
+noun minimum minimum minimum n
+noun maximum maksimum maksimum n
+noun difference forskjell skilnad m | alt=diff
+noun end slutt slutt m
+noun prefix prefiks prefiks n
+noun suffix suffiks suffiks n
+noun change endring endring f
+noun update oppdatering oppdatering f
+noun call kall kall n
+noun answer svar svar n
+noun search søk søk n
+noun hit treff treff n
+noun copy kopi kopi m
+noun store butikk butikk m
+noun help hjelp hjelp f
+noun work arbeid arbeid n
+noun load last last f
+noun filter filter filter n
+noun format format format n | alt=fmt
+noun check kontroll kontroll m
+noun timer tidtaker tidtakar m
+noun cursor markør markør m
+noun pointer peker peikar m | alt=ptr
+noun handle hank hank m
+noun hook krok krok m
+noun plugin tillegg tillegg n
+noun track spor spor n
+noun block blokk blokk f
+noun frame ramme ramme f
+noun layer lag lag n
+noun tag merkelapp merkelapp m
+noun mark merke merke n
+noun pair par par n
+noun click klikk klikk n
+noun inventory lager lager n
+noun quantity mengde mengd m/f
+noun stock beholdning behaldning f
+noun counter teller teljar m
+# ---------------------------------------------------------------- adjectives
+adj valid gyldig gyldig
+adj invalid ugyldig ugyldig
+adj empty tom tom
+adj full full full
+adj new ny ny
+adj old gammel gammal
+adj big stor stor | alt=large
+adj small liten liten
+adj first første fyrste
+adj last sist sist
+adj next neste neste
+adj previous forrige førre | alt=prev
+adj current gjeldende gjeldande | alt=cur,curr
+adj active aktiv aktiv
+adj ready klar klar
+adj done ferdig ferdig | alt=finished,complete
+adj open åpen open
+adj visible synlig synleg
+adj public offentlig offentleg
+adj private privat privat
+adj local lokal lokal
+adj global global global
+adj default standard standard
+adj true sann sann
+adj false usann usann
+adj correct riktig riktig
+adj wrong feil feil
+adj fast rask rask
+adj slow treg treg
+adj long lang lang
+adj short kort kort
+adj high høy høg
+adj low lav låg
+adj good god god
+adj bad dårlig dårleg
+adj safe trygg trygg
+adj secure sikker sikker
+adj unique unik unik
+adj dirty skitten skitten
+adj clean ren rein
+adj raw rå rå
+adj simple enkel enkel
+adj complex kompleks kompleks
+adj available tilgjengelig tilgjengeleg
+adj optional valgfri valfri
+adj static statisk statisk
+adj dynamic dynamisk dynamisk
+adj async asynkron asynkron
+adj unknown ukjent ukjend
+adj known kjent kjend
+adj same lik lik | alt=equal
+adj different ulik ulik
+adj negative negativ negativ
+adj positive positiv positiv
+adj even jevn jamn
+adj odd odde odde
+adj left venstre venstre
+adj right høyre høgre
+adj blank blank blank
+adj max maksimal maksimal | alt=maximal
+adj min minimal minimal | alt=minimal
+# ---------------------------------------------------------------- adverbs
+adv now nå no
+adv again igjen igjen
+adv always alltid alltid
+adv never aldri aldri
+adv already allerede allereie
+adv here her her
+adv there der der
+adv up opp opp
+adv down ned ned
+adv out ut ut
+adv back tilbake tilbake
+adv forward fram fram
+adv only bare berre
+adv also også òg
+adv later etterpå etterpå
+adv soon snart snart
+# ---------------------------------------------------------------- particles (Arabic)
+part and wa
+part or aw
+part but lākin
+part in fī | alt=inside,within
+part from min
+part to ilā | alt=into
+part on ʿalā | alt=onto
+part with maʿa
+part without dūna
+part before qabla
+part after baʿda
+part about ʿan
+part at ʿinda
+part between bayna
+part under taḥta | alt=below
+part over fawqa | alt=above
+part around ḥawla
+part until ḥattā | alt=till
+part via ʿabra | alt=through
+part by ḥasaba
+part for min_ajli
+part as ka
+part than min
+part since mundhu
+part except illā
+part like mithla
+# ---------------------------------------------------------------- determiners (Arabic)
+det all kull
+det each kull | alt=every
+det some baʿḍ
+det any ayy
+# ---------------------------------------------------------------- numerals
+num zero null null 0
+num one en ein 1
+num two to to 2
+num three tre tre 3
+num four fire fire 4
+num five fem fem 5
+num six seks seks 6
+num seven sju sju 7
+num eight åtte åtte 8
+num nine ni ni 9
+num ten ti ti 10
+num eleven elleve elleve 11
+num twelve tolv tolv 12
+num thirteen tretten tretten 13
+num fourteen fjorten fjorten 14
+num fifteen femten femten 15
+num sixteen seksten seksten 16
+num seventeen sytten sytten 17
+num eighteen atten atten 18
+num nineteen nitten nitten 19
+num twenty tjue tjue 20
+num thirty tretti tretti 30
+num forty førti førti 40
+num fifty femti femti 50
+num sixty seksti seksti 60
+num seventy sytti sytti 70
+num eighty åtti åtti 80
+num ninety nitti nitti 90
+num hundred hundre hundre 100
+num thousand tusen tusen 1000

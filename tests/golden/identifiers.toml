@@ -1,0 +1,407 @@
+# Golden identifier translations. `cargo test` checks every case.
+# Regenerate with NBMA_BLESS=1 cargo test --test golden, then review the diff.
+
+[[case]]
+input = "get_user_name"
+role = "fn"
+expected = "uhnut_namn_ad_den_brukaren"
+
+[[case]]
+input = "getUserName"
+role = "fn"
+expected = "uhnutNamnAdDenBrukaren"
+
+[[case]]
+input = "GetUserName"
+role = "fn"
+expected = "UhnutNamnAdDenBrukaren"
+
+[[case]]
+input = "set_user_name"
+role = "fn"
+expected = "ustut_namn_ad_den_brukaren"
+
+[[case]]
+input = "read_file"
+role = "fn"
+expected = "ulsuw_ad_den_fila"
+
+[[case]]
+input = "write_file"
+role = "fn"
+expected = "sakriv_ad_den_fila"
+
+[[case]]
+input = "parse_text"
+role = "fn"
+expected = "utluk_ad_den_teksta"
+
+[[case]]
+input = "load_config"
+role = "fn"
+expected = "ulsut_ad_den_konfigurasjonen"
+
+[[case]]
+input = "save_settings"
+role = "fn"
+expected = "ulgur_ad_de_innstillingene"
+
+[[case]]
+input = "delete_user"
+role = "fn"
+expected = "saltit_ad_den_brukaren"
+
+[[case]]
+input = "create_account"
+role = "fn"
+expected = "paprit_ad_den_kontoen"
+
+[[case]]
+input = "update_status"
+role = "fn"
+expected = "papdit_ad_den_statusen"
+
+[[case]]
+input = "find_user_by_id"
+role = "fn"
+expected = "ufnun_ad_den_brukaren_7asaba_ad_den_id_en"
+
+[[case]]
+input = "sort_by_name"
+role = "fn"
+expected = "sartir_7asaba_ad_det_namnet"
+
+[[case]]
+input = "send_message"
+role = "fn"
+expected = "usnud_ad_den_meldinga"
+
+[[case]]
+input = "handle_request"
+role = "fn"
+expected = "handit_ad_den_forespoerselen"
+
+[[case]]
+input = "validate_input"
+role = "fn"
+expected = "valdir_ad_den_inndataen"
+
+[[case]]
+input = "open_connection"
+role = "fn"
+expected = "upnuw_ad_den_tilkoplinga"
+
+[[case]]
+input = "close_window"
+role = "fn"
+expected = "ulkuk_ad_det_vinduet"
+
+[[case]]
+input = "to_string"
+role = "fn"
+expected = "ilaa_ad_den_strengen"
+
+[[case]]
+input = "from_file"
+role = "fn"
+expected = "min_ad_den_fila"
+
+[[case]]
+input = "on_click"
+role = "fn"
+expected = "yaa_3alaa_ad_det_klikket"
+
+[[case]]
+input = "get_all_users"
+role = "fn"
+expected = "uhnut_kull_ad_dei_brukarane"
+
+[[case]]
+input = "list_users"
+role = "fn"
+expected = "lassit_ad_dei_brukarane"
+
+[[case]]
+input = "count_items"
+role = "fn"
+expected = "utlul_ad_de_elementa"
+
+[[case]]
+input = "parse_and_save"
+role = "fn"
+expected = "utluk_wa_ulgur"
+
+[[case]]
+input = "build_tree"
+role = "fn"
+expected = "ubgug_ad_det_treet"
+
+[[case]]
+input = "print_report"
+role = "fn"
+expected = "parnit_ad_den_rapporten"
+
+[[case]]
+input = "compute_total"
+role = "fn"
+expected = "bargin_ad_den_summen"
+
+[[case]]
+input = "reset_password"
+role = "fn"
+expected = "nallis_ad_det_passordet"
+
+[[case]]
+input = "user"
+role = "var"
+expected = "brukar"
+
+[[case]]
+input = "users"
+role = "var"
+expected = "brukarar"
+
+[[case]]
+input = "user_name"
+role = "var"
+expected = "namn_ad_den_brukaren"
+
+[[case]]
+input = "user_names"
+role = "var"
+expected = "namn_ad_den_brukaren"
+
+[[case]]
+input = "user_pair"
+role = "var"
+expected = "brukaraan"
+
+[[case]]
+input = "file_path"
+role = "var"
+expected = "sti_ad_den_fila"
+
+[[case]]
+input = "error_message"
+role = "var"
+expected = "melding_ad_den_feilen"
+
+[[case]]
+input = "max_retries"
+role = "var"
+expected = "gajnater_maksimale"
+
+[[case]]
+input = "retry_count"
+role = "var"
+expected = "antal_ad_den_gajnata"
+
+[[case]]
+input = "parsed_data"
+role = "var"
+expected = "data_matluuk"
+
+[[case]]
+input = "loaded_files"
+role = "var"
+expected = "filer_malsuut"
+
+[[case]]
+input = "valid_users"
+role = "var"
+expected = "brukarar_gyldige"
+
+[[case]]
+input = "new_user"
+role = "var"
+expected = "brukar_ny"
+
+[[case]]
+input = "first_name"
+role = "var"
+expected = "namn_fyrste"
+
+[[case]]
+input = "last_item"
+role = "var"
+expected = "element_sist"
+
+[[case]]
+input = "three_users"
+role = "var"
+expected = "tre_brukarar"
+
+[[case]]
+input = "twenty_users"
+role = "var"
+expected = "tjue_brukar"
+
+[[case]]
+input = "current_page"
+role = "var"
+expected = "side_gjeldende"
+
+[[case]]
+input = "MAX_SIZE"
+role = "var"
+expected = "STOERRELSE_MAKSIMAL"
+
+[[case]]
+input = "is_valid"
+role = "bool"
+expected = "hal_gyldig"
+
+[[case]]
+input = "is_not_empty"
+role = "bool"
+expected = "hal_maa_ikkje_tom"
+
+[[case]]
+input = "has_children"
+role = "bool"
+expected = "hal_3inda_barn"
+
+[[case]]
+input = "is_enabled"
+role = "bool"
+expected = "hal_mukatvar"
+
+[[case]]
+input = "can_write"
+role = "bool"
+expected = "hal_yaknunur_sakrava"
+
+[[case]]
+input = "is_open"
+role = "bool"
+expected = "hal_open"
+
+[[case]]
+input = "has_errors"
+role = "bool"
+expected = "hal_3inda_feil"
+
+[[case]]
+input = "should_retry"
+role = "bool"
+expected = "hal_yusaklilur_gajnata"
+
+[[case]]
+input = "exists"
+role = "bool"
+expected = "hal_yukassitur"
+
+[[case]]
+input = "Parser"
+role = "type"
+expected = "Taalik"
+
+[[case]]
+input = "User"
+role = "type"
+expected = "Brukar"
+
+[[case]]
+input = "UserManager"
+role = "type"
+expected = "MusattirAdDenBrukaren"
+
+[[case]]
+input = "FileReader"
+role = "type"
+expected = "LaasiwAdDenFila"
+
+[[case]]
+input = "DataServer"
+role = "type"
+expected = "TenarAdDenDataen"
+
+[[case]]
+input = "EventHandler"
+role = "type"
+expected = "MuhanditAdDenHendinga"
+
+[[case]]
+input = "TreeNode"
+role = "type"
+expected = "NodeAdDetTreet"
+
+[[case]]
+input = "ConfigLoader"
+role = "type"
+expected = "LaasitAdDenKonfigurasjonen"
+
+[[case]]
+input = "min_value"
+role = "var"
+expected = "verdi_minimal"
+
+[[case]]
+input = "user2"
+role = "var"
+expected = "user2"
+
+[[case]]
+input = "x"
+role = "var"
+expected = "x"
+
+[[case]]
+input = "get_x"
+role = "fn"
+expected = "uhnut_x"
+
+[[case]]
+input = "the_user"
+role = "var"
+expected = "ad_den_brukaren"
+
+[[case]]
+input = "an_error"
+role = "var"
+expected = "feil"
+
+[[case]]
+input = "each_user"
+role = "var"
+expected = "kull_brukar"
+
+[[case]]
+input = "some_users"
+role = "var"
+expected = "ba3d_ad_dei_brukarane"
+
+[[case]]
+input = "on_page_load"
+role = "fn"
+expected = "yaa_3alaa_last_ad_den_sida"
+
+[[case]]
+input = "write_to_disk"
+role = "fn"
+expected = "sakriv_ilaa_ad_den_disken"
+
+[[case]]
+input = "is_ready"
+role = "bool"
+expected = "hal_klar"
+
+[[case]]
+input = "was_sent"
+role = "bool"
+expected = "hal_masnuud"
+
+[[case]]
+input = "render_page"
+role = "fn"
+expected = "gajnig_ad_den_sida"
+
+[[case]]
+input = "parse_json"
+role = "fn"
+error = "unknown"
+
+[[case]]
+input = "__init__"
+role = "fn"
+error = "reserved"

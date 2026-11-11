@@ -1,0 +1,62 @@
+# ordbok.nbma.toml: written by nbma. Maps original names to Nybokmarabic.
+# Reruns read it first so names stay stable. `nbma untranslate` reverses it.
+
+[identifiers]
+User = { to = "Brukar", role = "type" }
+Registry = { to = "Register", role = "type" }
+RegistryTest = { to = "TestAdDetRegisteret", role = "type" }
+is_valid = { to = "hal_gyldig", role = "bool" }
+add_user = { to = "utluf_ad_den_brukaren", role = "fn" }
+get_user = { to = "uhnut_ad_den_brukaren", role = "fn" }
+remove_user = { to = "fajrin_ad_den_brukaren", role = "fn" }
+find_users_by_email = { to = "ufnun_ad_dei_brukarane_7asaba_ad_den_e_posten", role = "fn" }
+count_active_users = { to = "utlul_ad_dei_brukarane_al_aktive", role = "fn" }
+get_user_names = { to = "uhnut_namn_ad_den_brukaren", role = "fn" }
+disable_user = { to = "saprir_ad_den_brukaren", role = "fn" }
+parse_line = { to = "utluk_ad_den_linja", role = "fn" }
+load_users = { to = "ulsut_ad_dei_brukarane", role = "fn" }
+test_add_and_get_user = { to = "test_utluf_wa_uhnut_ad_den_brukaren", role = "fn" }
+test_invalid_user_is_rejected = { to = "test_ad_den_brukaren_al_ugyldige_al_mavvuuse", role = "fn" }
+test_remove_user = { to = "test_fajrin_ad_den_brukaren", role = "fn" }
+test_find_users_by_email = { to = "test_ufnun_ad_dei_brukarane_7asaba_ad_den_e_posten", role = "fn" }
+test_count_active_users = { to = "test_utlul_ad_dei_brukarane_al_aktive", role = "fn" }
+test_get_user_names = { to = "test_uhnut_namn_ad_den_brukaren", role = "fn" }
+test_parse_line = { to = "test_utluk_ad_den_linja", role = "fn" }
+name = { to = "namn", role = "var" }
+email = { to = "e_post", role = "var" }
+users = { to = "brukarar", role = "var" }
+user = { to = "brukar", role = "var" }
+line = { to = "linje", role = "var" }
+lines = { to = "linjer", role = "var" }
+registry = { to = "register", role = "var" }
+item = { to = "element", role = "var" }
+fields = { to = "feltaan", role = "var" }
+found = { to = "mafnuun", role = "var" }
+active = { to = "hal_aktiv", role = "bool" }
+
+[proposed.registry]
+pos = "noun"
+bm = "register"
+nn = "register"
+gender = "n"
+verified = false
+
+[[text]]
+from = "The registry stores users."
+to = "fa tupapbivur ad-det-registeret brukarar."
+
+[[text]]
+from = "A user has a name and an email."
+to = "fa ʿinda brukar namn wa e-post."
+
+[[text]]
+from = "The user has a valid email."
+to = "fa ʿinda ad-den-brukaren e-post gyldig."
+
+[[text]]
+from = "The line gives a user."
+to = "fa tagjuwur ad-den-linja brukar."
+
+[[text]]
+from = "We read every line."
+to = "fa nalsuwur vi kull linje."

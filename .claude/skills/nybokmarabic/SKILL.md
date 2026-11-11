@@ -109,7 +109,7 @@ nbma prose "The user writes a file." --glossary ordbok.nbma.toml --record
 
 ```console
 $ nbma prose "The user writes a file."
-fa yusakrivur ad-den-brukaren fil.
+Fa yusakrivur ad-den-brukaren fil.
 ```
 
 Paste the output exactly. If `nbma prose` refuses, simplify the sentence;

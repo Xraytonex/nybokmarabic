@@ -17,7 +17,7 @@ Arabic templates. Prepositions are Arabic. Articles are all of them at once.
 
 ```console
 $ nbma prose "The user writes a file."
-fa yusakrivur ad-den-brukaren fil.
+Fa yusakrivur ad-den-brukaren fil.
 ```
 
 `ad-den-brukaren` is "the user" with three definite articles: Arabic `al-`
@@ -69,7 +69,7 @@ place        mahnat
 $ nbma number 22
 to wa tjue
 $ nbma prose "The user is not valid."
-fa mā ikkje ad-den-brukaren gyldig.
+Fa mā ikkje ad-den-brukaren gyldig.
 ```
 
 A few things to notice:

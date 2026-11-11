@@ -46,7 +46,7 @@ fn every_subcommand_speaks_json() {
     );
     assert_eq!(
         json(&["prose", "The user writes a file."])["output"],
-        "fa yusakrivur ad-den-brukaren fil."
+        "Fa yusakrivur ad-den-brukaren fil."
     );
     assert_eq!(json(&["fold", "ʿalā"])["output"], "yaa_3alaa");
     assert_eq!(json(&["number", "22"])["numeral"], "to wa tjue");

@@ -120,7 +120,7 @@ nbma prose "The user writes a file." --glossary ordbok.nbma.toml --record
 
 ```console
 $ nbma prose "The user writes a file."
-fa yusakrivur ad-den-brukaren fil.
+Fa yusakrivur ad-den-brukaren fil.
 $ nbma prose "Read the file."
 nbma: cannot translate "Read the file.": no subject found. Simplify the sentence.
 ```

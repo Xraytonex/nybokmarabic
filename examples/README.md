@@ -43,4 +43,4 @@ A few results worth a look in `after/registry.py`:
 | `self.active` | `self.hal_aktiv` | booleans take `hal_` |
 | `fields` | `feltaan` | a 2-tuple, so dual |
 | `found` | `mafnuun` | passive participle of `finne` |
-| `"""The registry stores users."""` | `"""fa tupapbivur ad-det-registeret brukarar."""` | neuter subject, feminine verb |
+| `"""The registry stores users."""` | `"""Fa tupapbivur ad-det-registeret brukarar."""` | neuter subject, feminine verb |

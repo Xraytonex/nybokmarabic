@@ -406,7 +406,14 @@ fn sentence(lex: &Lexicon, raw: &str) -> Result<String, ProseError> {
     }
     out.extend(p.tail()?);
     let end = if question { Some('?') } else { terminal };
-    let mut s = out.join(" ");
+    // Norwegian and ALA-LC romanization agree: a sentence starts with a
+    // capital letter.
+    let joined = out.join(" ");
+    let mut chars = joined.chars();
+    let mut s: String = match chars.next() {
+        Some(first) => first.to_uppercase().chain(chars).collect(),
+        None => joined,
+    };
     if let Some(c) = end {
         s.push(c);
     }
@@ -445,7 +452,7 @@ mod tests {
     fn verb_first_after_fa() {
         assert_eq!(
             t("The user writes a file."),
-            "fa yusakrivur ad-den-brukaren fil."
+            "Fa yusakrivur ad-den-brukaren fil."
         );
     }
 
@@ -453,20 +460,20 @@ mod tests {
     fn negation_is_a_circumfix() {
         assert_eq!(
             t("The user does not write a file."),
-            "fa mā yusakrivur ikkje ad-den-brukaren fil."
+            "Fa mā yusakrivur ikkje ad-den-brukaren fil."
         );
     }
 
     #[test]
     fn neuter_subjects_take_feminine_agreement() {
-        assert_eq!(t("The house reads."), "fa talsuwur ad-det-huset.");
+        assert_eq!(t("The house reads."), "Fa talsuwur ad-det-huset.");
     }
 
     #[test]
     fn past_tense() {
         assert_eq!(
             t("The user wrote a file."),
-            "fa sakrava ad-den-brukaren fil."
+            "Fa sakrava ad-den-brukaren fil."
         );
     }
 
@@ -474,57 +481,57 @@ mod tests {
     fn questions_start_with_hal() {
         assert_eq!(
             t("Does the user write a file?"),
-            "hal yusakrivur ad-den-brukaren fil?"
+            "Hal yusakrivur ad-den-brukaren fil?"
         );
-        assert_eq!(t("Is the file empty?"), "hal ad-den-fila tom?");
+        assert_eq!(t("Is the file empty?"), "Hal ad-den-fila tom?");
     }
 
     #[test]
     fn verbless_sentences_have_no_copula() {
-        assert_eq!(t("The user is valid."), "fa ad-den-brukaren gyldig.");
+        assert_eq!(t("The user is valid."), "Fa ad-den-brukaren gyldig.");
         assert_eq!(
             t("The user is not valid."),
-            "fa mā ikkje ad-den-brukaren gyldig."
+            "Fa mā ikkje ad-den-brukaren gyldig."
         );
-        assert_eq!(t("The house is big."), "fa ad-det-huset stort.");
-        assert_eq!(t("The users are valid."), "fa ad-dei-brukarane gyldige.");
+        assert_eq!(t("The house is big."), "Fa ad-det-huset stort.");
+        assert_eq!(t("The users are valid."), "Fa ad-dei-brukarane gyldige.");
     }
 
     #[test]
     fn counting_follows_arabic() {
         assert_eq!(
             t("The user writes 2 files."),
-            "fa yusakrivur ad-den-brukaren filān."
+            "Fa yusakrivur ad-den-brukaren filān."
         );
         assert_eq!(
             t("The user writes 22 files."),
-            "fa yusakrivur ad-den-brukaren to wa tjue fil."
+            "Fa yusakrivur ad-den-brukaren to wa tjue fil."
         );
         assert_eq!(
             t("The user writes 3 files."),
-            "fa yusakrivur ad-den-brukaren tre filer."
+            "Fa yusakrivur ad-den-brukaren tre filer."
         );
     }
 
     #[test]
     fn pronouns_keep_both_languages_happy() {
-        assert_eq!(t("We read the file."), "fa nalsuwur vi ad-den-fila.");
+        assert_eq!(t("We read the file."), "Fa nalsuwur vi ad-den-fila.");
     }
 
     #[test]
     fn object_pronouns_are_marked_twice() {
         assert_eq!(
             t("The user reads me."),
-            "fa yalsuwur-nī ad-den-brukaren meg."
+            "Fa yalsuwur-nī ad-den-brukaren meg."
         );
-        assert_eq!(t("We help them."), "fa nuhajlipur-hum vi dei.");
+        assert_eq!(t("We help them."), "Fa nuhajlipur-hum vi dei.");
     }
 
     #[test]
     fn prepositions() {
         assert_eq!(
             t("The user writes the name to the file."),
-            "fa yusakrivur ad-den-brukaren ad-det-namnet ilā ad-den-fila."
+            "Fa yusakrivur ad-den-brukaren ad-det-namnet ilā ad-den-fila."
         );
     }
 

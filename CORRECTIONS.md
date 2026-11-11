@@ -91,7 +91,7 @@ The brief translated "the user writes a file" as
 
 ```console
 $ nbma prose "The user writes a file."
-fa yusakrivur ad-den-brukaren fil.
+Fa yusakrivur ad-den-brukaren fil.
 ```
 
 ### 8. More than two colliding verbs

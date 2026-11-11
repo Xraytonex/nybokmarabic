@@ -43,20 +43,20 @@ verified = false
 
 [[text]]
 from = "The registry stores users."
-to = "fa tupapbivur ad-det-registeret brukarar."
+to = "Fa tupapbivur ad-det-registeret brukarar."
 
 [[text]]
 from = "A user has a name and an email."
-to = "fa ʿinda brukar namn wa e-post."
+to = "Fa ʿinda brukar namn wa e-post."
 
 [[text]]
 from = "The user has a valid email."
-to = "fa ʿinda ad-den-brukaren e-post gyldig."
+to = "Fa ʿinda ad-den-brukaren e-post gyldig."
 
 [[text]]
 from = "The line gives a user."
-to = "fa tagjuwur ad-den-linja brukar."
+to = "Fa tagjuwur ad-den-linja brukar."
 
 [[text]]
 from = "We read every line."
-to = "fa nalsuwur vi kull linje."
+to = "Fa nalsuwur vi kull linje."

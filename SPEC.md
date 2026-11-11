@@ -200,7 +200,7 @@ as-store
 $ nbma inflect gyldig --form def
 al-gyldige
 $ nbma prose "The big house reads."
-fa talsuwur ad-det-huset as-store.
+Fa talsuwur ad-det-huset as-store.
 ```
 
 Sun letters are `t th d dh r z s sh ṣ ḍ ṭ ẓ l n`. Norwegian letters with no
@@ -385,7 +385,7 @@ subject, then the object.
 
 ```console
 $ nbma prose "The user writes a file."
-fa yusakrivur ad-den-brukaren fil.
+Fa yusakrivur ad-den-brukaren fil.
 ```
 
 A Norwegian grammarian will object that a coordinating conjunction stands
@@ -400,9 +400,9 @@ Arabic verb–subject order. Neuter subjects take feminine agreement:
 
 ```console
 $ nbma prose "The users write files."
-fa yusakrivur ad-dei-brukarane filer.
+Fa yusakrivur ad-dei-brukarane filer.
 $ nbma prose "The house reads."
-fa talsuwur ad-det-huset.
+Fa talsuwur ad-det-huset.
 ```
 
 Pronoun subjects are marked twice: Arabic needs the person on the verb,
@@ -410,7 +410,7 @@ Norwegian needs a subject.
 
 ```console
 $ nbma prose "We read the file."
-fa nalsuwur vi ad-den-fila.
+Fa nalsuwur vi ad-den-fila.
 ```
 
 ### 9.1 Object pronouns
@@ -447,7 +447,7 @@ object  dei
 
 ```console
 $ nbma prose "The user reads me."
-fa yalsuwur-nī ad-den-brukaren meg.
+Fa yalsuwur-nī ad-den-brukaren meg.
 $ nbma ident help_us --role fn
 hajlip_naa_oss
 $ nbma ident READ_ME --role fn
@@ -464,7 +464,7 @@ A circumfix: `mā` before the verb, the parity-selected Norwegian negator
 
 ```console
 $ nbma prose "The user does not write a file."
-fa mā yusakrivur ikkje ad-den-brukaren fil.
+Fa mā yusakrivur ikkje ad-den-brukaren fil.
 ```
 
 `mā` is used for every tense. Modern Standard Arabic prefers `lā` for the
@@ -480,11 +480,11 @@ use of `mā` before a verbless clause follows the Classical "Ḥijāzī mā".
 
 ```console
 $ nbma prose "The user is valid."
-fa ad-den-brukaren gyldig.
+Fa ad-den-brukaren gyldig.
 $ nbma prose "The user is not valid."
-fa mā ikkje ad-den-brukaren gyldig.
+Fa mā ikkje ad-den-brukaren gyldig.
 $ nbma prose "The house is big."
-fa ad-det-huset stort.
+Fa ad-det-huset stort.
 ```
 
 Yes/no questions start with `hal`. This puts the verb second again, which
@@ -492,16 +492,16 @@ Norwegian did not ask for in questions but accepts.
 
 ```console
 $ nbma prose "Does the user write a file?"
-hal yusakrivur ad-den-brukaren fil?
+Hal yusakrivur ad-den-brukaren fil?
 $ nbma prose "Is the file empty?"
-hal ad-den-fila tom?
+Hal ad-den-fila tom?
 ```
 
 Possession uses `ʿinda` ("at"), as Arabic does:
 
 ```console
 $ nbma prose "The user has a valid email."
-fa ʿinda ad-den-brukaren e-post gyldig.
+Fa ʿinda ad-den-brukaren e-post gyldig.
 ```
 
 In code, boolean predicates take `hal_`, and the copula disappears:
@@ -540,11 +540,11 @@ eleven upwards take the **singular**.
 
 ```console
 $ nbma prose "The user writes 2 files."
-fa yusakrivur ad-den-brukaren filān.
+Fa yusakrivur ad-den-brukaren filān.
 $ nbma prose "The user writes 3 files."
-fa yusakrivur ad-den-brukaren tre filer.
+Fa yusakrivur ad-den-brukaren tre filer.
 $ nbma prose "The user writes 22 files."
-fa yusakrivur ad-den-brukaren to wa tjue fil.
+Fa yusakrivur ad-den-brukaren to wa tjue fil.
 ```
 
 ## 13. The language's own name

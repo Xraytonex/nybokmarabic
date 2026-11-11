@@ -1,8 +1,8 @@
-"""fa tupapbivur ad-det-registeret brukarar."""
+"""Fa tupapbivur ad-det-registeret brukarar."""
 
 
 class Brukar:
-    """fa ʿinda brukar namn wa e-post."""
+    """Fa ʿinda brukar namn wa e-post."""
 
     def __init__(self, namn, e_post):
         self.namn = namn
@@ -10,12 +10,12 @@ class Brukar:
         self.hal_aktiv = True
 
     def hal_gyldig(self):
-        """fa ʿinda ad-den-brukaren e-post gyldig."""
+        """Fa ʿinda ad-den-brukaren e-post gyldig."""
         return bool(self.namn) and "@" in self.e_post
 
 
 class Register:
-    """fa tupapbivur ad-det-registeret brukarar."""
+    """Fa tupapbivur ad-det-registeret brukarar."""
 
     def __init__(self):
         self.brukarar = {}
@@ -50,7 +50,7 @@ class Register:
 
 
 def utluk_ad_den_linja(linje):
-    """fa tagjuwur ad-den-linja brukar."""
+    """Fa tagjuwur ad-den-linja brukar."""
     feltaan = tuple(element.strip() for element in linje.split(","))
     if len(feltaan) != 2:
         raise ValueError("expected name,email")
@@ -60,7 +60,7 @@ def utluk_ad_den_linja(linje):
 
 def ulsut_ad_dei_brukarane(linjer):
     register = Register()
-    # fa nalsuwur vi kull linje.
+    # Fa nalsuwur vi kull linje.
     for linje in linjer:
         if linje.strip():
             register.utluf_ad_den_brukaren(utluk_ad_den_linja(linje))

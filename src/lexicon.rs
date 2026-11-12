@@ -8,6 +8,8 @@ use toml::Value;
 
 use crate::english::{candidates, Inflection};
 use crate::root::{extract, Root};
+use crate::segment::known;
+use crate::shorthand::Shorthand;
 use crate::text::{Gender, Standard};
 use crate::verb::{Form, Person, Verb, QUADRILITERAL_ORDER, TRILITERAL_ORDER};
 
@@ -220,6 +222,7 @@ pub struct Lexicon {
     entries: Vec<Entry>,
     by_english: HashMap<String, Vec<usize>>,
     irregular: HashMap<String, Vec<(usize, Inflection)>>,
+    shorthand: Shorthand,
 }
 
 static CORE: OnceLock<Lexicon> = OnceLock::new();
@@ -227,7 +230,28 @@ static CORE: OnceLock<Lexicon> = OnceLock::new();
 impl Lexicon {
     /// The embedded core lexicon.
     pub fn core() -> &'static Lexicon {
-        CORE.get_or_init(|| Lexicon::parse(CORE_TOML).expect("embedded lexicon is valid"))
+        CORE.get_or_init(|| {
+            let shorthand = Shorthand::core().expect("embedded shorthand is valid");
+            Lexicon::parse(CORE_TOML)
+                .expect("embedded lexicon is valid")
+                .with_shorthand(shorthand)
+        })
+    }
+
+    /// This lexicon with abbreviations and acronyms (SPEC §16).
+    pub fn with_shorthand(mut self, shorthand: Shorthand) -> Lexicon {
+        self.shorthand = shorthand;
+        self
+    }
+
+    /// The English words an abbreviation stands for (`fh` → file handle).
+    pub fn expansion(&self, word: &str) -> Option<&[String]> {
+        self.shorthand.expansion(word)
+    }
+
+    /// The acronym as written (`http` → `HTTP`), if `word` is one.
+    pub fn acronym(&self, word: &str) -> Option<&str> {
+        self.shorthand.acronym(word)
     }
 
     pub fn parse(src: &str) -> Result<Lexicon, String> {
@@ -243,13 +267,32 @@ impl Lexicon {
     }
 
     /// A copy of this lexicon with `[proposed]` entries from a glossary added.
+    /// `pos = "abbrev"` and `pos = "acronym"` add shorthand instead.
     pub fn with_proposed(&self, proposed: &toml::Table) -> Result<Lexicon, String> {
         let mut lex = self.clone();
         for (key, value) in proposed {
             let t = value
                 .as_table()
                 .ok_or_else(|| format!("proposed {key}: expected a table"))?;
-            lex.push(Entry::from_toml(key, t, true)?);
+            match t.get("pos").and_then(Value::as_str) {
+                Some("abbrev") => {
+                    let expands = t
+                        .get("expands")
+                        .and_then(Value::as_str)
+                        .ok_or_else(|| format!("proposed {key}: abbrev needs `expands`"))?;
+                    lex.shorthand.add_abbreviation(key, expands)?;
+                }
+                Some("acronym") => {
+                    let written = t.get("written").and_then(Value::as_str).unwrap_or(key);
+                    if written.to_lowercase() != *key {
+                        return Err(format!(
+                            "proposed {key}: `written = {written:?}` spells another word"
+                        ));
+                    }
+                    lex.shorthand.add_acronym(written)?;
+                }
+                _ => lex.push(Entry::from_toml(key, t, true)?),
+            }
         }
         Ok(lex)
     }
@@ -383,7 +426,35 @@ impl Lexicon {
             seen_root.entry((radicals, e.form)).or_insert(e);
             seen_past.entry(past).or_insert(e);
         }
+        report.errors.extend(self.check_shorthand());
         report
+    }
+
+    /// Abbreviations must expand to words the lexicon knows, and neither an
+    /// abbreviation nor an acronym may hide a lexicon word (it would never
+    /// be read).
+    fn check_shorthand(&self) -> Vec<String> {
+        let mut errors = Vec::new();
+        // A word the grammar reads as it is (`files`) is never looked up as
+        // shorthand. A lemmatizer guess the grammar rejects does not count
+        // (`attr` is not "someone who ats").
+        let plain = self.clone().with_shorthand(Shorthand::default());
+        for (word, expansion) in self.shorthand.abbreviations() {
+            if known(&plain, word) {
+                errors.push(format!("abbreviation {word} hides the lexicon word {word}"));
+            }
+            for w in expansion.iter().filter(|w| !known(self, w)) {
+                errors.push(format!(
+                    "abbreviation {word} expands to {w}, which is not in the lexicon"
+                ));
+            }
+        }
+        for word in self.shorthand.acronyms() {
+            if known(&plain, word) {
+                errors.push(format!("acronym {word} hides the lexicon word {word}"));
+            }
+        }
+        errors
     }
 }
 
@@ -408,6 +479,27 @@ mod tests {
     fn core_lexicon_loads_and_is_large_enough() {
         let lex = Lexicon::core();
         assert!(lex.entries().len() >= 300);
+    }
+
+    #[test]
+    fn shorthand_must_expand_to_known_words_and_hide_nothing() {
+        let lex =
+            Lexicon::parse("[file]\npos = \"noun\"\nbm = \"fil\"\nnn = \"fil\"\ngender = \"m\"\n")
+                .unwrap();
+        let mut s = Shorthand::default();
+        s.add_abbreviation("fh", "file handle").unwrap();
+        s.add_abbreviation("files", "file").unwrap();
+        s.add_acronym("FILE").unwrap();
+        s.add_acronym("CRC").unwrap();
+        let errors = lex.with_shorthand(s).check().errors;
+        assert_eq!(
+            errors,
+            [
+                "abbreviation fh expands to handle, which is not in the lexicon",
+                "abbreviation files hides the lexicon word files",
+                "acronym file hides the lexicon word file",
+            ]
+        );
     }
 
     #[test]

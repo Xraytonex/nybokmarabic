@@ -16,6 +16,8 @@ pub struct Noun {
     pub def: String,
     pub pl: String,
     pub def_pl: String,
+    /// Acronyms (`HTTP`) put a hyphen before every ending, the dual too.
+    pub acronym: bool,
 }
 
 impl Noun {
@@ -31,6 +33,7 @@ impl Noun {
                 def: forms[0].clone(),
                 pl: forms[1].clone(),
                 def_pl: forms[2].clone(),
+                acronym: false,
             }
         } else {
             Noun::regular(e.lemma(), gender, standard)
@@ -47,6 +50,25 @@ impl Noun {
             Gender::Masculine
         };
         Noun::regular(word, gender, Standard::for_lemma(word))
+    }
+
+    /// An acronym kept as written (`HTTP`): neuter, and every ending follows
+    /// a hyphen, as Norwegian writes abbreviations (`HTTP-et`, `API-er`).
+    pub fn acronym(written: &str) -> Noun {
+        let standard = Standard::for_lemma(written);
+        let (pl, def_pl) = match standard {
+            Standard::Bokmal => (format!("{written}-er"), format!("{written}-ene")),
+            Standard::Nynorsk => (written.to_string(), format!("{written}-a")),
+        };
+        Noun {
+            lemma: written.to_string(),
+            gender: Gender::Neuter,
+            standard,
+            def: format!("{written}-et"),
+            pl,
+            def_pl,
+            acronym: true,
+        }
     }
 
     /// Regular Norwegian inflection, used for words the dictionary does not
@@ -108,6 +130,7 @@ impl Noun {
             def,
             pl,
             def_pl,
+            acronym: false,
         }
     }
 
@@ -126,6 +149,7 @@ impl Noun {
         match number {
             Number::Sg => self.lemma.clone(),
             Number::Pl => self.pl.clone(),
+            Number::Dual if self.acronym => format!("{}-ān", self.lemma),
             Number::Dual => dual(&self.lemma),
         }
     }
@@ -320,6 +344,20 @@ mod tests {
 
     fn adj(key: &str) -> Adjective {
         Adjective::from_entry(Lexicon::core().by_key(key).unwrap())
+    }
+
+    #[test]
+    fn acronyms_take_hyphenated_endings() {
+        let crc = Noun::acronym("CRC");
+        assert_eq!(crc.standard, Standard::Bokmal);
+        assert_eq!(crc.definite(Number::Sg), "ad-det-CRC-et");
+        assert_eq!(crc.indefinite(Number::Pl), "CRC-er");
+        assert_eq!(crc.indefinite(Number::Dual), "CRC-ān");
+        let json = Noun::acronym("JSON");
+        assert_eq!(json.standard, Standard::Nynorsk);
+        assert_eq!(json.indefinite(Number::Pl), "JSON");
+        assert_eq!(json.definite(Number::Pl), "ad-dei-JSON-a");
+        assert_eq!(Noun::acronym("gzip").indefinite(Number::Dual), "gzip-ān");
     }
 
     #[test]

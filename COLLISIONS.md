@@ -15,6 +15,10 @@ kh خ, ʾ ء). A root counts as a collision if Wiktionary has a category
 Weak final radicals (w and y) are interchangeable in Arabic, so both were
 tried.
 
+The check covered the 582-entry lexicon of the first release. Verbs added
+since then have not been checked yet, so there are more collisions than
+this page lists.
+
 A category on Wiktionary proves the root is attested, not that it is
 common. Meanings below are the root's core sense, summarised; check a
 dictionary (Lane's Lexicon, Hans Wehr) before quoting one. Quadriliteral

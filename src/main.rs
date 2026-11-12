@@ -120,17 +120,24 @@ enum Command {
         #[command(subcommand)]
         action: GlossaryAction,
     },
-    /// Propose a Norwegian lemma for an English word missing from the lexicon.
+    /// Propose a word missing from the lexicon: a Norwegian lemma, an
+    /// abbreviation (`--abbrev "file handle"`) or an acronym (`--acronym`).
     Propose {
         english: String,
-        #[arg(long)]
-        pos: String,
-        #[arg(long)]
-        bm: String,
-        #[arg(long)]
-        nn: String,
-        #[arg(long)]
+        #[arg(long, required_unless_present_any = ["abbrev", "acronym"], requires_all = ["bm", "nn"])]
+        pos: Option<String>,
+        #[arg(long, requires = "pos", conflicts_with_all = ["abbrev", "acronym"])]
+        bm: Option<String>,
+        #[arg(long, requires = "pos", conflicts_with_all = ["abbrev", "acronym"])]
+        nn: Option<String>,
+        #[arg(long, requires = "pos", conflicts_with_all = ["abbrev", "acronym"])]
         gender: Option<String>,
+        /// The English words an abbreviation stands for.
+        #[arg(long, value_name = "WORDS", conflicts_with_all = ["pos", "acronym"])]
+        abbrev: Option<String>,
+        /// Keep the word as an acronym, as written (`CRC`).
+        #[arg(long, conflicts_with = "pos")]
+        acronym: bool,
         #[arg(long, value_name = "PATH")]
         glossary: PathBuf,
     },
@@ -334,8 +341,22 @@ fn run(lex: &Lexicon, command: Command) -> Output {
             bm,
             nn,
             gender,
+            abbrev,
+            acronym,
             glossary,
-        } => propose(lex, &english, &pos, &bm, &nn, gender.as_deref(), &glossary),
+        } => {
+            let proposal = match (abbrev, acronym, pos) {
+                (Some(words), _, _) => Proposal::Abbrev(words),
+                (None, true, _) => Proposal::Acronym,
+                (None, false, pos) => Proposal::Lemma {
+                    pos: pos.unwrap_or_default(),
+                    bm: bm.unwrap_or_default(),
+                    nn: nn.unwrap_or_default(),
+                    gender,
+                },
+            };
+            propose(lex, &english, &proposal, &glossary)
+        }
         Command::Untranslate {
             path,
             glossary,
@@ -695,31 +716,71 @@ fn fold_cmd(text: &str, case: &str, s: &str, ident: bool, bidi: bool) -> Output 
     }
 }
 
-fn propose(
-    lex: &Lexicon,
-    english: &str,
-    pos: &str,
-    bm: &str,
-    nn: &str,
-    gender: Option<&str>,
-    path: &Path,
-) -> Output {
+/// What `nbma propose` adds to a glossary's `[proposed]` table.
+enum Proposal {
+    Lemma {
+        pos: String,
+        bm: String,
+        nn: String,
+        gender: Option<String>,
+    },
+    Abbrev(String),
+    Acronym,
+}
+
+fn propose(lex: &Lexicon, english: &str, proposal: &Proposal, path: &Path) -> Output {
     let mut glossary = match Glossary::load(path) {
         Ok(g) => g,
         Err(e) => return err(e),
     };
+    let key = english.to_lowercase();
     let mut t = toml::Table::new();
     let s = |v: &str| toml::Value::String(v.to_string());
-    t.insert("pos".into(), s(pos));
-    t.insert("bm".into(), s(bm));
-    t.insert("nn".into(), s(nn));
-    if let Some(g) = gender {
-        t.insert("gender".into(), s(g));
-    }
-    t.insert("verified".into(), toml::Value::Boolean(false));
+    let (summary, text) = match proposal {
+        Proposal::Lemma {
+            pos,
+            bm,
+            nn,
+            gender,
+        } => {
+            t.insert("pos".into(), s(pos));
+            t.insert("bm".into(), s(bm));
+            t.insert("nn".into(), s(nn));
+            if let Some(g) = gender {
+                t.insert("gender".into(), s(g));
+            }
+            t.insert("verified".into(), toml::Value::Boolean(false));
+            let selected = if Standard::for_lemma(bm) == Standard::Bokmal {
+                bm
+            } else {
+                nn
+            };
+            (
+                json!({ "english": english, "pos": pos, "bm": bm, "nn": nn, "selected": selected, "recorded": true }),
+                format!("proposed {english} = {selected}"),
+            )
+        }
+        Proposal::Abbrev(words) => {
+            t.insert("pos".into(), s("abbrev"));
+            t.insert("expands".into(), s(words));
+            (
+                json!({ "english": english, "pos": "abbrev", "expands": words, "recorded": true }),
+                format!("proposed {english} = abbreviation of \"{words}\""),
+            )
+        }
+        Proposal::Acronym => {
+            t.insert("pos".into(), s("acronym"));
+            t.insert("written".into(), s(english));
+            (
+                json!({ "english": english, "pos": "acronym", "written": english, "recorded": true }),
+                format!("proposed {english} = acronym"),
+            )
+        }
+    };
     let mut one = toml::Table::new();
-    one.insert(english.to_lowercase(), toml::Value::Table(t.clone()));
-    // Validate exactly as the lexicon would, including root collisions.
+    one.insert(key.clone(), toml::Value::Table(t.clone()));
+    // Validate exactly as the lexicon would, including root collisions and
+    // shorthand that hides or expands to unknown words.
     let merged = match lex
         .with_proposed(&glossary.proposed)
         .and_then(|l| l.with_proposed(&one))
@@ -735,19 +796,9 @@ fn propose(
             report.errors.join("\n"),
         );
     }
-    glossary
-        .proposed
-        .insert(english.to_lowercase(), toml::Value::Table(t));
+    glossary.proposed.insert(key, toml::Value::Table(t));
     if let Err(e) = glossary.save(path) {
         return err(e);
     }
-    let selected = if Standard::for_lemma(bm) == Standard::Bokmal {
-        bm
-    } else {
-        nn
-    };
-    Output::ok(
-        json!({ "english": english, "pos": pos, "bm": bm, "nn": nn, "selected": selected, "recorded": true }),
-        format!("proposed {english} = {selected}"),
-    )
+    Output::ok(summary, text)
 }

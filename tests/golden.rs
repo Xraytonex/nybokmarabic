@@ -20,6 +20,8 @@ fn golden_identifiers() {
     let bless = std::env::var("NBMA_BLESS").is_ok();
     let mut blessed = src.clone();
     let mut failures = Vec::new();
+    // Changes of kind (an error that now translates) cannot be blessed.
+    let mut unblessable = Vec::new();
     for case in cases {
         let t = case.as_table().unwrap();
         let input = t["input"].as_str().unwrap();
@@ -40,13 +42,14 @@ fn golden_identifiers() {
             }
             (None, Some("unknown"), Err(IdentError::Unknown { .. })) => {}
             (None, Some("reserved"), Err(IdentError::Reserved { .. })) => {}
-            (_, _, other) => failures.push(format!("{input} ({role}): unexpected {other:?}")),
+            (_, _, other) => unblessable.push(format!("{input} ({role}): unexpected {other:?}")),
         }
     }
     if bless && !failures.is_empty() {
         std::fs::write(PATH, blessed).unwrap();
-        return;
+        failures.clear();
     }
+    failures.extend(unblessable);
     assert!(
         failures.is_empty(),
         "golden mismatches:\n{}",

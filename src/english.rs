@@ -74,6 +74,21 @@ pub fn candidates(word: &str) -> Vec<(String, Inflection)> {
     out
 }
 
+/// The regular English plural (`entry` → `entries`, `index` → `indexes`),
+/// for the last word of a plural abbreviation (`fds` → file descriptors).
+pub fn plural(word: &str) -> String {
+    let w = word.to_lowercase();
+    if let Some(stem) = w.strip_suffix('y') {
+        if stem.chars().last().is_some_and(|c| !"aeiou".contains(c)) {
+            return format!("{stem}ies");
+        }
+    }
+    if ["s", "x", "z", "ch", "sh"].iter().any(|s| w.ends_with(s)) {
+        return format!("{w}es");
+    }
+    format!("{w}s")
+}
+
 /// `stopp` → `stop`, `runn` → `run`.
 fn undouble(stem: &str) -> Option<String> {
     let chars: Vec<char> = stem.chars().collect();
@@ -110,6 +125,15 @@ mod tests {
         assert!(has("loading", "load", Inflection::Gerund));
         assert!(has("parsing", "parse", Inflection::Gerund));
         assert!(has("running", "run", Inflection::Gerund));
+    }
+
+    #[test]
+    fn regular_plurals() {
+        assert_eq!(plural("handle"), "handles");
+        assert_eq!(plural("entry"), "entries");
+        assert_eq!(plural("key"), "keys");
+        assert_eq!(plural("index"), "indexes");
+        assert_eq!(plural("match"), "matches");
     }
 
     #[test]

@@ -107,6 +107,13 @@ the original byte for byte.
 passing tests in each. `examples/check.sh` runs both suites and the
 untranslate roundtrip.
 
+How far does the lexicon reach? Of the 3,594 names defined in 30 Python
+standard-library modules, about 77% translate without help, abbreviations
+(`kwargs`), acronyms (`HTTP`) and run-together words (`rmtree`) included.
+Nearly all of the rest contain a word the lexicon lacks (`pprint`,
+`metavar`), which the agent then proposes. `tools/measure_coverage.py`
+repeats the count.
+
 ## Honesty
 
 The author speaks none of the three languages. To keep the language wrong
@@ -118,6 +125,10 @@ on purpose rather than by accident:
 - The Arabic templates, particles and agreement rules were checked against
   standard grammar references. Every place where the original brief was
   wrong is in [CORRECTIONS.md](CORRECTIONS.md).
+- Abbreviations and acronyms (`lexicon/shorthand.toml`) are not checked
+  against anything: an abbreviation expands to English words that are in
+  the lexicon, and an acronym stays as written, so there is nothing
+  Norwegian in them to check.
 - Lexicon entries that could not be verified are marked `verified = false`.
   There are currently three: `render`, `serialize` and `deserialize`,
   whose Norwegian lemmas (`gjengi`/`gjengje`, `serialisere`,
@@ -125,7 +136,7 @@ on purpose rather than by accident:
 
 ```console
 $ nbma lexicon check
-ok: 582 entries, 3 unverified, no collisions
+ok: 1051 entries, 3 unverified, no collisions
 ```
 
 The semantic choices (which Norwegian word means "get") are the author's own

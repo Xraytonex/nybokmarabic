@@ -7,6 +7,7 @@ use crate::fold::{split_identifier, to_code, Case};
 use crate::lexicon::{Lexicon, Pos};
 use crate::nominal::NounPhrase;
 use crate::numbers::render_counted;
+use crate::segment::read;
 use crate::text::Number;
 use crate::verb::Person;
 
@@ -77,7 +78,7 @@ impl std::fmt::Display for IdentError {
             }
             IdentError::Unknown { words } => write!(
                 f,
-                "not in the lexicon: {}. Propose a lemma with `nbma propose`.",
+                "not in the lexicon: {}. Propose a lemma, abbreviation or acronym with `nbma propose`.",
                 words.join(", ")
             ),
             IdentError::Untranslatable { reason } => write!(f, "cannot translate: {reason}"),
@@ -231,9 +232,12 @@ pub fn translate(
     if role == Role::Bool {
         ctx = Context::Predicate;
     }
-    let words = &split.words;
+    // Abbreviations and compounds are read as the words they stand for.
+    let readings = read(lex, &split.words);
+    let words: Vec<String> = readings.iter().map(|r| r.word.clone()).collect();
     for (i, word) in words.iter().enumerate() {
         let next = words.get(i + 1);
+        let from = readings[i].from.as_ref();
         // An article with nothing to modify is just a letter (`a_b`, `is_a`).
         if matches!(word.as_str(), "a" | "an" | "the") && next.is_none_or(|n| passes_through(n)) {
             toks.push(Tok::Pass(word.clone()));
@@ -246,13 +250,23 @@ pub fn translate(
         }
         let found = classify_word(lex, word, ctx);
         match found {
-            Some((tok, note)) => {
+            Some((tok, mut note)) => {
+                if let Some((original, via)) = from {
+                    note.from = Some(original.clone());
+                    note.via = Some(*via);
+                }
                 ctx = next_context(role, &tok, ctx);
                 toks.push(tok);
                 notes.push(note);
             }
             None if passes_through(word) => toks.push(Tok::Pass(word.clone())),
-            None => unknown.push(word.clone()),
+            None => {
+                // Name the word the user wrote, once.
+                let original = from.map_or(word, |(o, _)| o);
+                if !unknown.contains(original) {
+                    unknown.push(original.clone());
+                }
+            }
         }
     }
     if !unknown.is_empty() {

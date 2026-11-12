@@ -14,6 +14,7 @@ use crate::english::Inflection;
 use crate::lexicon::{Lexicon, Pos};
 use crate::nominal::NounPhrase;
 use crate::numbers::render_counted;
+use crate::segment::read;
 use crate::text::{Gender, Number};
 use crate::verb::{Person, Verb};
 
@@ -295,6 +296,8 @@ fn sentence(lex: &Lexicon, raw: &str) -> Result<String, ProseError> {
         })
         .filter(|w| !w.is_empty())
         .collect();
+    // Abbreviations and compounds read as their words, as in identifiers.
+    let words: Vec<String> = read(lex, &words).into_iter().map(|r| r.word).collect();
     let mut p = Parser {
         lex,
         words,

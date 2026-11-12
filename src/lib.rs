@@ -11,6 +11,8 @@ pub mod numbers;
 pub mod prose;
 pub mod root;
 pub mod script;
+pub mod segment;
+pub mod shorthand;
 pub mod text;
 pub mod untranslate;
 pub mod verb;

@@ -397,9 +397,61 @@ role = "fn"
 expected = "gajnig_ad_den_sida"
 
 [[case]]
-input = "parse_json"
+input = "get_widget"
 role = "fn"
 error = "unknown"
+
+# Abbreviations, acronyms and compounds (SPEC §16).
+
+[[case]]
+input = "parse_json"
+role = "fn"
+expected = "utluk_ad_det_json_et"
+
+[[case]]
+input = "fh"
+role = "var"
+expected = "hank_ad_den_fila"
+
+[[case]]
+input = "kwargs"
+role = "var"
+expected = "argument_ad_det_noekkelordet"
+
+[[case]]
+input = "HTTPServer"
+role = "type"
+expected = "TenarAdDetHttpEt"
+
+[[case]]
+input = "read_http_response"
+role = "fn"
+expected = "ulsuw_respons_ad_det_http_et"
+
+[[case]]
+input = "crc_pair"
+role = "var"
+expected = "crc_aan"
+
+[[case]]
+input = "filename"
+role = "var"
+expected = "namn_ad_den_fila"
+
+[[case]]
+input = "rmtree"
+role = "fn"
+expected = "fajrin_ad_det_treet"
+
+[[case]]
+input = "isdir"
+role = "bool"
+expected = "hal_katalog"
+
+[[case]]
+input = "download_file"
+role = "fn"
+expected = "ulsut_ned_ad_den_fila"
 
 [[case]]
 input = "__init__"

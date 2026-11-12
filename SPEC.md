@@ -361,7 +361,7 @@ V, VI, VII, VIII and X for triliteral roots, Q-II for quadriliteral ones.
 
 ```console
 $ nbma lexicon check
-ok: 582 entries, 3 unverified, no collisions
+ok: 1051 entries, 3 unverified, no collisions
 $ nbma inflect låse --form past
 lassawa
 ```
@@ -564,7 +564,8 @@ ad-den-nybokmarabisken
 
 1. Split it with the file's case convention.
 2. Map each English word to a lexicon entry (plurals, participles, `-ing`
-   and `-er` forms are recognised).
+   and `-er` forms are recognised). Abbreviations, acronyms and closed
+   compounds are read first as the words they stand for (§16).
 3. Apply the parity rule.
 4. Apply grammar by role:
    - `fn`: verbs in the imperative, objects definite (§4, §5);
@@ -639,12 +640,13 @@ A word missing from the lexicon is an error (exit code 3):
 
 ```console
 $ nbma ident get_widget --role fn
-nbma: not in the lexicon: widget. Propose a lemma with `nbma propose`.
+nbma: not in the lexicon: widget. Propose a lemma, abbreviation or acronym with `nbma propose`.
 ```
 
 The agent may propose a Norwegian lemma with `nbma propose`, which records
 it under `[proposed]` in the glossary and rejects root collisions. The word
-is then inflected by the CLI like any other.
+is then inflected by the CLI like any other. Abbreviations and acronyms are
+proposed the same way (§16.4).
 
 ### 14.5 Prose
 
@@ -696,6 +698,100 @@ Identifiers in Arabic script need `--i-understand-bidi`. Without it, the
 command refuses; with it, it prints a warning about bidirectional text in
 source code (Trojan Source, CVE-2021-42574) and the tooling it breaks.
 
+## 16. Abbreviations, acronyms and compounds
+
+Code is full of words no dictionary lists: `fh`, `kwargs`, `HTTP`,
+`filename`, `rmtree`. Before translating, the CLI reads each word it does not
+know as the English words it stands for, and translates those like any other
+words. Words it knows are never re-read. `--json` names the original word
+of each reading under `from`, and how it was read under `via`.
+
+### 16.1 Abbreviations
+
+`lexicon/shorthand.toml` maps an abbreviation to English words that are
+themselves in the lexicon, so the Norwegian still comes from verified
+entries. A final `-s` makes the last word plural.
+
+```console
+$ nbma ident fh --role var
+hank_ad_den_fila
+$ nbma ident kwargs --role var
+argument_ad_det_noekkelordet
+```
+
+`argument` is neuter in Nynorsk, which has no plural ending for it, so
+"keyword arguments" and "keyword argument" come out the same. An
+abbreviation that is only another name for one entry (`err`, `cfg`, `idx`)
+is an `alt` name in the lexicon instead (Appendix).
+
+### 16.2 Acronyms
+
+Acronyms are kept as written and inflected as neuter nouns. Norwegian puts
+an abbreviation's endings after a hyphen (`CRC-et`, `CRC-er`), and so does
+Nybokmarabic, Arabic dual included. The parity rule counts the acronym's
+letters: `JSON` has four, so it is Nynorsk.
+
+```console
+$ nbma ident HTTPServer --role type
+TenarAdDetHttpEt
+$ nbma prose "The server sends the JSON."
+Fa yasnudur ad-den-tenaren ad-det-JSON-et.
+$ nbma prose "The server sends two CRCs."
+Fa yasnudur ad-den-tenaren CRC-ān.
+```
+
+`API` and `URL` are not acronyms here: the lexicon has them as
+`grensesnitt` and `nettadresse`.
+
+### 16.3 Compounds
+
+A word that is neither is split into at most three known words. The split
+with the fewest pieces wins; on a tie, the one whose shortest piece is
+longest, then the one with the longer first piece. Pieces are two letters or
+more, and a two-letter piece must be an abbreviation (`rm`), an acronym
+(`io`), a noun (`id`) or one of `in`, `is`, `no`, `on`, `to`, `up`.
+A piece of three or four letters must be a word as written or a plain
+plural, not a guessed participle or doer (`ser` is not "someone who sees").
+Articles, forms of `be` and the pronouns `her`, `him`, `them` and `you` are
+never pieces, so `together` is never "to get her".
+
+Splitting is a guess. A real English word the lexicon lacks can split
+wrongly: `sunset` reads as sun + set. `--json` marks every split with
+`"via": "compound"`; if one is wrong, propose the whole word (§14.4), and
+it is read as itself from then on.
+
+```console
+$ nbma ident filename --role var
+namn_ad_den_fila
+$ nbma ident rmtree --role fn
+fajrin_ad_det_treet
+$ nbma ident isdir --role bool
+hal_katalog
+```
+
+English puts a verb's particle first in a closed compound; Norwegian puts it
+after the verb (`laste ned`), so an adverb and a verb swap:
+
+```console
+$ nbma ident download_file --role fn
+ulsut_ned_ad_den_fila
+```
+
+### 16.4 Proposing shorthand
+
+An unknown abbreviation or acronym is proposed like a lemma (§14.4) and
+recorded under `[proposed]` in the glossary:
+
+```bash
+nbma propose frob --abbrev "file handle" --glossary ordbok.nbma.toml
+nbma propose MCP --acronym --glossary ordbok.nbma.toml
+```
+
+`nbma lexicon check` and `nbma propose` refuse an abbreviation that expands
+to a word the lexicon lacks, and an abbreviation or acronym that hides a
+lexicon word: the word would always be read first, so the shorthand could
+never be used.
+
 ## Appendix: lexicon format
 
 ```toml
@@ -722,3 +818,16 @@ pos = "noun"
 `form = n` on a verb selects the Arabic form (§8.4). `alt` lists English
 aliases (`err`, `cfg`), `en_pl` and `en_pp` irregular English plurals and
 participles. Particles have `ar` instead of `bm`/`nn`.
+
+Abbreviations and acronyms live in `lexicon/shorthand.toml` (§16):
+
+```toml
+[abbreviations]
+fh = "file handle"
+
+[acronyms]
+words = ["HTTP", "JSON", "gzip"]
+```
+
+In a glossary they are `[proposed]` entries with `pos = "abbrev"` and
+`expands = "…"`, or `pos = "acronym"` and `written = "…"`.

@@ -79,6 +79,14 @@ Nouns need a gender (`m`, `f`, `n`). If ordbokene.no is reachable, check
 the lemma there. `propose` refuses verbs whose root collides with an
 existing verb; pick another lemma.
 
+Abbreviations, acronyms and compounds (`fh`, `HTTP`, `filename`) are read
+automatically. If one is still unknown, propose it as what it is:
+
+```bash
+nbma propose frob --abbrev "file handle" --glossary ordbok.nbma.toml
+nbma propose MCP --acronym --glossary ordbok.nbma.toml
+```
+
 ### 5. Pre-flight check, on the original code
 
 ```bash

@@ -80,6 +80,18 @@ nbma propose widget --pos noun --bm dings --nn dings --gender m --glossary ordbo
 nbma ident get_widget --role fn --glossary ordbok.nbma.toml --record
 ```
 
+Abbreviations (`fh`, `kwargs`), acronyms (`HTTP`) and closed compounds
+(`filename`, `rmtree`) are read automatically (SPEC §16); `--json` shows
+how. Check every `"via": "compound"` reading: splitting is a guess, and a
+wrong split (`sunset` as sun + set) is fixed by proposing the whole word.
+If an abbreviation or acronym is still unknown, propose it instead of a
+lemma. An abbreviation must expand to words the lexicon has:
+
+```bash
+nbma propose frob --abbrev "file handle" --glossary ordbok.nbma.toml
+nbma propose MCP --acronym --glossary ordbok.nbma.toml
+```
+
 Check proposed lemmas against ordbokene.no if you can. Never skip a word
 and never invent an inflected form.
 
@@ -171,5 +183,8 @@ Use `--dry-run` first to see what would change.
   later verb in the seed.
 - `examples/check.sh` runs the example's tests in both languages and the
   untranslate roundtrip.
+- `python3 tools/measure_coverage.py target/release/nbma` translates every
+  name defined in 30 standard-library modules and lists the unknown words
+  that would help most. Run it after growing the lexicon.
 - Jokes target grammar and Norwegian language politics. Never religious
   phrases, stereotypes, or people as a punchline.

@@ -6,6 +6,7 @@ use serde::Serialize;
 use crate::english::Inflection;
 use crate::lexicon::{Entry, Lexicon, Pos, Sense};
 use crate::nominal::{Adjective, Noun};
+use crate::segment::Via;
 use crate::text::{Number, Standard};
 use crate::verb::Verb;
 
@@ -68,6 +69,12 @@ pub struct WordNote {
     pub root: Option<String>,
     #[serde(skip_serializing_if = "std::ops::Not::not")]
     pub proposed: bool,
+    /// The identifier word this one was read from (`fh` for `file`).
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub from: Option<String>,
+    /// How it was read: as an abbreviation or as part of a compound.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub via: Option<Via>,
 }
 
 impl WordNote {
@@ -80,6 +87,16 @@ impl WordNote {
             standard: None,
             root: None,
             proposed: false,
+            from: None,
+            via: None,
+        }
+    }
+
+    fn acronym(english: &str, noun: &Noun) -> WordNote {
+        WordNote {
+            lemma: Some(noun.lemma.clone()),
+            standard: Some(noun.standard),
+            ..WordNote::function_word(english, "acronym")
         }
     }
 
@@ -97,6 +114,8 @@ impl WordNote {
             standard: if arabic { None } else { Some(e.standard()) },
             root: (e.pos == Pos::Verb).then(|| e.root().display()),
             proposed: e.proposed,
+            from: None,
+            via: None,
         }
     }
 }
@@ -112,6 +131,12 @@ fn function_word(word: &str) -> Option<Tok<'static>> {
         "pair" | "pairs" | "both" => Tok::Dual,
         _ => return None,
     })
+}
+
+/// `of`, `not`, `is`, `has`, the articles and `pair`: words the grammar
+/// handles itself.
+pub fn is_function_word(word: &str) -> bool {
+    function_word(word).is_some()
 }
 
 fn rank(sense: &Sense<'_>, ctx: Context) -> Option<u8> {
@@ -172,8 +197,20 @@ fn classify_raw<'a>(lex: &'a Lexicon, word: &str, ctx: Context) -> Option<(Tok<'
         .map(|(_, s)| s.clone());
     match best {
         Some(sense) => make(sense, word).ok(),
-        None => None,
+        None => acronym(lex, word),
     }
+}
+
+/// An acronym (`http`, plural `urls`) as a neuter noun kept as written.
+fn acronym<'a>(lex: &Lexicon, word: &str) -> Option<(Tok<'a>, WordNote)> {
+    let w = word.to_lowercase();
+    let (written, number) = match lex.acronym(&w) {
+        Some(written) => (written, Number::Sg),
+        None => (lex.acronym(w.strip_suffix('s')?)?, Number::Pl),
+    };
+    let noun = Noun::acronym(written);
+    let note = WordNote::acronym(word, &noun);
+    Some((Tok::Noun(noun, number), note))
 }
 
 fn make<'a>(sense: Sense<'a>, word: &str) -> Result<(Tok<'a>, WordNote), String> {

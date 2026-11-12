@@ -76,7 +76,7 @@ verb subscribe abonnere abonnere
 verb publish publisere publisere
 verb schedule planlegge planleggje
 verb format formatere formatere
-verb replace erstatte erstatte
+verb replace erstatte erstatte | alt=substitute
 verb trim trimme trimme
 verb match matche matche
 verb compare sammenligne samanlikne
@@ -110,7 +110,7 @@ verb reject avvise avvise
 verb allow tillate tillate
 verb deny nekte nekte
 verb throw kaste kaste | alt=raise | en_pp=thrown,threw
-verb catch fange fange | en_pp=caught
+verb catch fange fange | en_pp=caught | alt=capture
 verb give gi gje | en_pp=given,gave
 verb take ta ta | en_pp=taken,took
 verb keep beholde behalde | en_pp=kept
@@ -119,7 +119,7 @@ verb pick plukke plukke
 verb ask spørre spørje
 verb answer svare svare | alt=reply,respond
 verb help hjelpe hjelpe
-verb see se sjå | en_pp=seen,saw
+verb see se sjå | en_pp=seen,saw | alt=look
 verb watch overvåke overvake
 verb sleep sove sove | en_pp=slept
 verb wake vekke vekkje | en_pp=woken,woke
@@ -128,7 +128,7 @@ verb go gå gå | en_pp=gone,went
 verb come komme kome | en_pp=came
 verb sync synkronisere synkronisere | alt=synchronize
 verb mark merke merke
-verb track spore spore
+verb track spore spore | alt=trace
 verb measure måle måle
 verb sum summere summere
 verb scale skalere skalere
@@ -193,7 +193,7 @@ verb do gjøre gjere | en_pp=done,did
 verb say si seie | en_pp=said
 verb tell fortelle fortelje | en_pp=told
 verb work arbeide arbeide
-verb manage styre styre | form=2
+verb manage styre styre | form=2 | alt=control
 verb translate omsette omsetje
 verb speak snakke snakke
 verb click klikke klikke
@@ -205,7 +205,7 @@ noun list liste liste f
 noun error feil feil m | alt=err
 noun value verdi verdi m | alt=val
 noun key nøkkel nykel m
-noun item element element n | alt=elem
+noun item element element n | alt=elem,element
 noun data data data m
 noun number tall tal n | alt=num
 noun string streng streng m | alt=str
@@ -218,7 +218,7 @@ noun folder mappe mappe f
 noun node node node m
 noun tree tre tre n
 noun graph graf graf m
-noun edge kant kant m
+noun edge kant kant m | alt=border
 noun page side side f
 noun table tabell tabell m
 noun row rad rad f
@@ -233,7 +233,7 @@ noun server tjener tenar m
 noun client klient klient m
 noun connection tilkobling tilkopling f | alt=conn
 noun session økt økt f
-noun token symbol symbol n
+noun token symbol symbol n | alt=symbol
 noun password passord passord n
 noun account konto konto m
 noun id ID ID m | alt=identifier
@@ -264,7 +264,7 @@ noun library bibliotek bibliotek n | alt=lib
 noun version versjon versjon m
 noun configuration konfigurasjon konfigurasjon m | alt=config,cfg,conf
 noun setting innstilling innstilling f
-noun option valg val n | alt=opt
+noun option valg val n | alt=opt,choice
 noun argument argument argument n | alt=arg
 noun parameter parameter parameter m | alt=param
 noun result resultat resultat n
@@ -291,7 +291,7 @@ noun state tilstand tilstand m
 noun status status status m
 noun mode modus modus m
 noun level nivå nivå n
-noun limit grense grense f
+noun limit grense grense f | alt=boundary
 noun range område område n
 noun offset forskyvning forskyving f
 noun step steg steg n
@@ -304,7 +304,7 @@ noun signal signal signal n
 noun log logg logg m
 noun report rapport rapport m
 noun document dokument dokument n | alt=doc
-noun header hode hovud n
+noun header hode hovud n | alt=head
 noun body kropp kropp m
 noun title tittel tittel m
 noun description beskrivelse skildring m/f | alt=desc
@@ -380,7 +380,7 @@ noun transaction transaksjon transaksjon m | alt=tx
 noun test test test m
 noun case tilfelle tilfelle n
 noun flag flagg flagg n
-noun feature egenskap eigenskap m
+noun feature egenskap eigenskap m | alt=property
 noun tool verktøy verktøy n
 noun system system system n | alt=sys
 noun service tjeneste teneste m/f | alt=svc
@@ -463,12 +463,12 @@ adj public offentlig offentleg
 adj private privat privat
 adj local lokal lokal
 adj global global global
-adj default standard standard
+adj default standard standard | alt=standard
 adj true sann sann
 adj false usann usann
 adj correct riktig riktig
 adj wrong feil feil
-adj fast rask rask
+adj fast rask rask | alt=quick
 adj slow treg treg
 adj long lang lang
 adj short kort kort
@@ -559,7 +559,7 @@ det each kull | alt=every
 det some baʿḍ
 det any ayy
 # ---------------------------------------------------------------- numerals
-num zero null null 0
+num zero null null 0 | alt=none,nil
 num one en ein 1
 num two to to 2
 num three tre tre 3
@@ -589,3 +589,478 @@ num eighty åtti åtti 80
 num ninety nitti nitti 90
 num hundred hundre hundre 100
 num thousand tusen tusen 1000
+
+# ---------------------------------------------------------------- verbs (growth 2026-11)
+verb extract utvinne utvinne | alt=unpack,decompress
+verb ignore ignorere ignorere | form=2
+verb expand utvide utvide
+verb extend forlenge forlengje
+verb follow følge følgje
+verb force tvinge tvinge
+verb guess gjette gjette
+verb consume forbruke forbruke
+verb suppress undertrykke undertrykkje
+verb differ avvike avvike
+verb ensure sikre sikre
+verb share dele dele
+verb skip utelate utelate | alt=omit
+verb jump hoppe hoppe
+verb seek spole spole | en_pp=sought | form=3 | alt=rewind
+verb visit besøke besøkje
+verb invoke påkalle påkalle
+verb truncate avkorte avkorte
+verb release frigi frigje
+verb acquire erverve erverve
+verb put legge leggje | en_pp=put | form=2
+verb shut stenge stengje | en_pp=shut
+verb freeze fryse fryse | en_pp=frozen,froze
+verb warn advare åtvare
+verb debug avluse avluse
+verb enumerate nummerere nummerere
+verb scan skanne skanne
+verb sanitize vaske vaske | alt=sanitise
+verb shadow skygge skugge
+verb observe observere observere
+verb produce produsere produsere
+verb dispatch ekspedere ekspedere
+verb interrupt avbryte avbryte | alt=abort
+verb cancel avlyse avlyse | form=2
+verb authenticate autentisere autentisere
+verb authorize autorisere autorisere | alt=authorise
+verb approve godkjenne godkjenne
+verb submit levere levere | alt=deliver
+verb rotate rotere rotere
+verb flip vende vende
+verb swap veksle veksle
+verb limit begrense avgrense
+verb reserve reservere reservere
+verb normalize normalisere normalisere | alt=normalise
+verb round avrunde avrunde
+verb increment øke auke | alt=increase
+verb decrement minske minke | alt=decrease
+verb multiply multiplisere multiplisere
+verb divide dividere dividere
+verb subtract subtrahere subtrahere
+verb negate negere negere
+verb invert invertere invertere
+verb spawn gyte gyte
+verb restore gjenopprette gjenopprette
+verb undo angre angre | en_pp=undone,undid | form=2
+verb commit forplikte forplikte
+verb serve servere servere
+verb mutate mutere mutere
+verb estimate estimere estimere
+verb train trene trene
+verb fit tilpasse tilpasse | alt=adapt
+verb detect oppdage oppdage | alt=discover
+verb inspect inspisere inspisere
+verb analyze analysere analysere | alt=analyse
+verb plot plotte plotte
+verb provide tilby tilby | alt=offer
+verb prepare forberede førebu | form=2
+verb report rapportere rapportere
+verb hold holde halde | en_pp=held
+verb feed mate mate | en_pp=fed
+verb lose miste miste | en_pp=lost
+verb win vinne vinne | en_pp=won
+verb attack angripe angripe
+verb scroll rulle rulle
+verb drag dra dra
+verb hover sveve sveve
+verb focus fokusere fokusere
+verb press trykke trykkje
+verb touch berøre røre
+verb animate animere animere
+verb fade blekne bleikne
+# ---------------------------------------------------------------- nouns (growth 2026-11)
+noun action handling handling f
+noun section seksjon seksjon m
+noun archive arkiv arkiv n
+noun usage bruk bruk m
+noun information informasjon informasjon m
+noun part del del m
+noun signature signatur signatur m
+noun separator skilletegn skiljeteikn n | alt=delimiter
+noun dialect dialekt dialekt m
+noun style stil stil m
+noun registry register register n
+noun root rot rot f
+noun compression komprimering komprimering f
+noun ratio forhold forhold n
+noun factory fabrikk fabrikk m
+noun chunk stykke stykke n
+noun depth dybde djupn m/f
+noun junk skrap skrap n
+noun sentence setning setning f
+noun invocation påkalling påkalling f
+noun holder holder haldar m
+noun recipient mottaker mottakar m
+noun proxy fullmakt fullmakt f
+noun attribute attributt attributt n
+noun tab tabulator tabulator m
+noun tunnel tunnel tunnel m
+noun login innlogging innlogging f
+noun base basis basis m
+noun frequency frekvens frekvens m
+noun extension utvidelse utviding m/f
+noun exit utgang utgang m
+noun specification spesifikasjon spesifikasjon m
+noun prompt ledetekst leietekst m
+noun space mellomrom mellomrom n
+noun sequence sekvens sekvens m
+noun protocol protokoll protokoll m
+noun transfer overføring overføring f
+noun location sted stad n/m
+noun place plass plass m
+noun purpose formål føremål n
+noun patch lapp lapp m
+noun encryption kryptering kryptering f
+noun descriptor kjennetegn kjenneteikn n
+noun content innhold innhald n
+noun support støtte støtte f
+noun access tilgang tilgang m
+noun chain kjede kjede m/f
+noun slice skive skive f
+noun category kategori kategori m
+noun challenge utfordring utfordring f
+noun comma komma komma n
+noun command kommando kommando m
+noun keyword nøkkelord nøkkelord n
+noun failure svikt svikt m
+noun success suksess suksess m
+noun payload nyttelast nyttelast f
+noun annotation merknad merknad m
+noun recursion rekursjon rekursjon m
+noun fallback reserve reserve m
+noun candidate kandidat kandidat m
+noun sentinel vaktpost vaktpost m
+noun priority prioritet prioritet m
+noun barrier barriere barriere m
+noun semaphore semafor semafor m
+noun condition betingelse vilkår m/n
+noun epoch epoke epoke m
+noun destination destinasjon destinasjon m
+noun outcome utfall utfall n
+noun duration varighet varigheit m/f
+noun decorator dekoratør dekoratør m
+noun fragment fragment fragment n
+noun predicate predikat predikat n
+noun segment segment segment n
+noun scheme ordning ordning f
+noun attachment vedlegg vedlegg n
+noun alternative alternativ alternativ n
+noun dummy attrapp attrapp m
+noun iteration iterasjon iterasjon m
+noun indent innrykk innrykk n | alt=indentation
+noun interpolation interpolasjon interpolasjon m
+noun mask maske maske f
+noun fork gaffel gaffel m
+noun authentication legitimasjon legitimasjon m | alt=credential,credentials
+noun continuation fortsettelse framhald m/n
+noun socket sokkel sokkel m
+noun rest rest rest m | alt=remainder
+noun heading overskrift overskrift f
+noun syntax syntaks syntaks m
+noun adapter adapter adapter m
+noun percent prosent prosent m | alt=percentage
+noun digit siffer siffer n
+noun conversion konvertering konvertering f
+noun abbreviation forkortelse forkorting m/f
+noun implementation implementering implementering f
+noun operation operasjon operasjon m
+noun component komponent komponent m
+noun container beholder behaldar m
+noun domain domene domene n
+noun cluster klynge klynge f
+noun region region region m
+noun zone sone sone f
+noun endpoint endepunkt endepunkt n
+noun route rute rute f
+noun channel kanal kanal m
+noun topic emne emne n | alt=subject
+noun sample utvalg utval n
+noun batch parti parti n
+noun profile profil profil m
+noun icon ikon ikon n
+noun logo logo logo m
+noun theme tema tema n
+noun font skrift skrift f
+noun layout oppsett oppsett n
+noun margin marg marg m
+noun background bakgrunn bakgrunn m
+noun foreground forgrunn forgrunn m
+noun shadow skygge skugge m
+noun animation animasjon animasjon m
+noun transition overgang overgang m
+noun dialog dialog dialog m | alt=dialogue
+noun form formular formular n
+noun panel panel panel n
+noun navigation navigasjon navigasjon m
+noun anchor anker anker n
+noun cookie informasjonskapsel informasjonskapsel m
+noun certificate sertifikat sertifikat n
+noun salt salt salt n
+noun cipher chiffer chiffer n
+noun vertex hjørne hjørne n | en_pl=vertices
+noun weight vekt vekt f
+noun distance avstand avstand m
+noun cost kostnad kostnad m
+noun neighbor nabo nabo m | alt=neighbour
+noun cycle syklus syklus m
+noun loop løkke løkke f
+noun sibling søsken søsken n
+noun descendant etterkommer etterkomar m
+noun leaf blad blad n | en_pl=leaves
+noun branch gren grein f
+noun top topp topp m
+noun bottom bunn botn m
+noun tail hale hale m
+noun front front front m
+noun fraction brøk brøk m
+noun angle vinkel vinkel m
+noun radius radius radius m | en_pl=radii
+noun area areal areal n
+noun volume volum volum n
+noun circle sirkel sirkel m
+noun square kvadrat kvadrat n
+noun triangle trekant trekant m
+noun rectangle rektangel rektangel n
+noun coordinate koordinat koordinat m
+noun axis akse akse m | en_pl=axes
+noun origin opphav opphav n
+noun rotation rotasjon rotasjon m
+noun direction retning retning f
+noun speed fart fart m | alt=velocity
+noun mass masse masse m
+noun gravity tyngdekraft tyngdekraft f
+noun energy energi energi m
+noun health helse helse f
+noun damage skade skade m
+noun enemy fiende fiende m
+noun weapon våpen våpen n
+noun life liv liv n | en_pl=lives
+noun bullet kule kule f
+noun tile flis flis f
+noun stamp stempel stempel n
+noun deadline frist frist m
+noun interval intervall intervall n
+noun delay forsinkelse forseinking m/f
+noun period periode periode m
+noun calendar kalender kalender m
+noun letter bokstav bokstav m
+noun paragraph avsnitt avsnitt n
+noun summary sammendrag samandrag n
+noun note notat notat n
+noun draft utkast utkast n
+noun translation oversettelse omsetjing m/f
+noun bracket parentes parentes m
+noun operator operatør operatør m
+noun statement utsagn utsegn n/f
+noun scope omfang omfang n
+noun macro makro makro m
+noun interpreter tolk tolk m
+noun garbage søppel søppel n
+noun instruction instruksjon instruksjon m
+noun bus buss buss m
+noun device enhet eining m/f
+noun drive stasjon stasjon m
+noun kernel kjerne kjerne m
+noun shell skall skal n
+noun terminal terminal terminal m
+noun script skript skript n
+noun program program program n
+noun application applikasjon applikasjon m
+noun collection samling samling f
+noun series serie serie m | en_pl=series
+noun pipe rør røyr n
+noun rank rang rang m
+noun loss tap tap n
+noun noise støy støy m
+noun pixel piksel piksel m
+noun dimension dimensjon dimensjon m
+noun repository depot depot n
+noun administrator administrator administrator m
+noun discount rabatt rabatt m
+noun tax skatt skatt m
+noun currency valuta valuta m
+noun balance saldo saldo m
+noun shipping frakt frakt m/f
+noun cart handlekurv handlekorg m/f
+noun video video video m
+noun sound lyd lyd m | alt=audio
+noun issue sak sak f
+noun ticket billett billett m
+noun idea idé idé m
+noun plan plan plan m
+noun project prosjekt prosjekt n
+noun company firma firma n
+noun student student student m
+noun teacher lærer lærar m
+noun course kurs kurs n
+noun lesson leksjon leksjon m
+noun grade karakter karakter m
+noun school skole skule m
+noun food mat mat m
+noun water vann vatn n
+noun weather vær vêr n
+noun temperature temperatur temperatur m
+noun fire brann brann m
+noun music musikk musikk m
+noun song sang song m
+noun movie film film m | alt=film
+noun story historie historie m/f
+noun office kontor kontor n
+noun meeting møte møte n
+noun ship skip skip n
+noun train tog tog n
+noun road vei veg m
+noun street gate gate f
+noun river elv elv f
+noun mountain fjell fjell n
+noun sea hav hav n
+noun sun sol sol f
+noun moon måne måne m
+noun star stjerne stjerne f
+noun sky himmel himmel m
+noun horse hest hest m
+noun bird fugl fugl m
+noun fish fisk fisk m | en_pl=fish
+noun egg egg egg n
+noun bread brød brød n
+noun apple eple eple n
+noun coffee kaffe kaffi m
+noun milk melk mjølk f
+noun cheese ost ost m
+# ---------------------------------------------------------------- adjectives (growth 2026-11)
+adj extra ekstra ekstra
+adj basic grunnleggende grunnleggjande
+adj real reell reell
+adj original original original
+adj central sentral sentral
+adj critical kritisk kritisk
+adj fatal dødelig dødeleg
+adj internal intern intern
+adj external ekstern ekstern
+adj exclusive eksklusiv eksklusiv
+adj deprecated foreldet forelda
+adj immutable uforanderlig uforanderleg
+adj mutable foranderlig foranderleg
+adj plain vanlig vanleg | alt=ordinary,normal,usual
+adj strict striks striks
+adj white hvit kvit
+adj black svart svart
+adj red rød raud
+adj green grønn grøn
+adj blue blå blå
+adj yellow gul gul
+adj gray grå grå | alt=grey
+adj dark mørk mørk
+adj bright lys ljos | alt=light
+adj idle ledig ledig
+adj general generell generell
+adj strong sterk sterk
+adj weak svak svak
+adj incomplete ufullstendig ufullstendig
+adj remote fjern fjern
+adj symbolic symbolsk symbolsk
+adj binary binær binær
+adj recursive rekursiv rekursiv
+adj temporary midlertidig mellombels
+adj absolute absolutt absolutt
+adj relative relativ relativ
+adj native innfødt innfødd
+adj builtin innebygd innebygd | alt=embedded,inbuilt
+adj magic magisk magisk
+adj partial delvis delvis
+adj special spesiell spesiell
+adj unexpected uventet uventa
+adj contiguous sammenhengende samanhengande
+adj illegal ulovlig ulovleg
+adj implicit implisitt implisitt
+adj explicit eksplisitt eksplisitt
+adj readable leselig leseleg
+adj regular regelmessig regelmessig
+adj required påkrevd påkravd
+adj busy opptatt oppteken
+adj numeric numerisk numerisk | alt=numerical
+adj random tilfeldig tilfeldig
+adj final endelig endeleg
+adj whole hel heil
+adj half halv halv
+adj verbose ordrik ordrik
+adj quiet stille stille | alt=silent
+adj dry tørr turr
+adj deep dyp djup
+adj shallow grunn grunn
+adj flat flat flat
+adj dense tett tett
+adj lazy lat lat
+adj eager ivrig ivrig
+adj loose løs laus
+adj pure pur pur
+adj cold kald kald
+adj hot varm varm | alt=warm
+adj fresh fersk fersk
+adj primary primær primær
+adj secondary sekundær sekundær
+adj legal lovlig lovleg
+adj cheap billig billeg
+adj expensive kostbar kostbar
+adj happy glad glad
+adj sad trist trist
+adj young ung ung
+adj huge enorm enorm
+adj easy lett lett
+adj hard vanskelig vanskeleg | alt=difficult
+adj important viktig viktig
+adj possible mulig mogleg
+adj impossible umulig umogleg
+adj necessary nødvendig naudsynt
+adj similar lignende liknande
+# ---------------------------------------------------------------- adverbs (growth 2026-11)
+adv more mer meir
+adv less mindre mindre
+adv very veldig veldig
+adv almost nesten nesten
+adv still fortsatt framleis
+adv together sammen saman
+adv else ellers elles | alt=otherwise
+adv away bort bort
+adv often ofte ofte
+adv maybe kanskje kanskje | alt=perhaps
+adv yet ennå enno
+adv quickly fort fort
+# ---------------------------------------------------------------- particles (growth 2026-11)
+part against ḍidda
+part toward naḥwa | alt=towards
+part during khilāla
+part near qurba
+noun reference referanse referanse m
+verb forget glemme gløyme | en_pp=forgotten,forgot
+verb enter entre entre
+verb mix blande blande
+verb tear rive rive | en_pp=torn,tore
+verb suspend suspendere suspendere
+verb duplicate duplisere duplisere
+verb combine kombinere kombinere
+verb discard forkaste forkaste
+verb locate lokalisere lokalisere
+verb interpolate interpolere interpolere
+verb support støtte støtte
+verb order bestille bestille
+verb relate relatere relatere
+verb miss savne sakne
+noun tuple rekke rekkje f
+noun structure struktur struktur m
+noun representation representasjon representasjon m
+noun slot luke luke f
+noun slash skråstrek skråstrek m
+noun daemon demon demon m
+noun consistency konsistens konsistens m
+noun equality likhet likskap m
+adj literal bokstavelig bokstaveleg
+adj unsafe utrygg utrygg
+adj circular sirkulær sirkulær
+adj effective effektiv effektiv
+adj automatic automatisk automatisk
+part outside khārija

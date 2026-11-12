@@ -561,6 +561,7 @@ source = "ordbokene.no"
 pos = "verb"
 bm = "erstatte"
 nn = "erstatte"
+alt = ["substitute"]
 verified = true
 source = "ordbokene.no"
 
@@ -806,6 +807,7 @@ source = "ordbokene.no"
 pos = "verb"
 bm = "fange"
 nn = "fange"
+alt = ["capture"]
 en_pp = ["caught"]
 verified = true
 source = "ordbokene.no"
@@ -874,6 +876,7 @@ source = "ordbokene.no"
 pos = "verb"
 bm = "se"
 nn = "sjå"
+alt = ["look"]
 en_pp = ["seen", "saw"]
 verified = true
 source = "ordbokene.no"
@@ -943,6 +946,7 @@ source = "ordbokene.no"
 pos = "verb"
 bm = "spore"
 nn = "spore"
+alt = ["trace"]
 verified = true
 source = "ordbokene.no"
 
@@ -1423,6 +1427,7 @@ pos = "verb"
 bm = "styre"
 nn = "styre"
 form = 2
+alt = ["control"]
 verified = true
 source = "ordbokene.no"
 
@@ -1526,7 +1531,7 @@ nn = "element"
 gender = "n"
 bm_forms = ["elementet", "element", "elementa"]
 nn_forms = ["elementet", "element", "elementa"]
-alt = ["elem"]
+alt = ["elem", "element"]
 verified = true
 source = "ordbokene.no"
 
@@ -1660,6 +1665,7 @@ nn = "kant"
 gender = "m"
 bm_forms = ["kanten", "kanter", "kantene"]
 nn_forms = ["kanten", "kantar", "kantane"]
+alt = ["border"]
 verified = true
 source = "ordbokene.no"
 
@@ -1815,6 +1821,7 @@ nn = "symbol"
 gender = "n"
 bm_forms = ["symbolet", "symbol", "symbola"]
 nn_forms = ["symbolet", "symbol", "symbola"]
+alt = ["symbol"]
 verified = true
 source = "ordbokene.no"
 
@@ -2141,7 +2148,7 @@ nn = "val"
 gender = "n"
 bm_forms = ["valget", "valg", "valga"]
 nn_forms = ["valet", "val", "vala"]
-alt = ["opt"]
+alt = ["opt", "choice"]
 verified = true
 source = "ordbokene.no"
 
@@ -2428,6 +2435,7 @@ nn = "grense"
 gender = "f"
 bm_forms = ["grensa", "grenser", "grensene"]
 nn_forms = ["grensa", "grenser", "grensene"]
+alt = ["boundary"]
 verified = true
 source = "ordbokene.no"
 
@@ -2560,6 +2568,7 @@ nn = "hovud"
 gender = "n"
 bm_forms = ["hodet", "hoder", "hoda"]
 nn_forms = ["hovudet", "hovud", "hovuda"]
+alt = ["head"]
 verified = true
 source = "ordbokene.no"
 
@@ -3339,6 +3348,7 @@ nn = "eigenskap"
 gender = "m"
 bm_forms = ["egenskapen", "egenskaper", "egenskapene"]
 nn_forms = ["eigenskapen", "eigenskapar", "eigenskapane"]
+alt = ["property"]
 verified = true
 source = "ordbokene.no"
 
@@ -4158,6 +4168,7 @@ bm = "standard"
 nn = "standard"
 bm_forms = ["standard", "standard", "standard"]
 nn_forms = ["standard", "standard", "standard"]
+alt = ["standard"]
 verified = true
 source = "ordbokene.no"
 
@@ -4203,6 +4214,7 @@ bm = "rask"
 nn = "rask"
 bm_forms = ["raskt", "raske", "raske"]
 nn_forms = ["raskt", "raske", "raske"]
+alt = ["quick"]
 verified = true
 source = "ordbokene.no"
 
@@ -4871,6 +4883,7 @@ pos = "num"
 bm = "null"
 nn = "null"
 value = 0
+alt = ["none", "nil"]
 verified = true
 source = "ordbokene.no"
 
@@ -5105,3 +5118,4336 @@ nn = "tusen"
 value = 1000
 verified = true
 source = "ordbokene.no"
+
+[extract]
+pos = "verb"
+bm = "utvinne"
+nn = "utvinne"
+alt = ["unpack", "decompress"]
+verified = true
+source = "ordbokene.no"
+
+[ignore]
+pos = "verb"
+bm = "ignorere"
+nn = "ignorere"
+form = 2
+verified = true
+source = "ordbokene.no"
+
+[expand]
+pos = "verb"
+bm = "utvide"
+nn = "utvide"
+verified = true
+source = "ordbokene.no"
+
+[extend]
+pos = "verb"
+bm = "forlenge"
+nn = "forlengje"
+verified = true
+source = "ordbokene.no"
+
+[follow]
+pos = "verb"
+bm = "følge"
+nn = "følgje"
+verified = true
+source = "ordbokene.no"
+
+[force]
+pos = "verb"
+bm = "tvinge"
+nn = "tvinge"
+verified = true
+source = "ordbokene.no"
+
+[guess]
+pos = "verb"
+bm = "gjette"
+nn = "gjette"
+verified = true
+source = "ordbokene.no"
+
+[consume]
+pos = "verb"
+bm = "forbruke"
+nn = "forbruke"
+verified = true
+source = "ordbokene.no"
+
+[suppress]
+pos = "verb"
+bm = "undertrykke"
+nn = "undertrykkje"
+verified = true
+source = "ordbokene.no"
+
+[differ]
+pos = "verb"
+bm = "avvike"
+nn = "avvike"
+verified = true
+source = "ordbokene.no"
+
+[ensure]
+pos = "verb"
+bm = "sikre"
+nn = "sikre"
+verified = true
+source = "ordbokene.no"
+
+[share]
+pos = "verb"
+bm = "dele"
+nn = "dele"
+verified = true
+source = "ordbokene.no"
+
+[skip]
+pos = "verb"
+bm = "utelate"
+nn = "utelate"
+alt = ["omit"]
+verified = true
+source = "ordbokene.no"
+
+[jump]
+pos = "verb"
+bm = "hoppe"
+nn = "hoppe"
+verified = true
+source = "ordbokene.no"
+
+[seek]
+pos = "verb"
+bm = "spole"
+nn = "spole"
+form = 3
+alt = ["rewind"]
+en_pp = ["sought"]
+verified = true
+source = "ordbokene.no"
+
+[visit]
+pos = "verb"
+bm = "besøke"
+nn = "besøkje"
+verified = true
+source = "ordbokene.no"
+
+[invoke]
+pos = "verb"
+bm = "påkalle"
+nn = "påkalle"
+verified = true
+source = "ordbokene.no"
+
+[truncate]
+pos = "verb"
+bm = "avkorte"
+nn = "avkorte"
+verified = true
+source = "ordbokene.no"
+
+[release]
+pos = "verb"
+bm = "frigi"
+nn = "frigje"
+verified = true
+source = "ordbokene.no"
+
+[acquire]
+pos = "verb"
+bm = "erverve"
+nn = "erverve"
+verified = true
+source = "ordbokene.no"
+
+[put]
+pos = "verb"
+bm = "legge"
+nn = "leggje"
+form = 2
+en_pp = ["put"]
+verified = true
+source = "ordbokene.no"
+
+[shut]
+pos = "verb"
+bm = "stenge"
+nn = "stengje"
+en_pp = ["shut"]
+verified = true
+source = "ordbokene.no"
+
+[freeze]
+pos = "verb"
+bm = "fryse"
+nn = "fryse"
+en_pp = ["frozen", "froze"]
+verified = true
+source = "ordbokene.no"
+
+[warn]
+pos = "verb"
+bm = "advare"
+nn = "åtvare"
+verified = true
+source = "ordbokene.no"
+
+[debug]
+pos = "verb"
+bm = "avluse"
+nn = "avluse"
+verified = true
+source = "ordbokene.no"
+
+[enumerate]
+pos = "verb"
+bm = "nummerere"
+nn = "nummerere"
+verified = true
+source = "ordbokene.no"
+
+[scan]
+pos = "verb"
+bm = "skanne"
+nn = "skanne"
+verified = true
+source = "ordbokene.no"
+
+[sanitize]
+pos = "verb"
+bm = "vaske"
+nn = "vaske"
+alt = ["sanitise"]
+verified = true
+source = "ordbokene.no"
+
+[shadow]
+pos = "verb"
+bm = "skygge"
+nn = "skugge"
+verified = true
+source = "ordbokene.no"
+
+[observe]
+pos = "verb"
+bm = "observere"
+nn = "observere"
+verified = true
+source = "ordbokene.no"
+
+[produce]
+pos = "verb"
+bm = "produsere"
+nn = "produsere"
+verified = true
+source = "ordbokene.no"
+
+[dispatch]
+pos = "verb"
+bm = "ekspedere"
+nn = "ekspedere"
+verified = true
+source = "ordbokene.no"
+
+[interrupt]
+pos = "verb"
+bm = "avbryte"
+nn = "avbryte"
+alt = ["abort"]
+verified = true
+source = "ordbokene.no"
+
+[cancel]
+pos = "verb"
+bm = "avlyse"
+nn = "avlyse"
+form = 2
+verified = true
+source = "ordbokene.no"
+
+[authenticate]
+pos = "verb"
+bm = "autentisere"
+nn = "autentisere"
+verified = true
+source = "ordbokene.no"
+
+[authorize]
+pos = "verb"
+bm = "autorisere"
+nn = "autorisere"
+alt = ["authorise"]
+verified = true
+source = "ordbokene.no"
+
+[approve]
+pos = "verb"
+bm = "godkjenne"
+nn = "godkjenne"
+verified = true
+source = "ordbokene.no"
+
+[submit]
+pos = "verb"
+bm = "levere"
+nn = "levere"
+alt = ["deliver"]
+verified = true
+source = "ordbokene.no"
+
+[rotate]
+pos = "verb"
+bm = "rotere"
+nn = "rotere"
+verified = true
+source = "ordbokene.no"
+
+[flip]
+pos = "verb"
+bm = "vende"
+nn = "vende"
+verified = true
+source = "ordbokene.no"
+
+[swap]
+pos = "verb"
+bm = "veksle"
+nn = "veksle"
+verified = true
+source = "ordbokene.no"
+
+["limit#verb"]
+pos = "verb"
+bm = "begrense"
+nn = "avgrense"
+verified = true
+source = "ordbokene.no"
+
+[reserve]
+pos = "verb"
+bm = "reservere"
+nn = "reservere"
+verified = true
+source = "ordbokene.no"
+
+[normalize]
+pos = "verb"
+bm = "normalisere"
+nn = "normalisere"
+alt = ["normalise"]
+verified = true
+source = "ordbokene.no"
+
+[round]
+pos = "verb"
+bm = "avrunde"
+nn = "avrunde"
+verified = true
+source = "ordbokene.no"
+
+[increment]
+pos = "verb"
+bm = "øke"
+nn = "auke"
+alt = ["increase"]
+verified = true
+source = "ordbokene.no"
+
+[decrement]
+pos = "verb"
+bm = "minske"
+nn = "minke"
+alt = ["decrease"]
+verified = true
+source = "ordbokene.no"
+
+[multiply]
+pos = "verb"
+bm = "multiplisere"
+nn = "multiplisere"
+verified = true
+source = "ordbokene.no"
+
+[divide]
+pos = "verb"
+bm = "dividere"
+nn = "dividere"
+verified = true
+source = "ordbokene.no"
+
+[subtract]
+pos = "verb"
+bm = "subtrahere"
+nn = "subtrahere"
+verified = true
+source = "ordbokene.no"
+
+[negate]
+pos = "verb"
+bm = "negere"
+nn = "negere"
+verified = true
+source = "ordbokene.no"
+
+[invert]
+pos = "verb"
+bm = "invertere"
+nn = "invertere"
+verified = true
+source = "ordbokene.no"
+
+[spawn]
+pos = "verb"
+bm = "gyte"
+nn = "gyte"
+verified = true
+source = "ordbokene.no"
+
+[restore]
+pos = "verb"
+bm = "gjenopprette"
+nn = "gjenopprette"
+verified = true
+source = "ordbokene.no"
+
+[undo]
+pos = "verb"
+bm = "angre"
+nn = "angre"
+form = 2
+en_pp = ["undone", "undid"]
+verified = true
+source = "ordbokene.no"
+
+[commit]
+pos = "verb"
+bm = "forplikte"
+nn = "forplikte"
+verified = true
+source = "ordbokene.no"
+
+[serve]
+pos = "verb"
+bm = "servere"
+nn = "servere"
+verified = true
+source = "ordbokene.no"
+
+[mutate]
+pos = "verb"
+bm = "mutere"
+nn = "mutere"
+verified = true
+source = "ordbokene.no"
+
+[estimate]
+pos = "verb"
+bm = "estimere"
+nn = "estimere"
+verified = true
+source = "ordbokene.no"
+
+[train]
+pos = "verb"
+bm = "trene"
+nn = "trene"
+verified = true
+source = "ordbokene.no"
+
+[fit]
+pos = "verb"
+bm = "tilpasse"
+nn = "tilpasse"
+alt = ["adapt"]
+verified = true
+source = "ordbokene.no"
+
+[detect]
+pos = "verb"
+bm = "oppdage"
+nn = "oppdage"
+alt = ["discover"]
+verified = true
+source = "ordbokene.no"
+
+[inspect]
+pos = "verb"
+bm = "inspisere"
+nn = "inspisere"
+verified = true
+source = "ordbokene.no"
+
+[analyze]
+pos = "verb"
+bm = "analysere"
+nn = "analysere"
+alt = ["analyse"]
+verified = true
+source = "ordbokene.no"
+
+[plot]
+pos = "verb"
+bm = "plotte"
+nn = "plotte"
+verified = true
+source = "ordbokene.no"
+
+[provide]
+pos = "verb"
+bm = "tilby"
+nn = "tilby"
+alt = ["offer"]
+verified = true
+source = "ordbokene.no"
+
+[prepare]
+pos = "verb"
+bm = "forberede"
+nn = "førebu"
+form = 2
+verified = true
+source = "ordbokene.no"
+
+["report#verb"]
+pos = "verb"
+bm = "rapportere"
+nn = "rapportere"
+verified = true
+source = "ordbokene.no"
+
+[hold]
+pos = "verb"
+bm = "holde"
+nn = "halde"
+en_pp = ["held"]
+verified = true
+source = "ordbokene.no"
+
+[feed]
+pos = "verb"
+bm = "mate"
+nn = "mate"
+en_pp = ["fed"]
+verified = true
+source = "ordbokene.no"
+
+[lose]
+pos = "verb"
+bm = "miste"
+nn = "miste"
+en_pp = ["lost"]
+verified = true
+source = "ordbokene.no"
+
+[win]
+pos = "verb"
+bm = "vinne"
+nn = "vinne"
+en_pp = ["won"]
+verified = true
+source = "ordbokene.no"
+
+[attack]
+pos = "verb"
+bm = "angripe"
+nn = "angripe"
+verified = true
+source = "ordbokene.no"
+
+[scroll]
+pos = "verb"
+bm = "rulle"
+nn = "rulle"
+verified = true
+source = "ordbokene.no"
+
+[drag]
+pos = "verb"
+bm = "dra"
+nn = "dra"
+verified = true
+source = "ordbokene.no"
+
+[hover]
+pos = "verb"
+bm = "sveve"
+nn = "sveve"
+verified = true
+source = "ordbokene.no"
+
+[focus]
+pos = "verb"
+bm = "fokusere"
+nn = "fokusere"
+verified = true
+source = "ordbokene.no"
+
+[press]
+pos = "verb"
+bm = "trykke"
+nn = "trykkje"
+verified = true
+source = "ordbokene.no"
+
+[touch]
+pos = "verb"
+bm = "berøre"
+nn = "røre"
+verified = true
+source = "ordbokene.no"
+
+[animate]
+pos = "verb"
+bm = "animere"
+nn = "animere"
+verified = true
+source = "ordbokene.no"
+
+[fade]
+pos = "verb"
+bm = "blekne"
+nn = "bleikne"
+verified = true
+source = "ordbokene.no"
+
+[action]
+pos = "noun"
+bm = "handling"
+nn = "handling"
+gender = "f"
+bm_forms = ["handlinga", "handlinger", "handlingene"]
+nn_forms = ["handlinga", "handlingar", "handlingane"]
+verified = true
+source = "ordbokene.no"
+
+[section]
+pos = "noun"
+bm = "seksjon"
+nn = "seksjon"
+gender = "m"
+bm_forms = ["seksjonen", "seksjoner", "seksjonene"]
+nn_forms = ["seksjonen", "seksjonar", "seksjonane"]
+verified = true
+source = "ordbokene.no"
+
+[archive]
+pos = "noun"
+bm = "arkiv"
+nn = "arkiv"
+gender = "n"
+bm_forms = ["arkivet", "arkiv", "arkiva"]
+nn_forms = ["arkivet", "arkiv", "arkiva"]
+verified = true
+source = "ordbokene.no"
+
+[usage]
+pos = "noun"
+bm = "bruk"
+nn = "bruk"
+gender = "m"
+bm_forms = ["bruken", "bruker", "brukene"]
+nn_forms = ["bruken", "brukar", "brukane"]
+verified = true
+source = "ordbokene.no"
+
+[information]
+pos = "noun"
+bm = "informasjon"
+nn = "informasjon"
+gender = "m"
+bm_forms = ["informasjonen", "informasjoner", "informasjonene"]
+nn_forms = ["informasjonen", "informasjonar", "informasjonane"]
+verified = true
+source = "ordbokene.no"
+
+[part]
+pos = "noun"
+bm = "del"
+nn = "del"
+gender = "m"
+bm_forms = ["delen", "deler", "delene"]
+nn_forms = ["delen", "delar", "delane"]
+verified = true
+source = "ordbokene.no"
+
+[signature]
+pos = "noun"
+bm = "signatur"
+nn = "signatur"
+gender = "m"
+bm_forms = ["signaturen", "signaturer", "signaturene"]
+nn_forms = ["signaturen", "signaturar", "signaturane"]
+verified = true
+source = "ordbokene.no"
+
+[separator]
+pos = "noun"
+bm = "skilletegn"
+nn = "skiljeteikn"
+gender = "n"
+bm_forms = ["skilletegnet", "skilletegn", "skilletegna"]
+nn_forms = ["skiljeteiknet", "skiljeteikn", "skiljeteikna"]
+alt = ["delimiter"]
+verified = true
+source = "ordbokene.no"
+
+[dialect]
+pos = "noun"
+bm = "dialekt"
+nn = "dialekt"
+bm_gender = "m"
+nn_gender = "f"
+bm_forms = ["dialekten", "dialekter", "dialektene"]
+nn_forms = ["dialekta", "dialekter", "dialektene"]
+verified = true
+source = "ordbokene.no"
+
+[style]
+pos = "noun"
+bm = "stil"
+nn = "stil"
+gender = "m"
+bm_forms = ["stilen", "stiler", "stilene"]
+nn_forms = ["stilen", "stilar", "stilane"]
+verified = true
+source = "ordbokene.no"
+
+[registry]
+pos = "noun"
+bm = "register"
+nn = "register"
+gender = "n"
+bm_forms = ["registeret", "register", "registera"]
+nn_forms = ["registeret", "register", "registera"]
+verified = true
+source = "ordbokene.no"
+
+[root]
+pos = "noun"
+bm = "rot"
+nn = "rot"
+gender = "f"
+bm_forms = ["rota", "røtter", "røttene"]
+nn_forms = ["rota", "røter", "røtene"]
+verified = true
+source = "ordbokene.no"
+
+[compression]
+pos = "noun"
+bm = "komprimering"
+nn = "komprimering"
+gender = "f"
+bm_forms = ["komprimeringa", "komprimeringer", "komprimeringene"]
+nn_forms = ["komprimeringa", "komprimeringar", "komprimeringane"]
+verified = true
+source = "ordbokene.no"
+
+[ratio]
+pos = "noun"
+bm = "forhold"
+nn = "forhold"
+gender = "n"
+bm_forms = ["forholdet", "forhold", "forholda"]
+nn_forms = ["forholdet", "forhold", "forholda"]
+verified = true
+source = "ordbokene.no"
+
+[factory]
+pos = "noun"
+bm = "fabrikk"
+nn = "fabrikk"
+gender = "m"
+bm_forms = ["fabrikken", "fabrikker", "fabrikkene"]
+nn_forms = ["fabrikken", "fabrikkar", "fabrikkane"]
+verified = true
+source = "ordbokene.no"
+
+[chunk]
+pos = "noun"
+bm = "stykke"
+nn = "stykke"
+gender = "n"
+bm_forms = ["stykket", "stykker", "stykka"]
+nn_forms = ["stykket", "stykke", "stykka"]
+verified = true
+source = "ordbokene.no"
+
+[depth]
+pos = "noun"
+bm = "dybde"
+nn = "djupn"
+bm_gender = "m"
+nn_gender = "f"
+bm_forms = ["dybden", "dybder", "dybdene"]
+nn_forms = ["djupna", "djupner", "djupnene"]
+verified = true
+source = "ordbokene.no"
+
+[junk]
+pos = "noun"
+bm = "skrap"
+nn = "skrap"
+gender = "n"
+bm_forms = ["skrapet", "skrap", "skrapa"]
+nn_forms = ["skrapet", "skrap", "skrapa"]
+verified = true
+source = "ordbokene.no"
+
+[sentence]
+pos = "noun"
+bm = "setning"
+nn = "setning"
+gender = "f"
+bm_forms = ["setninga", "setninger", "setningene"]
+nn_forms = ["setninga", "setningar", "setningane"]
+verified = true
+source = "ordbokene.no"
+
+[invocation]
+pos = "noun"
+bm = "påkalling"
+nn = "påkalling"
+gender = "f"
+bm_forms = ["påkallinga", "påkallinger", "påkallingene"]
+nn_forms = ["påkallinga", "påkallingar", "påkallingane"]
+verified = true
+source = "ordbokene.no"
+
+[holder]
+pos = "noun"
+bm = "holder"
+nn = "haldar"
+gender = "m"
+bm_forms = ["holderen", "holdere", "holderne"]
+nn_forms = ["haldaren", "haldarar", "haldarane"]
+verified = true
+source = "ordbokene.no"
+
+[recipient]
+pos = "noun"
+bm = "mottaker"
+nn = "mottakar"
+gender = "m"
+bm_forms = ["mottakeren", "mottakere", "mottakerne"]
+nn_forms = ["mottakaren", "mottakarar", "mottakarane"]
+verified = true
+source = "ordbokene.no"
+
+[proxy]
+pos = "noun"
+bm = "fullmakt"
+nn = "fullmakt"
+gender = "f"
+bm_forms = ["fullmakta", "fullmakter", "fullmaktene"]
+nn_forms = ["fullmakta", "fullmakter", "fullmaktene"]
+verified = true
+source = "ordbokene.no"
+
+[attribute]
+pos = "noun"
+bm = "attributt"
+nn = "attributt"
+gender = "n"
+bm_forms = ["attributtet", "attributt", "attributta"]
+nn_forms = ["attributtet", "attributt", "attributta"]
+verified = true
+source = "ordbokene.no"
+
+[tab]
+pos = "noun"
+bm = "tabulator"
+nn = "tabulator"
+gender = "m"
+bm_forms = ["tabulatoren", "tabulatorer", "tabulatorene"]
+nn_forms = ["tabulatoren", "tabulatorar", "tabulatorane"]
+verified = true
+source = "ordbokene.no"
+
+[tunnel]
+pos = "noun"
+bm = "tunnel"
+nn = "tunnel"
+gender = "m"
+bm_forms = ["tunnelen", "tunneler", "tunnelene"]
+nn_forms = ["tunnelen", "tunnelar", "tunnelane"]
+verified = true
+source = "ordbokene.no"
+
+[login]
+pos = "noun"
+bm = "innlogging"
+nn = "innlogging"
+gender = "f"
+bm_forms = ["innlogginga", "innlogginger", "innloggingene"]
+nn_forms = ["innlogginga", "innloggingar", "innloggingane"]
+verified = true
+source = "ordbokene.no"
+
+[base]
+pos = "noun"
+bm = "basis"
+nn = "basis"
+gender = "m"
+bm_forms = ["basisen", "basiser", "basisene"]
+nn_forms = ["basisen", "basisar", "basisane"]
+verified = true
+source = "ordbokene.no"
+
+[frequency]
+pos = "noun"
+bm = "frekvens"
+nn = "frekvens"
+gender = "m"
+bm_forms = ["frekvensen", "frekvenser", "frekvensene"]
+nn_forms = ["frekvensen", "frekvensar", "frekvensane"]
+verified = true
+source = "ordbokene.no"
+
+[extension]
+pos = "noun"
+bm = "utvidelse"
+nn = "utviding"
+bm_gender = "m"
+nn_gender = "f"
+bm_forms = ["utvidelsen", "utvidelser", "utvidelsene"]
+nn_forms = ["utvidinga", "utvidingar", "utvidingane"]
+verified = true
+source = "ordbokene.no"
+
+[exit]
+pos = "noun"
+bm = "utgang"
+nn = "utgang"
+gender = "m"
+bm_forms = ["utgangen", "utganger", "utgangene"]
+nn_forms = ["utgangen", "utgangar", "utgangane"]
+verified = true
+source = "ordbokene.no"
+
+[specification]
+pos = "noun"
+bm = "spesifikasjon"
+nn = "spesifikasjon"
+gender = "m"
+bm_forms = ["spesifikasjonen", "spesifikasjoner", "spesifikasjonene"]
+nn_forms = ["spesifikasjonen", "spesifikasjonar", "spesifikasjonane"]
+verified = true
+source = "ordbokene.no"
+
+[prompt]
+pos = "noun"
+bm = "ledetekst"
+nn = "leietekst"
+gender = "f"
+bm_forms = ["ledeteksta", "ledetekster", "ledetekstene"]
+nn_forms = ["leieteksta", "leietekster", "leietekstene"]
+verified = true
+source = "ordbokene.no"
+
+[space]
+pos = "noun"
+bm = "mellomrom"
+nn = "mellomrom"
+gender = "n"
+bm_forms = ["mellomrommet", "mellomrom", "mellomromma"]
+nn_forms = ["mellomrommet", "mellomrom", "mellomromma"]
+verified = true
+source = "ordbokene.no"
+
+[sequence]
+pos = "noun"
+bm = "sekvens"
+nn = "sekvens"
+gender = "m"
+bm_forms = ["sekvensen", "sekvenser", "sekvensene"]
+nn_forms = ["sekvensen", "sekvensar", "sekvensane"]
+verified = true
+source = "ordbokene.no"
+
+[protocol]
+pos = "noun"
+bm = "protokoll"
+nn = "protokoll"
+gender = "m"
+bm_forms = ["protokollen", "protokoller", "protokollene"]
+nn_forms = ["protokollen", "protokollar", "protokollane"]
+verified = true
+source = "ordbokene.no"
+
+[transfer]
+pos = "noun"
+bm = "overføring"
+nn = "overføring"
+gender = "f"
+bm_forms = ["overføringa", "overføringer", "overføringene"]
+nn_forms = ["overføringa", "overføringar", "overføringane"]
+verified = true
+source = "ordbokene.no"
+
+[location]
+pos = "noun"
+bm = "sted"
+nn = "stad"
+bm_gender = "n"
+nn_gender = "m"
+bm_forms = ["stedet", "steder", "stedene"]
+nn_forms = ["staden", "stader", "stadene"]
+verified = true
+source = "ordbokene.no"
+
+[place]
+pos = "noun"
+bm = "plass"
+nn = "plass"
+gender = "m"
+bm_forms = ["plassen", "plasser", "plassene"]
+nn_forms = ["plassen", "plassar", "plassane"]
+verified = true
+source = "ordbokene.no"
+
+[purpose]
+pos = "noun"
+bm = "formål"
+nn = "føremål"
+gender = "n"
+bm_forms = ["formålet", "formål", "formåla"]
+nn_forms = ["føremålet", "føremål", "føremåla"]
+verified = true
+source = "ordbokene.no"
+
+[patch]
+pos = "noun"
+bm = "lapp"
+nn = "lapp"
+gender = "m"
+bm_forms = ["lappen", "lapper", "lappene"]
+nn_forms = ["lappen", "lappar", "lappane"]
+verified = true
+source = "ordbokene.no"
+
+[encryption]
+pos = "noun"
+bm = "kryptering"
+nn = "kryptering"
+gender = "f"
+bm_forms = ["krypteringa", "krypteringer", "krypteringene"]
+nn_forms = ["krypteringa", "krypteringar", "krypteringane"]
+verified = true
+source = "ordbokene.no"
+
+[descriptor]
+pos = "noun"
+bm = "kjennetegn"
+nn = "kjenneteikn"
+gender = "n"
+bm_forms = ["kjennetegnet", "kjennetegn", "kjennetegna"]
+nn_forms = ["kjenneteiknet", "kjenneteikn", "kjenneteikna"]
+verified = true
+source = "ordbokene.no"
+
+[content]
+pos = "noun"
+bm = "innhold"
+nn = "innhald"
+gender = "n"
+bm_forms = ["innholdet", "innhold", "innholda"]
+nn_forms = ["innhaldet", "innhald", "innhalda"]
+verified = true
+source = "ordbokene.no"
+
+[support]
+pos = "noun"
+bm = "støtte"
+nn = "støtte"
+gender = "f"
+bm_forms = ["støtta", "støtter", "støttene"]
+nn_forms = ["støtta", "støtter", "støttene"]
+verified = true
+source = "ordbokene.no"
+
+[access]
+pos = "noun"
+bm = "tilgang"
+nn = "tilgang"
+gender = "m"
+bm_forms = ["tilgangen", "tilganger", "tilgangene"]
+nn_forms = ["tilgangen", "tilgangar", "tilgangane"]
+verified = true
+source = "ordbokene.no"
+
+[chain]
+pos = "noun"
+bm = "kjede"
+nn = "kjede"
+bm_gender = "m"
+nn_gender = "f"
+bm_forms = ["kjeden", "kjeder", "kjedene"]
+nn_forms = ["kjeda", "kjeder", "kjedene"]
+verified = true
+source = "ordbokene.no"
+
+[slice]
+pos = "noun"
+bm = "skive"
+nn = "skive"
+gender = "f"
+bm_forms = ["skiva", "skiver", "skivene"]
+nn_forms = ["skiva", "skiver", "skivene"]
+verified = true
+source = "ordbokene.no"
+
+[category]
+pos = "noun"
+bm = "kategori"
+nn = "kategori"
+gender = "m"
+bm_forms = ["kategorien", "kategorier", "kategoriene"]
+nn_forms = ["kategorien", "kategoriar", "kategoriane"]
+verified = true
+source = "ordbokene.no"
+
+[challenge]
+pos = "noun"
+bm = "utfordring"
+nn = "utfordring"
+gender = "f"
+bm_forms = ["utfordringa", "utfordringer", "utfordringene"]
+nn_forms = ["utfordringa", "utfordringar", "utfordringane"]
+verified = true
+source = "ordbokene.no"
+
+[comma]
+pos = "noun"
+bm = "komma"
+nn = "komma"
+gender = "n"
+bm_forms = ["kommaet", "komma", "kommaene"]
+nn_forms = ["kommaet", "komma", "kommaa"]
+verified = true
+source = "ordbokene.no"
+
+[command]
+pos = "noun"
+bm = "kommando"
+nn = "kommando"
+gender = "m"
+bm_forms = ["kommandoen", "kommandoer", "kommandoene"]
+nn_forms = ["kommandoen", "kommandoar", "kommandoane"]
+verified = true
+source = "ordbokene.no"
+
+[keyword]
+pos = "noun"
+bm = "nøkkelord"
+nn = "nøkkelord"
+gender = "n"
+bm_forms = ["nøkkelordet", "nøkkelord", "nøkkelorda"]
+nn_forms = ["nøkkelordet", "nøkkelord", "nøkkelorda"]
+verified = true
+source = "ordbokene.no"
+
+[failure]
+pos = "noun"
+bm = "svikt"
+nn = "svikt"
+bm_gender = "m"
+nn_gender = "f"
+bm_forms = ["svikten", "svikter", "sviktene"]
+nn_forms = ["svikta", "svikter", "sviktene"]
+verified = true
+source = "ordbokene.no"
+
+[success]
+pos = "noun"
+bm = "suksess"
+nn = "suksess"
+gender = "m"
+bm_forms = ["suksessen", "suksesser", "suksessene"]
+nn_forms = ["suksessen", "suksessar", "suksessane"]
+verified = true
+source = "ordbokene.no"
+
+[payload]
+pos = "noun"
+bm = "nyttelast"
+nn = "nyttelast"
+gender = "f"
+bm_forms = ["nyttelasta", "nyttelaster", "nyttelastene"]
+nn_forms = ["nyttelasta", "nyttelaster", "nyttelastene"]
+verified = true
+source = "ordbokene.no"
+
+[annotation]
+pos = "noun"
+bm = "merknad"
+nn = "merknad"
+gender = "m"
+bm_forms = ["merknaden", "merknader", "merknadene"]
+nn_forms = ["merknaden", "merknadar", "merknadane"]
+verified = true
+source = "ordbokene.no"
+
+[recursion]
+pos = "noun"
+bm = "rekursjon"
+nn = "rekursjon"
+gender = "m"
+bm_forms = ["rekursjonen", "rekursjoner", "rekursjonene"]
+nn_forms = ["rekursjonen", "rekursjonar", "rekursjonane"]
+verified = true
+source = "ordbokene.no"
+
+[fallback]
+pos = "noun"
+bm = "reserve"
+nn = "reserve"
+gender = "m"
+bm_forms = ["reserven", "reserver", "reservene"]
+nn_forms = ["reserven", "reservar", "reservane"]
+verified = true
+source = "ordbokene.no"
+
+[candidate]
+pos = "noun"
+bm = "kandidat"
+nn = "kandidat"
+gender = "m"
+bm_forms = ["kandidaten", "kandidater", "kandidatene"]
+nn_forms = ["kandidaten", "kandidatar", "kandidatane"]
+verified = true
+source = "ordbokene.no"
+
+[sentinel]
+pos = "noun"
+bm = "vaktpost"
+nn = "vaktpost"
+gender = "m"
+bm_forms = ["vaktposten", "vaktposter", "vaktpostene"]
+nn_forms = ["vaktposten", "vaktpostar", "vaktpostane"]
+verified = true
+source = "ordbokene.no"
+
+[priority]
+pos = "noun"
+bm = "prioritet"
+nn = "prioritet"
+gender = "m"
+bm_forms = ["prioriteten", "prioriteter", "prioritetene"]
+nn_forms = ["prioriteten", "prioritetar", "prioritetane"]
+verified = true
+source = "ordbokene.no"
+
+[barrier]
+pos = "noun"
+bm = "barriere"
+nn = "barriere"
+gender = "m"
+bm_forms = ["barrieren", "barrierer", "barrierene"]
+nn_forms = ["barrieren", "barrierar", "barrierane"]
+verified = true
+source = "ordbokene.no"
+
+[semaphore]
+pos = "noun"
+bm = "semafor"
+nn = "semafor"
+gender = "m"
+bm_forms = ["semaforen", "semaforer", "semaforene"]
+nn_forms = ["semaforen", "semaforar", "semaforane"]
+verified = true
+source = "ordbokene.no"
+
+[condition]
+pos = "noun"
+bm = "betingelse"
+nn = "vilkår"
+bm_gender = "m"
+nn_gender = "n"
+bm_forms = ["betingelsen", "betingelser", "betingelsene"]
+nn_forms = ["vilkåret", "vilkår", "vilkåra"]
+verified = true
+source = "ordbokene.no"
+
+[epoch]
+pos = "noun"
+bm = "epoke"
+nn = "epoke"
+gender = "m"
+bm_forms = ["epoken", "epoker", "epokene"]
+nn_forms = ["epoken", "epokar", "epokane"]
+verified = true
+source = "ordbokene.no"
+
+[destination]
+pos = "noun"
+bm = "destinasjon"
+nn = "destinasjon"
+gender = "m"
+bm_forms = ["destinasjonen", "destinasjoner", "destinasjonene"]
+nn_forms = ["destinasjonen", "destinasjonar", "destinasjonane"]
+verified = true
+source = "ordbokene.no"
+
+[outcome]
+pos = "noun"
+bm = "utfall"
+nn = "utfall"
+gender = "n"
+bm_forms = ["utfallet", "utfall", "utfalla"]
+nn_forms = ["utfallet", "utfall", "utfalla"]
+verified = true
+source = "ordbokene.no"
+
+[duration]
+pos = "noun"
+bm = "varighet"
+nn = "varigheit"
+gender = "f"
+bm_forms = ["varigheta", "varigheter", "varighetene"]
+nn_forms = ["varigheita", "varigheiter", "varigheitene"]
+verified = true
+source = "ordbokene.no"
+
+[decorator]
+pos = "noun"
+bm = "dekoratør"
+nn = "dekoratør"
+gender = "m"
+bm_forms = ["dekoratøren", "dekoratører", "dekoratørene"]
+nn_forms = ["dekoratøren", "dekoratørar", "dekoratørane"]
+verified = true
+source = "ordbokene.no"
+
+[fragment]
+pos = "noun"
+bm = "fragment"
+nn = "fragment"
+gender = "n"
+bm_forms = ["fragmentet", "fragment", "fragmenta"]
+nn_forms = ["fragmentet", "fragment", "fragmenta"]
+verified = true
+source = "ordbokene.no"
+
+[predicate]
+pos = "noun"
+bm = "predikat"
+nn = "predikat"
+gender = "n"
+bm_forms = ["predikatet", "predikat", "predikata"]
+nn_forms = ["predikatet", "predikat", "predikata"]
+verified = true
+source = "ordbokene.no"
+
+[segment]
+pos = "noun"
+bm = "segment"
+nn = "segment"
+gender = "n"
+bm_forms = ["segmentet", "segment", "segmentene"]
+nn_forms = ["segmentet", "segment", "segmenta"]
+verified = true
+source = "ordbokene.no"
+
+[scheme]
+pos = "noun"
+bm = "ordning"
+nn = "ordning"
+gender = "f"
+bm_forms = ["ordninga", "ordninger", "ordningene"]
+nn_forms = ["ordninga", "ordningar", "ordningane"]
+verified = true
+source = "ordbokene.no"
+
+[attachment]
+pos = "noun"
+bm = "vedlegg"
+nn = "vedlegg"
+gender = "n"
+bm_forms = ["vedlegget", "vedlegg", "vedlegga"]
+nn_forms = ["vedlegget", "vedlegg", "vedlegga"]
+verified = true
+source = "ordbokene.no"
+
+[alternative]
+pos = "noun"
+bm = "alternativ"
+nn = "alternativ"
+gender = "n"
+bm_forms = ["alternativet", "alternativ", "alternativa"]
+nn_forms = ["alternativet", "alternativ", "alternativa"]
+verified = true
+source = "ordbokene.no"
+
+[dummy]
+pos = "noun"
+bm = "attrapp"
+nn = "attrapp"
+gender = "m"
+bm_forms = ["attrappen", "attrapper", "attrappene"]
+nn_forms = ["attrappen", "attrappar", "attrappane"]
+verified = true
+source = "ordbokene.no"
+
+[iteration]
+pos = "noun"
+bm = "iterasjon"
+nn = "iterasjon"
+gender = "m"
+bm_forms = ["iterasjonen", "iterasjoner", "iterasjonene"]
+nn_forms = ["iterasjonen", "iterasjonar", "iterasjonane"]
+verified = true
+source = "ordbokene.no"
+
+[indent]
+pos = "noun"
+bm = "innrykk"
+nn = "innrykk"
+gender = "n"
+bm_forms = ["innrykket", "innrykk", "innrykka"]
+nn_forms = ["innrykket", "innrykk", "innrykka"]
+alt = ["indentation"]
+verified = true
+source = "ordbokene.no"
+
+[interpolation]
+pos = "noun"
+bm = "interpolasjon"
+nn = "interpolasjon"
+gender = "m"
+bm_forms = ["interpolasjonen", "interpolasjoner", "interpolasjonene"]
+nn_forms = ["interpolasjonen", "interpolasjonar", "interpolasjonane"]
+verified = true
+source = "ordbokene.no"
+
+[mask]
+pos = "noun"
+bm = "maske"
+nn = "maske"
+gender = "f"
+bm_forms = ["maska", "masker", "maskene"]
+nn_forms = ["maska", "masker", "maskene"]
+verified = true
+source = "ordbokene.no"
+
+[fork]
+pos = "noun"
+bm = "gaffel"
+nn = "gaffel"
+gender = "m"
+bm_forms = ["gaffelen", "gafler", "gaflene"]
+nn_forms = ["gaffelen", "gaflar", "gaflane"]
+verified = true
+source = "ordbokene.no"
+
+[authentication]
+pos = "noun"
+bm = "legitimasjon"
+nn = "legitimasjon"
+gender = "m"
+bm_forms = ["legitimasjonen", "legitimasjoner", "legitimasjonene"]
+nn_forms = ["legitimasjonen", "legitimasjonar", "legitimasjonane"]
+alt = ["credential", "credentials"]
+verified = true
+source = "ordbokene.no"
+
+[continuation]
+pos = "noun"
+bm = "fortsettelse"
+nn = "framhald"
+bm_gender = "m"
+nn_gender = "n"
+bm_forms = ["fortsettelsen", "fortsettelser", "fortsettelsene"]
+nn_forms = ["framhaldet", "framhald", "framhalda"]
+verified = true
+source = "ordbokene.no"
+
+[socket]
+pos = "noun"
+bm = "sokkel"
+nn = "sokkel"
+gender = "m"
+bm_forms = ["sokkelen", "sokler", "soklene"]
+nn_forms = ["sokkelen", "soklar", "soklane"]
+verified = true
+source = "ordbokene.no"
+
+[rest]
+pos = "noun"
+bm = "rest"
+nn = "rest"
+gender = "m"
+bm_forms = ["resten", "rester", "restene"]
+nn_forms = ["resten", "restar", "restane"]
+alt = ["remainder"]
+verified = true
+source = "ordbokene.no"
+
+[heading]
+pos = "noun"
+bm = "overskrift"
+nn = "overskrift"
+gender = "f"
+bm_forms = ["overskrifta", "overskrifter", "overskriftene"]
+nn_forms = ["overskrifta", "overskrifter", "overskriftene"]
+verified = true
+source = "ordbokene.no"
+
+[syntax]
+pos = "noun"
+bm = "syntaks"
+nn = "syntaks"
+gender = "m"
+bm_forms = ["syntaksen", "syntakser", "syntaksene"]
+nn_forms = ["syntaksen", "syntaksar", "syntaksane"]
+verified = true
+source = "ordbokene.no"
+
+[adapter]
+pos = "noun"
+bm = "adapter"
+nn = "adapter"
+gender = "m"
+bm_forms = ["adapteren", "adaptere", "adapterne"]
+nn_forms = ["adapteren", "adapterar", "adapterane"]
+verified = true
+source = "ordbokene.no"
+
+[percent]
+pos = "noun"
+bm = "prosent"
+nn = "prosent"
+gender = "m"
+bm_forms = ["prosenten", "prosenter", "prosentene"]
+nn_forms = ["prosenten", "prosentar", "prosentane"]
+alt = ["percentage"]
+verified = true
+source = "ordbokene.no"
+
+[digit]
+pos = "noun"
+bm = "siffer"
+nn = "siffer"
+gender = "n"
+bm_forms = ["sifferet", "siffer", "siffera"]
+nn_forms = ["sifferet", "siffer", "siffera"]
+verified = true
+source = "ordbokene.no"
+
+[conversion]
+pos = "noun"
+bm = "konvertering"
+nn = "konvertering"
+gender = "f"
+bm_forms = ["konverteringa", "konverteringer", "konverteringene"]
+nn_forms = ["konverteringa", "konverteringar", "konverteringane"]
+verified = true
+source = "ordbokene.no"
+
+[abbreviation]
+pos = "noun"
+bm = "forkortelse"
+nn = "forkorting"
+bm_gender = "m"
+nn_gender = "f"
+bm_forms = ["forkortelsen", "forkortelser", "forkortelsene"]
+nn_forms = ["forkortinga", "forkortingar", "forkortingane"]
+verified = true
+source = "ordbokene.no"
+
+[implementation]
+pos = "noun"
+bm = "implementering"
+nn = "implementering"
+gender = "f"
+bm_forms = ["implementeringa", "implementeringer", "implementeringene"]
+nn_forms = ["implementeringa", "implementeringar", "implementeringane"]
+verified = true
+source = "ordbokene.no"
+
+[operation]
+pos = "noun"
+bm = "operasjon"
+nn = "operasjon"
+gender = "m"
+bm_forms = ["operasjonen", "operasjoner", "operasjonene"]
+nn_forms = ["operasjonen", "operasjonar", "operasjonane"]
+verified = true
+source = "ordbokene.no"
+
+[component]
+pos = "noun"
+bm = "komponent"
+nn = "komponent"
+gender = "m"
+bm_forms = ["komponenten", "komponenter", "komponentene"]
+nn_forms = ["komponenten", "komponentar", "komponentane"]
+verified = true
+source = "ordbokene.no"
+
+[container]
+pos = "noun"
+bm = "beholder"
+nn = "behaldar"
+gender = "m"
+bm_forms = ["beholderen", "beholdere", "beholderne"]
+nn_forms = ["behaldaren", "behaldarar", "behaldarane"]
+verified = true
+source = "ordbokene.no"
+
+[domain]
+pos = "noun"
+bm = "domene"
+nn = "domene"
+gender = "n"
+bm_forms = ["domenet", "domener", "domena"]
+nn_forms = ["domenet", "domene", "domena"]
+verified = true
+source = "ordbokene.no"
+
+[cluster]
+pos = "noun"
+bm = "klynge"
+nn = "klynge"
+gender = "f"
+bm_forms = ["klynga", "klynger", "klyngene"]
+nn_forms = ["klynga", "klynger", "klyngene"]
+verified = true
+source = "ordbokene.no"
+
+[region]
+pos = "noun"
+bm = "region"
+nn = "region"
+gender = "m"
+bm_forms = ["regionen", "regioner", "regionene"]
+nn_forms = ["regionen", "regionar", "regionane"]
+verified = true
+source = "ordbokene.no"
+
+[zone]
+pos = "noun"
+bm = "sone"
+nn = "sone"
+gender = "f"
+bm_forms = ["sona", "soner", "sonene"]
+nn_forms = ["sona", "soner", "sonene"]
+verified = true
+source = "ordbokene.no"
+
+[endpoint]
+pos = "noun"
+bm = "endepunkt"
+nn = "endepunkt"
+gender = "n"
+bm_forms = ["endepunktet", "endepunkt", "endepunkta"]
+nn_forms = ["endepunktet", "endepunkt", "endepunkta"]
+verified = true
+source = "ordbokene.no"
+
+[route]
+pos = "noun"
+bm = "rute"
+nn = "rute"
+gender = "f"
+bm_forms = ["ruta", "ruter", "rutene"]
+nn_forms = ["ruta", "ruter", "rutene"]
+verified = true
+source = "ordbokene.no"
+
+[channel]
+pos = "noun"
+bm = "kanal"
+nn = "kanal"
+gender = "m"
+bm_forms = ["kanalen", "kanaler", "kanalene"]
+nn_forms = ["kanalen", "kanalar", "kanalane"]
+verified = true
+source = "ordbokene.no"
+
+[topic]
+pos = "noun"
+bm = "emne"
+nn = "emne"
+gender = "n"
+bm_forms = ["emnet", "emner", "emna"]
+nn_forms = ["emnet", "emne", "emna"]
+alt = ["subject"]
+verified = true
+source = "ordbokene.no"
+
+[sample]
+pos = "noun"
+bm = "utvalg"
+nn = "utval"
+gender = "n"
+bm_forms = ["utvalget", "utvalg", "utvalga"]
+nn_forms = ["utvalet", "utval", "utvala"]
+verified = true
+source = "ordbokene.no"
+
+[batch]
+pos = "noun"
+bm = "parti"
+nn = "parti"
+gender = "n"
+bm_forms = ["partiet", "parti", "partia"]
+nn_forms = ["partiet", "parti", "partia"]
+verified = true
+source = "ordbokene.no"
+
+[profile]
+pos = "noun"
+bm = "profil"
+nn = "profil"
+gender = "m"
+bm_forms = ["profilen", "profiler", "profilene"]
+nn_forms = ["profilen", "profilar", "profilane"]
+verified = true
+source = "ordbokene.no"
+
+[icon]
+pos = "noun"
+bm = "ikon"
+nn = "ikon"
+gender = "n"
+bm_forms = ["ikonet", "ikon", "ikona"]
+nn_forms = ["ikonet", "ikon", "ikona"]
+verified = true
+source = "ordbokene.no"
+
+[logo]
+pos = "noun"
+bm = "logo"
+nn = "logo"
+gender = "m"
+bm_forms = ["logoen", "logoer", "logoene"]
+nn_forms = ["logoen", "logoar", "logoane"]
+verified = true
+source = "ordbokene.no"
+
+[theme]
+pos = "noun"
+bm = "tema"
+nn = "tema"
+gender = "n"
+bm_forms = ["temaet", "tema", "temaene"]
+nn_forms = ["temaet", "tema", "temaa"]
+verified = true
+source = "ordbokene.no"
+
+[font]
+pos = "noun"
+bm = "skrift"
+nn = "skrift"
+gender = "f"
+bm_forms = ["skrifta", "skrifter", "skriftene"]
+nn_forms = ["skrifta", "skrifter", "skriftene"]
+verified = true
+source = "ordbokene.no"
+
+[layout]
+pos = "noun"
+bm = "oppsett"
+nn = "oppsett"
+gender = "n"
+bm_forms = ["oppsettet", "oppsett", "oppsetta"]
+nn_forms = ["oppsettet", "oppsett", "oppsetta"]
+verified = true
+source = "ordbokene.no"
+
+[margin]
+pos = "noun"
+bm = "marg"
+nn = "marg"
+gender = "m"
+bm_forms = ["margen", "marger", "margene"]
+nn_forms = ["margen", "margar", "margane"]
+verified = true
+source = "ordbokene.no"
+
+[background]
+pos = "noun"
+bm = "bakgrunn"
+nn = "bakgrunn"
+gender = "m"
+bm_forms = ["bakgrunnen", "bakgrunner", "bakgrunnene"]
+nn_forms = ["bakgrunnen", "bakgrunnar", "bakgrunnane"]
+verified = true
+source = "ordbokene.no"
+
+[foreground]
+pos = "noun"
+bm = "forgrunn"
+nn = "forgrunn"
+gender = "m"
+bm_forms = ["forgrunnen", "forgrunner", "forgrunnene"]
+nn_forms = ["forgrunnen", "forgrunnar", "forgrunnane"]
+verified = true
+source = "ordbokene.no"
+
+["shadow#noun"]
+pos = "noun"
+bm = "skygge"
+nn = "skugge"
+gender = "m"
+bm_forms = ["skyggen", "skygger", "skyggene"]
+nn_forms = ["skuggen", "skuggar", "skuggane"]
+verified = true
+source = "ordbokene.no"
+
+[animation]
+pos = "noun"
+bm = "animasjon"
+nn = "animasjon"
+gender = "m"
+bm_forms = ["animasjonen", "animasjoner", "animasjonene"]
+nn_forms = ["animasjonen", "animasjonar", "animasjonane"]
+verified = true
+source = "ordbokene.no"
+
+[transition]
+pos = "noun"
+bm = "overgang"
+nn = "overgang"
+gender = "m"
+bm_forms = ["overgangen", "overganger", "overgangene"]
+nn_forms = ["overgangen", "overgangar", "overgangane"]
+verified = true
+source = "ordbokene.no"
+
+[dialog]
+pos = "noun"
+bm = "dialog"
+nn = "dialog"
+gender = "m"
+bm_forms = ["dialogen", "dialoger", "dialogene"]
+nn_forms = ["dialogen", "dialogar", "dialogane"]
+alt = ["dialogue"]
+verified = true
+source = "ordbokene.no"
+
+[form]
+pos = "noun"
+bm = "formular"
+nn = "formular"
+gender = "n"
+bm_forms = ["formularet", "formular", "formulara"]
+nn_forms = ["formularet", "formular", "formulara"]
+verified = true
+source = "ordbokene.no"
+
+[panel]
+pos = "noun"
+bm = "panel"
+nn = "panel"
+gender = "n"
+bm_forms = ["panelet", "panel", "panela"]
+nn_forms = ["panelet", "panel", "panela"]
+verified = true
+source = "ordbokene.no"
+
+[navigation]
+pos = "noun"
+bm = "navigasjon"
+nn = "navigasjon"
+gender = "m"
+bm_forms = ["navigasjonen", "navigasjoner", "navigasjonene"]
+nn_forms = ["navigasjonen", "navigasjonar", "navigasjonane"]
+verified = true
+source = "ordbokene.no"
+
+[anchor]
+pos = "noun"
+bm = "anker"
+nn = "anker"
+gender = "n"
+bm_forms = ["ankeret", "anker", "ankera"]
+nn_forms = ["ankeret", "anker", "ankera"]
+verified = true
+source = "ordbokene.no"
+
+[cookie]
+pos = "noun"
+bm = "informasjonskapsel"
+nn = "informasjonskapsel"
+gender = "m"
+bm_forms = ["informasjonskapselen", "informasjonskapsler", "informasjonskapslene"]
+nn_forms = ["informasjonskapselen", "informasjonskapslar", "informasjonskapslane"]
+verified = true
+source = "ordbokene.no"
+
+[certificate]
+pos = "noun"
+bm = "sertifikat"
+nn = "sertifikat"
+gender = "n"
+bm_forms = ["sertifikatet", "sertifikat", "sertifikata"]
+nn_forms = ["sertifikatet", "sertifikat", "sertifikata"]
+verified = true
+source = "ordbokene.no"
+
+[salt]
+pos = "noun"
+bm = "salt"
+nn = "salt"
+gender = "n"
+bm_forms = ["saltet", "salter", "salta"]
+nn_forms = ["saltet", "salt", "salta"]
+verified = true
+source = "ordbokene.no"
+
+[cipher]
+pos = "noun"
+bm = "chiffer"
+nn = "chiffer"
+gender = "n"
+bm_forms = ["chifferet", "chiffer", "chiffera"]
+nn_forms = ["chifferet", "chiffer", "chiffera"]
+verified = true
+source = "ordbokene.no"
+
+[vertex]
+pos = "noun"
+bm = "hjørne"
+nn = "hjørne"
+gender = "n"
+bm_forms = ["hjørnet", "hjørner", "hjørna"]
+nn_forms = ["hjørnet", "hjørne", "hjørna"]
+en_pl = ["vertices"]
+verified = true
+source = "ordbokene.no"
+
+[weight]
+pos = "noun"
+bm = "vekt"
+nn = "vekt"
+gender = "f"
+bm_forms = ["vekta", "vekter", "vektene"]
+nn_forms = ["vekta", "vekter", "vektene"]
+verified = true
+source = "ordbokene.no"
+
+[distance]
+pos = "noun"
+bm = "avstand"
+nn = "avstand"
+gender = "m"
+bm_forms = ["avstanden", "avstander", "avstandene"]
+nn_forms = ["avstanden", "avstandar", "avstandane"]
+verified = true
+source = "ordbokene.no"
+
+[cost]
+pos = "noun"
+bm = "kostnad"
+nn = "kostnad"
+gender = "m"
+bm_forms = ["kostnaden", "kostnader", "kostnadene"]
+nn_forms = ["kostnaden", "kostnadar", "kostnadane"]
+verified = true
+source = "ordbokene.no"
+
+[neighbor]
+pos = "noun"
+bm = "nabo"
+nn = "nabo"
+gender = "m"
+bm_forms = ["naboen", "naboer", "naboene"]
+nn_forms = ["naboen", "naboar", "naboane"]
+alt = ["neighbour"]
+verified = true
+source = "ordbokene.no"
+
+[cycle]
+pos = "noun"
+bm = "syklus"
+nn = "syklus"
+gender = "m"
+bm_forms = ["syklusen", "sykluser", "syklusene"]
+nn_forms = ["syklusen", "syklusar", "syklusane"]
+verified = true
+source = "ordbokene.no"
+
+[loop]
+pos = "noun"
+bm = "løkke"
+nn = "løkke"
+gender = "f"
+bm_forms = ["løkka", "løkker", "løkkene"]
+nn_forms = ["løkka", "løkker", "løkkene"]
+verified = true
+source = "ordbokene.no"
+
+[sibling]
+pos = "noun"
+bm = "søsken"
+nn = "søsken"
+gender = "n"
+bm_forms = ["søskenet", "søsken", "søskena"]
+nn_forms = ["søskenet", "søsken", "søskena"]
+verified = true
+source = "ordbokene.no"
+
+[descendant]
+pos = "noun"
+bm = "etterkommer"
+nn = "etterkomar"
+gender = "m"
+bm_forms = ["etterkommeren", "etterkommere", "etterkommerne"]
+nn_forms = ["etterkomaren", "etterkomarar", "etterkomarane"]
+verified = true
+source = "ordbokene.no"
+
+[leaf]
+pos = "noun"
+bm = "blad"
+nn = "blad"
+gender = "n"
+bm_forms = ["bladet", "blad", "blada"]
+nn_forms = ["bladet", "blad", "blada"]
+en_pl = ["leaves"]
+verified = true
+source = "ordbokene.no"
+
+[branch]
+pos = "noun"
+bm = "gren"
+nn = "grein"
+gender = "f"
+bm_forms = ["grena", "grener", "grenene"]
+nn_forms = ["greina", "greiner", "greinene"]
+verified = true
+source = "ordbokene.no"
+
+[top]
+pos = "noun"
+bm = "topp"
+nn = "topp"
+gender = "m"
+bm_forms = ["toppen", "topper", "toppene"]
+nn_forms = ["toppen", "toppar", "toppane"]
+verified = true
+source = "ordbokene.no"
+
+[bottom]
+pos = "noun"
+bm = "bunn"
+nn = "botn"
+gender = "m"
+bm_forms = ["bunnen", "bunner", "bunnene"]
+nn_forms = ["botnen", "botnar", "botnane"]
+verified = true
+source = "ordbokene.no"
+
+[tail]
+pos = "noun"
+bm = "hale"
+nn = "hale"
+gender = "m"
+bm_forms = ["halen", "haler", "halene"]
+nn_forms = ["halen", "halar", "halane"]
+verified = true
+source = "ordbokene.no"
+
+[front]
+pos = "noun"
+bm = "front"
+nn = "front"
+gender = "m"
+bm_forms = ["fronten", "fronter", "frontene"]
+nn_forms = ["fronten", "frontar", "frontane"]
+verified = true
+source = "ordbokene.no"
+
+[fraction]
+pos = "noun"
+bm = "brøk"
+nn = "brøk"
+gender = "m"
+bm_forms = ["brøken", "brøker", "brøkene"]
+nn_forms = ["brøken", "brøkar", "brøkane"]
+verified = true
+source = "ordbokene.no"
+
+[angle]
+pos = "noun"
+bm = "vinkel"
+nn = "vinkel"
+gender = "m"
+bm_forms = ["vinkelen", "vinkler", "vinklene"]
+nn_forms = ["vinkelen", "vinklar", "vinklane"]
+verified = true
+source = "ordbokene.no"
+
+[radius]
+pos = "noun"
+bm = "radius"
+nn = "radius"
+gender = "m"
+bm_forms = ["radiusen", "radiuser", "radiusene"]
+nn_forms = ["radiusen", "radiusar", "radiusane"]
+en_pl = ["radii"]
+verified = true
+source = "ordbokene.no"
+
+[area]
+pos = "noun"
+bm = "areal"
+nn = "areal"
+gender = "n"
+bm_forms = ["arealet", "areal", "areala"]
+nn_forms = ["arealet", "areal", "areala"]
+verified = true
+source = "ordbokene.no"
+
+[volume]
+pos = "noun"
+bm = "volum"
+nn = "volum"
+gender = "n"
+bm_forms = ["volumet", "volum", "voluma"]
+nn_forms = ["volumet", "volum", "voluma"]
+verified = true
+source = "ordbokene.no"
+
+[circle]
+pos = "noun"
+bm = "sirkel"
+nn = "sirkel"
+gender = "m"
+bm_forms = ["sirkelen", "sirkler", "sirklene"]
+nn_forms = ["sirkelen", "sirklar", "sirklane"]
+verified = true
+source = "ordbokene.no"
+
+[square]
+pos = "noun"
+bm = "kvadrat"
+nn = "kvadrat"
+gender = "n"
+bm_forms = ["kvadratet", "kvadrat", "kvadrata"]
+nn_forms = ["kvadratet", "kvadrat", "kvadrata"]
+verified = true
+source = "ordbokene.no"
+
+[triangle]
+pos = "noun"
+bm = "trekant"
+nn = "trekant"
+gender = "m"
+bm_forms = ["trekanten", "trekanter", "trekantene"]
+nn_forms = ["trekanten", "trekantar", "trekantane"]
+verified = true
+source = "ordbokene.no"
+
+[rectangle]
+pos = "noun"
+bm = "rektangel"
+nn = "rektangel"
+gender = "n"
+bm_forms = ["rektangelet", "rektangel", "rektangla"]
+nn_forms = ["rektangelet", "rektangel", "rektangla"]
+verified = true
+source = "ordbokene.no"
+
+[coordinate]
+pos = "noun"
+bm = "koordinat"
+nn = "koordinat"
+gender = "m"
+bm_forms = ["koordinaten", "koordinater", "koordinatene"]
+nn_forms = ["koordinaten", "koordinatar", "koordinatane"]
+verified = true
+source = "ordbokene.no"
+
+[axis]
+pos = "noun"
+bm = "akse"
+nn = "akse"
+gender = "m"
+bm_forms = ["aksen", "akser", "aksene"]
+nn_forms = ["aksen", "aksar", "aksane"]
+en_pl = ["axes"]
+verified = true
+source = "ordbokene.no"
+
+[origin]
+pos = "noun"
+bm = "opphav"
+nn = "opphav"
+gender = "n"
+bm_forms = ["opphavet", "opphav", "opphava"]
+nn_forms = ["opphavet", "opphav", "opphava"]
+verified = true
+source = "ordbokene.no"
+
+[rotation]
+pos = "noun"
+bm = "rotasjon"
+nn = "rotasjon"
+gender = "m"
+bm_forms = ["rotasjonen", "rotasjoner", "rotasjonene"]
+nn_forms = ["rotasjonen", "rotasjonar", "rotasjonane"]
+verified = true
+source = "ordbokene.no"
+
+[direction]
+pos = "noun"
+bm = "retning"
+nn = "retning"
+gender = "f"
+bm_forms = ["retninga", "retninger", "retningene"]
+nn_forms = ["retninga", "retningar", "retningane"]
+verified = true
+source = "ordbokene.no"
+
+[speed]
+pos = "noun"
+bm = "fart"
+nn = "fart"
+gender = "f"
+bm_forms = ["farta", "farter", "fartene"]
+nn_forms = ["farta", "farter", "fartene"]
+alt = ["velocity"]
+verified = true
+source = "ordbokene.no"
+
+[mass]
+pos = "noun"
+bm = "masse"
+nn = "masse"
+gender = "m"
+bm_forms = ["massen", "masser", "massene"]
+nn_forms = ["massen", "massar", "massane"]
+verified = true
+source = "ordbokene.no"
+
+[gravity]
+pos = "noun"
+bm = "tyngdekraft"
+nn = "tyngdekraft"
+gender = "f"
+bm_forms = ["tyngdekrafta", "tyngdekrefter", "tyngdekreftene"]
+nn_forms = ["tyngdekrafta", "tyngdekrefter", "tyngdekreftene"]
+verified = true
+source = "ordbokene.no"
+
+[energy]
+pos = "noun"
+bm = "energi"
+nn = "energi"
+gender = "m"
+bm_forms = ["energien", "energier", "energiene"]
+nn_forms = ["energien", "energiar", "energiane"]
+verified = true
+source = "ordbokene.no"
+
+[health]
+pos = "noun"
+bm = "helse"
+nn = "helse"
+gender = "f"
+bm_forms = ["helsa", "helser", "helsene"]
+nn_forms = ["helsa", "helser", "helsene"]
+verified = true
+source = "ordbokene.no"
+
+[damage]
+pos = "noun"
+bm = "skade"
+nn = "skade"
+gender = "m"
+bm_forms = ["skaden", "skader", "skadene"]
+nn_forms = ["skaden", "skadar", "skadane"]
+verified = true
+source = "ordbokene.no"
+
+[enemy]
+pos = "noun"
+bm = "fiende"
+nn = "fiende"
+gender = "m"
+bm_forms = ["fienden", "fiender", "fiendene"]
+nn_forms = ["fienden", "fiendar", "fiendane"]
+verified = true
+source = "ordbokene.no"
+
+[weapon]
+pos = "noun"
+bm = "våpen"
+nn = "våpen"
+gender = "n"
+bm_forms = ["våpenet", "våpen", "våpna"]
+nn_forms = ["våpenet", "våpen", "våpena"]
+verified = true
+source = "ordbokene.no"
+
+[life]
+pos = "noun"
+bm = "liv"
+nn = "liv"
+gender = "n"
+bm_forms = ["livet", "liv", "liva"]
+nn_forms = ["livet", "liv", "liva"]
+en_pl = ["lives"]
+verified = true
+source = "ordbokene.no"
+
+[bullet]
+pos = "noun"
+bm = "kule"
+nn = "kule"
+gender = "f"
+bm_forms = ["kula", "kuler", "kulene"]
+nn_forms = ["kula", "kuler", "kulene"]
+verified = true
+source = "ordbokene.no"
+
+[tile]
+pos = "noun"
+bm = "flis"
+nn = "flis"
+gender = "f"
+bm_forms = ["flisa", "fliser", "flisene"]
+nn_forms = ["flisa", "fliser", "flisene"]
+verified = true
+source = "ordbokene.no"
+
+[stamp]
+pos = "noun"
+bm = "stempel"
+nn = "stempel"
+gender = "n"
+bm_forms = ["stempelet", "stempel", "stempla"]
+nn_forms = ["stempelet", "stempel", "stempla"]
+verified = true
+source = "ordbokene.no"
+
+[deadline]
+pos = "noun"
+bm = "frist"
+nn = "frist"
+gender = "m"
+bm_forms = ["fristen", "frister", "fristene"]
+nn_forms = ["fristen", "fristar", "fristane"]
+verified = true
+source = "ordbokene.no"
+
+[interval]
+pos = "noun"
+bm = "intervall"
+nn = "intervall"
+gender = "n"
+bm_forms = ["intervallet", "intervall", "intervalla"]
+nn_forms = ["intervallet", "intervall", "intervalla"]
+verified = true
+source = "ordbokene.no"
+
+[delay]
+pos = "noun"
+bm = "forsinkelse"
+nn = "forseinking"
+bm_gender = "m"
+nn_gender = "f"
+bm_forms = ["forsinkelsen", "forsinkelser", "forsinkelsene"]
+nn_forms = ["forseinkinga", "forseinkingar", "forseinkingane"]
+verified = true
+source = "ordbokene.no"
+
+[period]
+pos = "noun"
+bm = "periode"
+nn = "periode"
+gender = "m"
+bm_forms = ["perioden", "perioder", "periodene"]
+nn_forms = ["perioden", "periodar", "periodane"]
+verified = true
+source = "ordbokene.no"
+
+[calendar]
+pos = "noun"
+bm = "kalender"
+nn = "kalender"
+gender = "m"
+bm_forms = ["kalenderen", "kalendere", "kalenderne"]
+nn_forms = ["kalenderen", "kalendrar", "kalendrane"]
+verified = true
+source = "ordbokene.no"
+
+[letter]
+pos = "noun"
+bm = "bokstav"
+nn = "bokstav"
+gender = "m"
+bm_forms = ["bokstaven", "bokstaver", "bokstavene"]
+nn_forms = ["bokstaven", "bokstavar", "bokstavane"]
+verified = true
+source = "ordbokene.no"
+
+[paragraph]
+pos = "noun"
+bm = "avsnitt"
+nn = "avsnitt"
+gender = "n"
+bm_forms = ["avsnittet", "avsnitt", "avsnitta"]
+nn_forms = ["avsnittet", "avsnitt", "avsnitta"]
+verified = true
+source = "ordbokene.no"
+
+[summary]
+pos = "noun"
+bm = "sammendrag"
+nn = "samandrag"
+gender = "n"
+bm_forms = ["sammendraget", "sammendrag", "sammendraga"]
+nn_forms = ["samandraget", "samandrag", "samandraga"]
+verified = true
+source = "ordbokene.no"
+
+[note]
+pos = "noun"
+bm = "notat"
+nn = "notat"
+gender = "n"
+bm_forms = ["notatet", "notat", "notata"]
+nn_forms = ["notatet", "notat", "notata"]
+verified = true
+source = "ordbokene.no"
+
+[draft]
+pos = "noun"
+bm = "utkast"
+nn = "utkast"
+gender = "n"
+bm_forms = ["utkastet", "utkast", "utkasta"]
+nn_forms = ["utkastet", "utkast", "utkasta"]
+verified = true
+source = "ordbokene.no"
+
+[translation]
+pos = "noun"
+bm = "oversettelse"
+nn = "omsetjing"
+bm_gender = "m"
+nn_gender = "f"
+bm_forms = ["oversettelsen", "oversettelser", "oversettelsene"]
+nn_forms = ["omsetjinga", "omsetjingar", "omsetjingane"]
+verified = true
+source = "ordbokene.no"
+
+[bracket]
+pos = "noun"
+bm = "parentes"
+nn = "parentes"
+gender = "m"
+bm_forms = ["parentesen", "parenteser", "parentesene"]
+nn_forms = ["parentesen", "parentesar", "parentesane"]
+verified = true
+source = "ordbokene.no"
+
+[operator]
+pos = "noun"
+bm = "operatør"
+nn = "operatør"
+gender = "m"
+bm_forms = ["operatøren", "operatører", "operatørene"]
+nn_forms = ["operatøren", "operatørar", "operatørane"]
+verified = true
+source = "ordbokene.no"
+
+[statement]
+pos = "noun"
+bm = "utsagn"
+nn = "utsegn"
+bm_gender = "n"
+nn_gender = "f"
+bm_forms = ["utsagnet", "utsagn", "utsagna"]
+nn_forms = ["utsegna", "utsegner", "utsegnene"]
+verified = true
+source = "ordbokene.no"
+
+[scope]
+pos = "noun"
+bm = "omfang"
+nn = "omfang"
+gender = "n"
+bm_forms = ["omfanget", "omfang", "omfanga"]
+nn_forms = ["omfanget", "omfang", "omfanga"]
+verified = true
+source = "ordbokene.no"
+
+[macro]
+pos = "noun"
+bm = "makro"
+nn = "makro"
+gender = "m"
+bm_forms = ["makroen", "makroer", "makroene"]
+nn_forms = ["makroen", "makroar", "makroane"]
+verified = true
+source = "ordbokene.no"
+
+[interpreter]
+pos = "noun"
+bm = "tolk"
+nn = "tolk"
+gender = "m"
+bm_forms = ["tolken", "tolker", "tolkene"]
+nn_forms = ["tolken", "tolkar", "tolkane"]
+verified = true
+source = "ordbokene.no"
+
+[garbage]
+pos = "noun"
+bm = "søppel"
+nn = "søppel"
+gender = "f"
+bm_forms = ["søpla", "søpler", "søplene"]
+nn_forms = ["søpla", "søpler", "søplene"]
+verified = true
+source = "ordbokene.no"
+
+[instruction]
+pos = "noun"
+bm = "instruksjon"
+nn = "instruksjon"
+gender = "m"
+bm_forms = ["instruksjonen", "instruksjoner", "instruksjonene"]
+nn_forms = ["instruksjonen", "instruksjonar", "instruksjonane"]
+verified = true
+source = "ordbokene.no"
+
+[bus]
+pos = "noun"
+bm = "buss"
+nn = "buss"
+gender = "m"
+bm_forms = ["bussen", "busser", "bussene"]
+nn_forms = ["bussen", "bussar", "bussane"]
+verified = true
+source = "ordbokene.no"
+
+[device]
+pos = "noun"
+bm = "enhet"
+nn = "eining"
+gender = "f"
+bm_forms = ["enheta", "enheter", "enhetene"]
+nn_forms = ["eininga", "einingar", "einingane"]
+verified = true
+source = "ordbokene.no"
+
+[drive]
+pos = "noun"
+bm = "stasjon"
+nn = "stasjon"
+gender = "m"
+bm_forms = ["stasjonen", "stasjoner", "stasjonene"]
+nn_forms = ["stasjonen", "stasjonar", "stasjonane"]
+verified = true
+source = "ordbokene.no"
+
+[kernel]
+pos = "noun"
+bm = "kjerne"
+nn = "kjerne"
+gender = "m"
+bm_forms = ["kjernen", "kjerner", "kjernene"]
+nn_forms = ["kjernen", "kjernar", "kjernane"]
+verified = true
+source = "ordbokene.no"
+
+[shell]
+pos = "noun"
+bm = "skall"
+nn = "skal"
+gender = "n"
+bm_forms = ["skallet", "skall", "skalla"]
+nn_forms = ["skalet", "skal", "skala"]
+verified = true
+source = "ordbokene.no"
+
+[terminal]
+pos = "noun"
+bm = "terminal"
+nn = "terminal"
+gender = "m"
+bm_forms = ["terminalen", "terminaler", "terminalene"]
+nn_forms = ["terminalen", "terminalar", "terminalane"]
+verified = true
+source = "ordbokene.no"
+
+[script]
+pos = "noun"
+bm = "skript"
+nn = "skript"
+gender = "n"
+bm_forms = ["skriptet", "skript", "skripta"]
+nn_forms = ["skriptet", "skript", "skripta"]
+verified = true
+source = "ordbokene.no"
+
+[program]
+pos = "noun"
+bm = "program"
+nn = "program"
+gender = "n"
+bm_forms = ["programmet", "program", "programma"]
+nn_forms = ["programmet", "program", "programma"]
+verified = true
+source = "ordbokene.no"
+
+[application]
+pos = "noun"
+bm = "applikasjon"
+nn = "applikasjon"
+gender = "m"
+bm_forms = ["applikasjonen", "applikasjoner", "applikasjonene"]
+nn_forms = ["applikasjonen", "applikasjonar", "applikasjonane"]
+verified = true
+source = "ordbokene.no"
+
+[collection]
+pos = "noun"
+bm = "samling"
+nn = "samling"
+gender = "f"
+bm_forms = ["samlinga", "samlinger", "samlingene"]
+nn_forms = ["samlinga", "samlingar", "samlingane"]
+verified = true
+source = "ordbokene.no"
+
+[series]
+pos = "noun"
+bm = "serie"
+nn = "serie"
+gender = "m"
+bm_forms = ["serien", "serier", "seriene"]
+nn_forms = ["serien", "seriar", "seriane"]
+en_pl = ["series"]
+verified = true
+source = "ordbokene.no"
+
+[pipe]
+pos = "noun"
+bm = "rør"
+nn = "røyr"
+bm_gender = "n"
+nn_gender = "f"
+bm_forms = ["røret", "rør", "røra"]
+nn_forms = ["røyra", "røyrer", "røyrene"]
+verified = true
+source = "ordbokene.no"
+
+[rank]
+pos = "noun"
+bm = "rang"
+nn = "rang"
+gender = "m"
+bm_forms = ["rangen", "ranger", "rangene"]
+nn_forms = ["rangen", "rangar", "rangane"]
+verified = true
+source = "ordbokene.no"
+
+[loss]
+pos = "noun"
+bm = "tap"
+nn = "tap"
+gender = "n"
+bm_forms = ["tapet", "tap", "tapa"]
+nn_forms = ["tapet", "tap", "tapa"]
+verified = true
+source = "ordbokene.no"
+
+[noise]
+pos = "noun"
+bm = "støy"
+nn = "støy"
+gender = "m"
+bm_forms = ["støyen", "støyer", "støyene"]
+nn_forms = ["støyen", "støyar", "støyane"]
+verified = true
+source = "ordbokene.no"
+
+[pixel]
+pos = "noun"
+bm = "piksel"
+nn = "piksel"
+gender = "m"
+bm_forms = ["pikselen", "piksler", "pikslene"]
+nn_forms = ["pikselen", "pikslar", "pikslane"]
+verified = true
+source = "ordbokene.no"
+
+[dimension]
+pos = "noun"
+bm = "dimensjon"
+nn = "dimensjon"
+gender = "m"
+bm_forms = ["dimensjonen", "dimensjoner", "dimensjonene"]
+nn_forms = ["dimensjonen", "dimensjonar", "dimensjonane"]
+verified = true
+source = "ordbokene.no"
+
+[repository]
+pos = "noun"
+bm = "depot"
+nn = "depot"
+gender = "n"
+bm_forms = ["depotet", "depot", "depota"]
+nn_forms = ["depotet", "depot", "depota"]
+verified = true
+source = "ordbokene.no"
+
+[administrator]
+pos = "noun"
+bm = "administrator"
+nn = "administrator"
+gender = "m"
+bm_forms = ["administratoren", "administratorer", "administratorene"]
+nn_forms = ["administratoren", "administratorar", "administratorane"]
+verified = true
+source = "ordbokene.no"
+
+[discount]
+pos = "noun"
+bm = "rabatt"
+nn = "rabatt"
+gender = "m"
+bm_forms = ["rabatten", "rabatter", "rabattene"]
+nn_forms = ["rabatten", "rabattar", "rabattane"]
+verified = true
+source = "ordbokene.no"
+
+[tax]
+pos = "noun"
+bm = "skatt"
+nn = "skatt"
+gender = "m"
+bm_forms = ["skatten", "skatter", "skattene"]
+nn_forms = ["skatten", "skattar", "skattane"]
+verified = true
+source = "ordbokene.no"
+
+[currency]
+pos = "noun"
+bm = "valuta"
+nn = "valuta"
+gender = "m"
+bm_forms = ["valutaen", "valutaer", "valutaene"]
+nn_forms = ["valutaen", "valutaer", "valutaene"]
+verified = true
+source = "ordbokene.no"
+
+[balance]
+pos = "noun"
+bm = "saldo"
+nn = "saldo"
+gender = "m"
+bm_forms = ["saldoen", "saldoer", "saldoene"]
+nn_forms = ["saldoen", "saldoar", "saldoane"]
+verified = true
+source = "ordbokene.no"
+
+[shipping]
+pos = "noun"
+bm = "frakt"
+nn = "frakt"
+gender = "f"
+bm_forms = ["frakta", "frakter", "fraktene"]
+nn_forms = ["frakta", "frakter", "fraktene"]
+verified = true
+source = "ordbokene.no"
+
+[cart]
+pos = "noun"
+bm = "handlekurv"
+nn = "handlekorg"
+gender = "f"
+bm_forms = ["handlekurva", "handlekurver", "handlekurvene"]
+nn_forms = ["handlekorga", "handlekorger", "handlekorgene"]
+verified = true
+source = "ordbokene.no"
+
+[video]
+pos = "noun"
+bm = "video"
+nn = "video"
+gender = "m"
+bm_forms = ["videoen", "videoer", "videoene"]
+nn_forms = ["videoen", "videoar", "videoane"]
+verified = true
+source = "ordbokene.no"
+
+[sound]
+pos = "noun"
+bm = "lyd"
+nn = "lyd"
+gender = "m"
+bm_forms = ["lyden", "lyder", "lydene"]
+nn_forms = ["lyden", "lydar", "lydane"]
+alt = ["audio"]
+verified = true
+source = "ordbokene.no"
+
+[issue]
+pos = "noun"
+bm = "sak"
+nn = "sak"
+gender = "f"
+bm_forms = ["saka", "saker", "sakene"]
+nn_forms = ["saka", "saker", "sakene"]
+verified = true
+source = "ordbokene.no"
+
+[ticket]
+pos = "noun"
+bm = "billett"
+nn = "billett"
+gender = "m"
+bm_forms = ["billetten", "billetter", "billettene"]
+nn_forms = ["billetten", "billettar", "billettane"]
+verified = true
+source = "ordbokene.no"
+
+[idea]
+pos = "noun"
+bm = "idé"
+nn = "idé"
+gender = "m"
+bm_forms = ["idéen", "idéer", "idéene"]
+nn_forms = ["idéen", "idéar", "idéane"]
+verified = true
+source = "ordbokene.no"
+
+[plan]
+pos = "noun"
+bm = "plan"
+nn = "plan"
+gender = "m"
+bm_forms = ["planen", "planer", "planene"]
+nn_forms = ["planen", "planar", "planane"]
+verified = true
+source = "ordbokene.no"
+
+[project]
+pos = "noun"
+bm = "prosjekt"
+nn = "prosjekt"
+gender = "n"
+bm_forms = ["prosjektet", "prosjekt", "prosjekta"]
+nn_forms = ["prosjektet", "prosjekt", "prosjekta"]
+verified = true
+source = "ordbokene.no"
+
+[company]
+pos = "noun"
+bm = "firma"
+nn = "firma"
+gender = "n"
+bm_forms = ["firmaet", "firma", "firmaene"]
+nn_forms = ["firmaet", "firma", "firmaa"]
+verified = true
+source = "ordbokene.no"
+
+[student]
+pos = "noun"
+bm = "student"
+nn = "student"
+gender = "m"
+bm_forms = ["studenten", "studenter", "studentene"]
+nn_forms = ["studenten", "studentar", "studentane"]
+verified = true
+source = "ordbokene.no"
+
+[teacher]
+pos = "noun"
+bm = "lærer"
+nn = "lærar"
+gender = "m"
+bm_forms = ["læreren", "lærere", "lærerne"]
+nn_forms = ["læraren", "lærarar", "lærarane"]
+verified = true
+source = "ordbokene.no"
+
+[course]
+pos = "noun"
+bm = "kurs"
+nn = "kurs"
+gender = "n"
+bm_forms = ["kurset", "kurs", "kursa"]
+nn_forms = ["kurset", "kurs", "kursa"]
+verified = true
+source = "ordbokene.no"
+
+[lesson]
+pos = "noun"
+bm = "leksjon"
+nn = "leksjon"
+gender = "m"
+bm_forms = ["leksjonen", "leksjoner", "leksjonene"]
+nn_forms = ["leksjonen", "leksjonar", "leksjonane"]
+verified = true
+source = "ordbokene.no"
+
+[grade]
+pos = "noun"
+bm = "karakter"
+nn = "karakter"
+gender = "m"
+bm_forms = ["karakteren", "karakterer", "karakterene"]
+nn_forms = ["karakteren", "karakterar", "karakterane"]
+verified = true
+source = "ordbokene.no"
+
+[school]
+pos = "noun"
+bm = "skole"
+nn = "skule"
+gender = "m"
+bm_forms = ["skolen", "skoler", "skolene"]
+nn_forms = ["skulen", "skular", "skulane"]
+verified = true
+source = "ordbokene.no"
+
+[food]
+pos = "noun"
+bm = "mat"
+nn = "mat"
+gender = "m"
+bm_forms = ["maten", "mater", "matene"]
+nn_forms = ["maten", "matar", "matane"]
+verified = true
+source = "ordbokene.no"
+
+[water]
+pos = "noun"
+bm = "vann"
+nn = "vatn"
+gender = "n"
+bm_forms = ["vannet", "vann", "vanna"]
+nn_forms = ["vatnet", "vatn", "vatna"]
+verified = true
+source = "ordbokene.no"
+
+[weather]
+pos = "noun"
+bm = "vær"
+nn = "vêr"
+gender = "n"
+bm_forms = ["været", "vær", "væra"]
+nn_forms = ["vêret", "vêr", "vêra"]
+verified = true
+source = "ordbokene.no"
+
+[temperature]
+pos = "noun"
+bm = "temperatur"
+nn = "temperatur"
+gender = "m"
+bm_forms = ["temperaturen", "temperaturer", "temperaturene"]
+nn_forms = ["temperaturen", "temperaturar", "temperaturane"]
+verified = true
+source = "ordbokene.no"
+
+[fire]
+pos = "noun"
+bm = "brann"
+nn = "brann"
+gender = "m"
+bm_forms = ["brannen", "branner", "brannene"]
+nn_forms = ["brannen", "brannar", "brannane"]
+verified = true
+source = "ordbokene.no"
+
+[music]
+pos = "noun"
+bm = "musikk"
+nn = "musikk"
+gender = "m"
+bm_forms = ["musikken", "musikker", "musikkene"]
+nn_forms = ["musikken", "musikkar", "musikkane"]
+verified = true
+source = "ordbokene.no"
+
+[song]
+pos = "noun"
+bm = "sang"
+nn = "song"
+gender = "m"
+bm_forms = ["sangen", "sanger", "sangene"]
+nn_forms = ["songen", "songar", "songane"]
+verified = true
+source = "ordbokene.no"
+
+[movie]
+pos = "noun"
+bm = "film"
+nn = "film"
+gender = "m"
+bm_forms = ["filmen", "filmer", "filmene"]
+nn_forms = ["filmen", "filmar", "filmane"]
+alt = ["film"]
+verified = true
+source = "ordbokene.no"
+
+[story]
+pos = "noun"
+bm = "historie"
+nn = "historie"
+gender = "f"
+bm_forms = ["historia", "historier", "historiene"]
+nn_forms = ["historia", "historier", "historiene"]
+verified = true
+source = "ordbokene.no"
+
+[office]
+pos = "noun"
+bm = "kontor"
+nn = "kontor"
+gender = "n"
+bm_forms = ["kontoret", "kontor", "kontora"]
+nn_forms = ["kontoret", "kontor", "kontora"]
+verified = true
+source = "ordbokene.no"
+
+[meeting]
+pos = "noun"
+bm = "møte"
+nn = "møte"
+gender = "n"
+bm_forms = ["møtet", "møter", "møta"]
+nn_forms = ["møtet", "møte", "møta"]
+verified = true
+source = "ordbokene.no"
+
+[ship]
+pos = "noun"
+bm = "skip"
+nn = "skip"
+gender = "n"
+bm_forms = ["skipet", "skip", "skipa"]
+nn_forms = ["skipet", "skip", "skipa"]
+verified = true
+source = "ordbokene.no"
+
+["train#noun"]
+pos = "noun"
+bm = "tog"
+nn = "tog"
+gender = "n"
+bm_forms = ["toget", "tog", "toga"]
+nn_forms = ["toget", "tog", "toga"]
+verified = true
+source = "ordbokene.no"
+
+[road]
+pos = "noun"
+bm = "vei"
+nn = "veg"
+gender = "m"
+bm_forms = ["veien", "veier", "veiene"]
+nn_forms = ["vegen", "vegar", "vegane"]
+verified = true
+source = "ordbokene.no"
+
+[street]
+pos = "noun"
+bm = "gate"
+nn = "gate"
+gender = "f"
+bm_forms = ["gata", "gater", "gatene"]
+nn_forms = ["gata", "gater", "gatene"]
+verified = true
+source = "ordbokene.no"
+
+[river]
+pos = "noun"
+bm = "elv"
+nn = "elv"
+gender = "f"
+bm_forms = ["elva", "elver", "elvene"]
+nn_forms = ["elva", "elver", "elvene"]
+verified = true
+source = "ordbokene.no"
+
+[mountain]
+pos = "noun"
+bm = "fjell"
+nn = "fjell"
+gender = "n"
+bm_forms = ["fjellet", "fjell", "fjella"]
+nn_forms = ["fjellet", "fjell", "fjella"]
+verified = true
+source = "ordbokene.no"
+
+[sea]
+pos = "noun"
+bm = "hav"
+nn = "hav"
+gender = "n"
+bm_forms = ["havet", "hav", "hava"]
+nn_forms = ["havet", "hav", "hava"]
+verified = true
+source = "ordbokene.no"
+
+[sun]
+pos = "noun"
+bm = "sol"
+nn = "sol"
+gender = "f"
+bm_forms = ["sola", "soler", "solene"]
+nn_forms = ["sola", "soler", "solene"]
+verified = true
+source = "ordbokene.no"
+
+[moon]
+pos = "noun"
+bm = "måne"
+nn = "måne"
+gender = "m"
+bm_forms = ["månen", "måner", "månene"]
+nn_forms = ["månen", "månar", "månane"]
+verified = true
+source = "ordbokene.no"
+
+[star]
+pos = "noun"
+bm = "stjerne"
+nn = "stjerne"
+gender = "f"
+bm_forms = ["stjerna", "stjerner", "stjernene"]
+nn_forms = ["stjerna", "stjerner", "stjernene"]
+verified = true
+source = "ordbokene.no"
+
+[sky]
+pos = "noun"
+bm = "himmel"
+nn = "himmel"
+gender = "m"
+bm_forms = ["himmelen", "himler", "himlene"]
+nn_forms = ["himmelen", "himlar", "himlane"]
+verified = true
+source = "ordbokene.no"
+
+[horse]
+pos = "noun"
+bm = "hest"
+nn = "hest"
+gender = "m"
+bm_forms = ["hesten", "hester", "hestene"]
+nn_forms = ["hesten", "hestar", "hestane"]
+verified = true
+source = "ordbokene.no"
+
+[bird]
+pos = "noun"
+bm = "fugl"
+nn = "fugl"
+gender = "m"
+bm_forms = ["fuglen", "fugler", "fuglene"]
+nn_forms = ["fuglen", "fuglar", "fuglane"]
+verified = true
+source = "ordbokene.no"
+
+[fish]
+pos = "noun"
+bm = "fisk"
+nn = "fisk"
+gender = "m"
+bm_forms = ["fisken", "fisker", "fiskene"]
+nn_forms = ["fisken", "fiskar", "fiskane"]
+en_pl = ["fish"]
+verified = true
+source = "ordbokene.no"
+
+[egg]
+pos = "noun"
+bm = "egg"
+nn = "egg"
+gender = "n"
+bm_forms = ["egget", "egg", "eggene"]
+nn_forms = ["egget", "egg", "egga"]
+verified = true
+source = "ordbokene.no"
+
+[bread]
+pos = "noun"
+bm = "brød"
+nn = "brød"
+gender = "n"
+bm_forms = ["brødet", "brød", "brøda"]
+nn_forms = ["brødet", "brød", "brøda"]
+verified = true
+source = "ordbokene.no"
+
+[apple]
+pos = "noun"
+bm = "eple"
+nn = "eple"
+gender = "n"
+bm_forms = ["eplet", "epler", "epla"]
+nn_forms = ["eplet", "eple", "epla"]
+verified = true
+source = "ordbokene.no"
+
+[coffee]
+pos = "noun"
+bm = "kaffe"
+nn = "kaffi"
+gender = "m"
+bm_forms = ["kaffen", "kaffer", "kaffene"]
+nn_forms = ["kaffien", "kaffiar", "kaffiane"]
+verified = true
+source = "ordbokene.no"
+
+[milk]
+pos = "noun"
+bm = "melk"
+nn = "mjølk"
+gender = "f"
+bm_forms = ["melka", "melker", "melkene"]
+nn_forms = ["mjølka", "mjølker", "mjølkene"]
+verified = true
+source = "ordbokene.no"
+
+[cheese]
+pos = "noun"
+bm = "ost"
+nn = "ost"
+gender = "m"
+bm_forms = ["osten", "oster", "ostene"]
+nn_forms = ["osten", "ostar", "ostane"]
+verified = true
+source = "ordbokene.no"
+
+[extra]
+pos = "adj"
+bm = "ekstra"
+nn = "ekstra"
+bm_forms = ["ekstra", "ekstra", "ekstra"]
+nn_forms = ["ekstra", "ekstra", "ekstra"]
+verified = true
+source = "ordbokene.no"
+
+[basic]
+pos = "adj"
+bm = "grunnleggende"
+nn = "grunnleggjande"
+bm_forms = ["grunnleggende", "grunnleggende", "grunnleggende"]
+nn_forms = ["grunnleggjande", "grunnleggjande", "grunnleggjande"]
+verified = true
+source = "ordbokene.no"
+
+[real]
+pos = "adj"
+bm = "reell"
+nn = "reell"
+bm_forms = ["reelt", "reelle", "reelle"]
+nn_forms = ["reelt", "reelle", "reelle"]
+verified = true
+source = "ordbokene.no"
+
+[original]
+pos = "adj"
+bm = "original"
+nn = "original"
+bm_forms = ["originalt", "originale", "originale"]
+nn_forms = ["originalt", "originale", "originale"]
+verified = true
+source = "ordbokene.no"
+
+[central]
+pos = "adj"
+bm = "sentral"
+nn = "sentral"
+bm_forms = ["sentralt", "sentrale", "sentrale"]
+nn_forms = ["sentralt", "sentrale", "sentrale"]
+verified = true
+source = "ordbokene.no"
+
+[critical]
+pos = "adj"
+bm = "kritisk"
+nn = "kritisk"
+bm_forms = ["kritisk", "kritiske", "kritiske"]
+nn_forms = ["kritisk", "kritiske", "kritiske"]
+verified = true
+source = "ordbokene.no"
+
+[fatal]
+pos = "adj"
+bm = "dødelig"
+nn = "dødeleg"
+bm_forms = ["dødelig", "dødelige", "dødelige"]
+nn_forms = ["dødeleg", "dødelege", "dødelege"]
+verified = true
+source = "ordbokene.no"
+
+[internal]
+pos = "adj"
+bm = "intern"
+nn = "intern"
+bm_forms = ["internt", "interne", "interne"]
+nn_forms = ["internt", "interne", "interne"]
+verified = true
+source = "ordbokene.no"
+
+[external]
+pos = "adj"
+bm = "ekstern"
+nn = "ekstern"
+bm_forms = ["eksternt", "eksterne", "eksterne"]
+nn_forms = ["eksternt", "eksterne", "eksterne"]
+verified = true
+source = "ordbokene.no"
+
+[exclusive]
+pos = "adj"
+bm = "eksklusiv"
+nn = "eksklusiv"
+bm_forms = ["eksklusivt", "eksklusive", "eksklusive"]
+nn_forms = ["eksklusivt", "eksklusive", "eksklusive"]
+verified = true
+source = "ordbokene.no"
+
+[deprecated]
+pos = "adj"
+bm = "foreldet"
+nn = "forelda"
+bm_forms = ["foreldet", "foreldete", "foreldete"]
+nn_forms = ["forelda", "forelda", "forelda"]
+verified = true
+source = "ordbokene.no"
+
+[immutable]
+pos = "adj"
+bm = "uforanderlig"
+nn = "uforanderleg"
+bm_forms = ["uforanderlig", "uforanderlige", "uforanderlige"]
+nn_forms = ["uforanderleg", "uforanderlege", "uforanderlege"]
+verified = true
+source = "ordbokene.no"
+
+[mutable]
+pos = "adj"
+bm = "foranderlig"
+nn = "foranderleg"
+bm_forms = ["foranderlig", "foranderlige", "foranderlige"]
+nn_forms = ["foranderleg", "foranderlege", "foranderlege"]
+verified = true
+source = "ordbokene.no"
+
+[plain]
+pos = "adj"
+bm = "vanlig"
+nn = "vanleg"
+bm_forms = ["vanlig", "vanlige", "vanlige"]
+nn_forms = ["vanleg", "vanlege", "vanlege"]
+alt = ["ordinary", "normal", "usual"]
+verified = true
+source = "ordbokene.no"
+
+[strict]
+pos = "adj"
+bm = "striks"
+nn = "striks"
+bm_forms = ["strikst", "strikse", "strikse"]
+nn_forms = ["strikst", "strikse", "strikse"]
+verified = true
+source = "ordbokene.no"
+
+[white]
+pos = "adj"
+bm = "hvit"
+nn = "kvit"
+bm_forms = ["hvitt", "hvite", "hvite"]
+nn_forms = ["kvitt", "kvite", "kvite"]
+verified = true
+source = "ordbokene.no"
+
+[black]
+pos = "adj"
+bm = "svart"
+nn = "svart"
+bm_forms = ["svart", "svarte", "svarte"]
+nn_forms = ["svart", "svarte", "svarte"]
+verified = true
+source = "ordbokene.no"
+
+[red]
+pos = "adj"
+bm = "rød"
+nn = "raud"
+bm_forms = ["rødt", "røde", "røde"]
+nn_forms = ["raudt", "raude", "raude"]
+verified = true
+source = "ordbokene.no"
+
+[green]
+pos = "adj"
+bm = "grønn"
+nn = "grøn"
+bm_forms = ["grønt", "grønne", "grønne"]
+nn_forms = ["grønt", "grøne", "grøne"]
+verified = true
+source = "ordbokene.no"
+
+[blue]
+pos = "adj"
+bm = "blå"
+nn = "blå"
+bm_forms = ["blått", "blåe", "blåe"]
+nn_forms = ["blått", "blåe", "blåe"]
+verified = true
+source = "ordbokene.no"
+
+[yellow]
+pos = "adj"
+bm = "gul"
+nn = "gul"
+bm_forms = ["gult", "gule", "gule"]
+nn_forms = ["gult", "gule", "gule"]
+verified = true
+source = "ordbokene.no"
+
+[gray]
+pos = "adj"
+bm = "grå"
+nn = "grå"
+bm_forms = ["grått", "gråe", "gråe"]
+nn_forms = ["grått", "gråe", "gråe"]
+alt = ["grey"]
+verified = true
+source = "ordbokene.no"
+
+[dark]
+pos = "adj"
+bm = "mørk"
+nn = "mørk"
+bm_forms = ["mørkt", "mørke", "mørke"]
+nn_forms = ["mørkt", "mørke", "mørke"]
+verified = true
+source = "ordbokene.no"
+
+[bright]
+pos = "adj"
+bm = "lys"
+nn = "ljos"
+bm_forms = ["lyst", "lyse", "lyse"]
+nn_forms = ["ljost", "ljose", "ljose"]
+alt = ["light"]
+verified = true
+source = "ordbokene.no"
+
+[idle]
+pos = "adj"
+bm = "ledig"
+nn = "ledig"
+bm_forms = ["ledig", "ledige", "ledige"]
+nn_forms = ["ledig", "ledige", "ledige"]
+verified = true
+source = "ordbokene.no"
+
+[general]
+pos = "adj"
+bm = "generell"
+nn = "generell"
+bm_forms = ["generelt", "generelle", "generelle"]
+nn_forms = ["generelt", "generelle", "generelle"]
+verified = true
+source = "ordbokene.no"
+
+[strong]
+pos = "adj"
+bm = "sterk"
+nn = "sterk"
+bm_forms = ["sterkt", "sterke", "sterke"]
+nn_forms = ["sterkt", "sterke", "sterke"]
+verified = true
+source = "ordbokene.no"
+
+[weak]
+pos = "adj"
+bm = "svak"
+nn = "svak"
+bm_forms = ["svakt", "svake", "svake"]
+nn_forms = ["svakt", "svake", "svake"]
+verified = true
+source = "ordbokene.no"
+
+[incomplete]
+pos = "adj"
+bm = "ufullstendig"
+nn = "ufullstendig"
+bm_forms = ["ufullstendig", "ufullstendige", "ufullstendige"]
+nn_forms = ["ufullstendig", "ufullstendige", "ufullstendige"]
+verified = true
+source = "ordbokene.no"
+
+[remote]
+pos = "adj"
+bm = "fjern"
+nn = "fjern"
+bm_forms = ["fjernt", "fjerne", "fjerne"]
+nn_forms = ["fjernt", "fjerne", "fjerne"]
+verified = true
+source = "ordbokene.no"
+
+[symbolic]
+pos = "adj"
+bm = "symbolsk"
+nn = "symbolsk"
+bm_forms = ["symbolsk", "symbolske", "symbolske"]
+nn_forms = ["symbolsk", "symbolske", "symbolske"]
+verified = true
+source = "ordbokene.no"
+
+[binary]
+pos = "adj"
+bm = "binær"
+nn = "binær"
+bm_forms = ["binært", "binære", "binære"]
+nn_forms = ["binært", "binære", "binære"]
+verified = true
+source = "ordbokene.no"
+
+[recursive]
+pos = "adj"
+bm = "rekursiv"
+nn = "rekursiv"
+bm_forms = ["rekursivt", "rekursive", "rekursive"]
+nn_forms = ["rekursivt", "rekursive", "rekursive"]
+verified = true
+source = "ordbokene.no"
+
+[temporary]
+pos = "adj"
+bm = "midlertidig"
+nn = "mellombels"
+bm_forms = ["midlertidig", "midlertidige", "midlertidige"]
+nn_forms = ["mellombels", "mellombelse", "mellombelse"]
+verified = true
+source = "ordbokene.no"
+
+[absolute]
+pos = "adj"
+bm = "absolutt"
+nn = "absolutt"
+bm_forms = ["absolutt", "absolutte", "absolutte"]
+nn_forms = ["absolutt", "absolutte", "absolutte"]
+verified = true
+source = "ordbokene.no"
+
+[relative]
+pos = "adj"
+bm = "relativ"
+nn = "relativ"
+bm_forms = ["relativt", "relative", "relative"]
+nn_forms = ["relativt", "relative", "relative"]
+verified = true
+source = "ordbokene.no"
+
+[native]
+pos = "adj"
+bm = "innfødt"
+nn = "innfødd"
+bm_forms = ["innfødt", "innfødte", "innfødte"]
+nn_forms = ["innfødd", "innfødde", "innfødde"]
+verified = true
+source = "ordbokene.no"
+
+[builtin]
+pos = "adj"
+bm = "innebygd"
+nn = "innebygd"
+bm_forms = ["innebygd", "innebygde", "innebygde"]
+nn_forms = ["innebygd", "innebygde", "innebygde"]
+alt = ["embedded", "inbuilt"]
+verified = true
+source = "ordbokene.no"
+
+[magic]
+pos = "adj"
+bm = "magisk"
+nn = "magisk"
+bm_forms = ["magisk", "magiske", "magiske"]
+nn_forms = ["magisk", "magiske", "magiske"]
+verified = true
+source = "ordbokene.no"
+
+[partial]
+pos = "adj"
+bm = "delvis"
+nn = "delvis"
+bm_forms = ["delvis", "delvise", "delvise"]
+nn_forms = ["delvis", "delvise", "delvise"]
+verified = true
+source = "ordbokene.no"
+
+[special]
+pos = "adj"
+bm = "spesiell"
+nn = "spesiell"
+bm_forms = ["spesielt", "spesielle", "spesielle"]
+nn_forms = ["spesielt", "spesielle", "spesielle"]
+verified = true
+source = "ordbokene.no"
+
+[unexpected]
+pos = "adj"
+bm = "uventet"
+nn = "uventa"
+bm_forms = ["uventet", "uventete", "uventete"]
+nn_forms = ["uventa", "uventa", "uventa"]
+verified = true
+source = "ordbokene.no"
+
+[contiguous]
+pos = "adj"
+bm = "sammenhengende"
+nn = "samanhengande"
+bm_forms = ["sammenhengende", "sammenhengende", "sammenhengende"]
+nn_forms = ["samanhengande", "samanhengande", "samanhengande"]
+verified = true
+source = "ordbokene.no"
+
+[illegal]
+pos = "adj"
+bm = "ulovlig"
+nn = "ulovleg"
+bm_forms = ["ulovlig", "ulovlige", "ulovlige"]
+nn_forms = ["ulovleg", "ulovlege", "ulovlege"]
+verified = true
+source = "ordbokene.no"
+
+[implicit]
+pos = "adj"
+bm = "implisitt"
+nn = "implisitt"
+bm_forms = ["implisitt", "implisitte", "implisitte"]
+nn_forms = ["implisitt", "implisitte", "implisitte"]
+verified = true
+source = "ordbokene.no"
+
+[explicit]
+pos = "adj"
+bm = "eksplisitt"
+nn = "eksplisitt"
+bm_forms = ["eksplisitt", "eksplisitte", "eksplisitte"]
+nn_forms = ["eksplisitt", "eksplisitte", "eksplisitte"]
+verified = true
+source = "ordbokene.no"
+
+[readable]
+pos = "adj"
+bm = "leselig"
+nn = "leseleg"
+bm_forms = ["leselig", "leselige", "leselige"]
+nn_forms = ["leseleg", "leselege", "leselege"]
+verified = true
+source = "ordbokene.no"
+
+[regular]
+pos = "adj"
+bm = "regelmessig"
+nn = "regelmessig"
+bm_forms = ["regelmessig", "regelmessige", "regelmessige"]
+nn_forms = ["regelmessig", "regelmessige", "regelmessige"]
+verified = true
+source = "ordbokene.no"
+
+[required]
+pos = "adj"
+bm = "påkrevd"
+nn = "påkravd"
+bm_forms = ["påkrevd", "påkrevde", "påkrevde"]
+nn_forms = ["påkravd", "påkravde", "påkravde"]
+verified = true
+source = "ordbokene.no"
+
+[busy]
+pos = "adj"
+bm = "opptatt"
+nn = "oppteken"
+bm_forms = ["opptatt", "opptatte", "opptatte"]
+nn_forms = ["oppteke", "opptekne", "opptekne"]
+verified = true
+source = "ordbokene.no"
+
+[numeric]
+pos = "adj"
+bm = "numerisk"
+nn = "numerisk"
+bm_forms = ["numerisk", "numeriske", "numeriske"]
+nn_forms = ["numerisk", "numeriske", "numeriske"]
+alt = ["numerical"]
+verified = true
+source = "ordbokene.no"
+
+[random]
+pos = "adj"
+bm = "tilfeldig"
+nn = "tilfeldig"
+bm_forms = ["tilfeldig", "tilfeldige", "tilfeldige"]
+nn_forms = ["tilfeldig", "tilfeldige", "tilfeldige"]
+verified = true
+source = "ordbokene.no"
+
+[final]
+pos = "adj"
+bm = "endelig"
+nn = "endeleg"
+bm_forms = ["endelig", "endelige", "endelige"]
+nn_forms = ["endeleg", "endelege", "endelege"]
+verified = true
+source = "ordbokene.no"
+
+[whole]
+pos = "adj"
+bm = "hel"
+nn = "heil"
+bm_forms = ["helt", "hele", "hele"]
+nn_forms = ["heilt", "heile", "heile"]
+verified = true
+source = "ordbokene.no"
+
+[half]
+pos = "adj"
+bm = "halv"
+nn = "halv"
+bm_forms = ["halvt", "halve", "halve"]
+nn_forms = ["halvt", "halve", "halve"]
+verified = true
+source = "ordbokene.no"
+
+[verbose]
+pos = "adj"
+bm = "ordrik"
+nn = "ordrik"
+bm_forms = ["ordrikt", "ordrike", "ordrike"]
+nn_forms = ["ordrikt", "ordrike", "ordrike"]
+verified = true
+source = "ordbokene.no"
+
+[quiet]
+pos = "adj"
+bm = "stille"
+nn = "stille"
+bm_forms = ["stille", "stille", "stille"]
+nn_forms = ["stille", "stille", "stille"]
+alt = ["silent"]
+verified = true
+source = "ordbokene.no"
+
+[dry]
+pos = "adj"
+bm = "tørr"
+nn = "turr"
+bm_forms = ["tørt", "tørre", "tørre"]
+nn_forms = ["turt", "turre", "turre"]
+verified = true
+source = "ordbokene.no"
+
+[deep]
+pos = "adj"
+bm = "dyp"
+nn = "djup"
+bm_forms = ["dypt", "dype", "dype"]
+nn_forms = ["djupt", "djupe", "djupe"]
+verified = true
+source = "ordbokene.no"
+
+[shallow]
+pos = "adj"
+bm = "grunn"
+nn = "grunn"
+bm_forms = ["grunt", "grunne", "grunne"]
+nn_forms = ["grunt", "grunne", "grunne"]
+verified = true
+source = "ordbokene.no"
+
+[flat]
+pos = "adj"
+bm = "flat"
+nn = "flat"
+bm_forms = ["flatt", "flate", "flate"]
+nn_forms = ["flatt", "flate", "flate"]
+verified = true
+source = "ordbokene.no"
+
+[dense]
+pos = "adj"
+bm = "tett"
+nn = "tett"
+bm_forms = ["tett", "tette", "tette"]
+nn_forms = ["tett", "tette", "tette"]
+verified = true
+source = "ordbokene.no"
+
+[lazy]
+pos = "adj"
+bm = "lat"
+nn = "lat"
+bm_forms = ["lat", "late", "late"]
+nn_forms = ["latt", "late", "late"]
+verified = true
+source = "ordbokene.no"
+
+[eager]
+pos = "adj"
+bm = "ivrig"
+nn = "ivrig"
+bm_forms = ["ivrig", "ivrige", "ivrige"]
+nn_forms = ["ivrig", "ivrige", "ivrige"]
+verified = true
+source = "ordbokene.no"
+
+[loose]
+pos = "adj"
+bm = "løs"
+nn = "laus"
+bm_forms = ["løst", "løse", "løse"]
+nn_forms = ["laust", "lause", "lause"]
+verified = true
+source = "ordbokene.no"
+
+[pure]
+pos = "adj"
+bm = "pur"
+nn = "pur"
+bm_forms = ["purt", "pure", "pure"]
+nn_forms = ["purt", "pure", "pure"]
+verified = true
+source = "ordbokene.no"
+
+[cold]
+pos = "adj"
+bm = "kald"
+nn = "kald"
+bm_forms = ["kaldt", "kalde", "kalde"]
+nn_forms = ["kaldt", "kalde", "kalde"]
+verified = true
+source = "ordbokene.no"
+
+[hot]
+pos = "adj"
+bm = "varm"
+nn = "varm"
+bm_forms = ["varmt", "varme", "varme"]
+nn_forms = ["varmt", "varme", "varme"]
+alt = ["warm"]
+verified = true
+source = "ordbokene.no"
+
+[fresh]
+pos = "adj"
+bm = "fersk"
+nn = "fersk"
+bm_forms = ["ferskt", "ferske", "ferske"]
+nn_forms = ["ferskt", "ferske", "ferske"]
+verified = true
+source = "ordbokene.no"
+
+[primary]
+pos = "adj"
+bm = "primær"
+nn = "primær"
+bm_forms = ["primært", "primære", "primære"]
+nn_forms = ["primært", "primære", "primære"]
+verified = true
+source = "ordbokene.no"
+
+[secondary]
+pos = "adj"
+bm = "sekundær"
+nn = "sekundær"
+bm_forms = ["sekundært", "sekundære", "sekundære"]
+nn_forms = ["sekundært", "sekundære", "sekundære"]
+verified = true
+source = "ordbokene.no"
+
+[legal]
+pos = "adj"
+bm = "lovlig"
+nn = "lovleg"
+bm_forms = ["lovlig", "lovlige", "lovlige"]
+nn_forms = ["lovleg", "lovlege", "lovlege"]
+verified = true
+source = "ordbokene.no"
+
+[cheap]
+pos = "adj"
+bm = "billig"
+nn = "billeg"
+bm_forms = ["billig", "billige", "billige"]
+nn_forms = ["billeg", "billege", "billege"]
+verified = true
+source = "ordbokene.no"
+
+[expensive]
+pos = "adj"
+bm = "kostbar"
+nn = "kostbar"
+bm_forms = ["kostbart", "kostbare", "kostbare"]
+nn_forms = ["kostbart", "kostbare", "kostbare"]
+verified = true
+source = "ordbokene.no"
+
+[happy]
+pos = "adj"
+bm = "glad"
+nn = "glad"
+bm_forms = ["glad", "glade", "glade"]
+nn_forms = ["glad", "glade", "glade"]
+verified = true
+source = "ordbokene.no"
+
+[sad]
+pos = "adj"
+bm = "trist"
+nn = "trist"
+bm_forms = ["trist", "triste", "triste"]
+nn_forms = ["trist", "triste", "triste"]
+verified = true
+source = "ordbokene.no"
+
+[young]
+pos = "adj"
+bm = "ung"
+nn = "ung"
+bm_forms = ["ungt", "unge", "unge"]
+nn_forms = ["ungt", "unge", "unge"]
+verified = true
+source = "ordbokene.no"
+
+[huge]
+pos = "adj"
+bm = "enorm"
+nn = "enorm"
+bm_forms = ["enormt", "enorme", "enorme"]
+nn_forms = ["enormt", "enorme", "enorme"]
+verified = true
+source = "ordbokene.no"
+
+[easy]
+pos = "adj"
+bm = "lett"
+nn = "lett"
+bm_forms = ["lett", "lette", "lette"]
+nn_forms = ["lett", "lette", "lette"]
+verified = true
+source = "ordbokene.no"
+
+[hard]
+pos = "adj"
+bm = "vanskelig"
+nn = "vanskeleg"
+bm_forms = ["vanskelig", "vanskelige", "vanskelige"]
+nn_forms = ["vanskeleg", "vanskelege", "vanskelege"]
+alt = ["difficult"]
+verified = true
+source = "ordbokene.no"
+
+[important]
+pos = "adj"
+bm = "viktig"
+nn = "viktig"
+bm_forms = ["viktig", "viktige", "viktige"]
+nn_forms = ["viktig", "viktige", "viktige"]
+verified = true
+source = "ordbokene.no"
+
+[possible]
+pos = "adj"
+bm = "mulig"
+nn = "mogleg"
+bm_forms = ["mulig", "mulige", "mulige"]
+nn_forms = ["mogleg", "moglege", "moglege"]
+verified = true
+source = "ordbokene.no"
+
+[impossible]
+pos = "adj"
+bm = "umulig"
+nn = "umogleg"
+bm_forms = ["umulig", "umulige", "umulige"]
+nn_forms = ["umogleg", "umoglege", "umoglege"]
+verified = true
+source = "ordbokene.no"
+
+[necessary]
+pos = "adj"
+bm = "nødvendig"
+nn = "naudsynt"
+bm_forms = ["nødvendig", "nødvendige", "nødvendige"]
+nn_forms = ["naudsynt", "naudsynte", "naudsynte"]
+verified = true
+source = "ordbokene.no"
+
+[similar]
+pos = "adj"
+bm = "lignende"
+nn = "liknande"
+bm_forms = ["lignende", "lignende", "lignende"]
+nn_forms = ["liknande", "liknande", "liknande"]
+verified = true
+source = "ordbokene.no"
+
+[more]
+pos = "adv"
+bm = "mer"
+nn = "meir"
+verified = true
+source = "ordbokene.no"
+
+[less]
+pos = "adv"
+bm = "mindre"
+nn = "mindre"
+verified = true
+source = "ordbokene.no"
+
+[very]
+pos = "adv"
+bm = "veldig"
+nn = "veldig"
+verified = true
+source = "ordbokene.no"
+
+[almost]
+pos = "adv"
+bm = "nesten"
+nn = "nesten"
+verified = true
+source = "ordbokene.no"
+
+[still]
+pos = "adv"
+bm = "fortsatt"
+nn = "framleis"
+verified = true
+source = "ordbokene.no"
+
+[together]
+pos = "adv"
+bm = "sammen"
+nn = "saman"
+verified = true
+source = "ordbokene.no"
+
+[else]
+pos = "adv"
+bm = "ellers"
+nn = "elles"
+alt = ["otherwise"]
+verified = true
+source = "ordbokene.no"
+
+[away]
+pos = "adv"
+bm = "bort"
+nn = "bort"
+verified = true
+source = "ordbokene.no"
+
+[often]
+pos = "adv"
+bm = "ofte"
+nn = "ofte"
+verified = true
+source = "ordbokene.no"
+
+[maybe]
+pos = "adv"
+bm = "kanskje"
+nn = "kanskje"
+alt = ["perhaps"]
+verified = true
+source = "ordbokene.no"
+
+[yet]
+pos = "adv"
+bm = "ennå"
+nn = "enno"
+verified = true
+source = "ordbokene.no"
+
+[quickly]
+pos = "adv"
+bm = "fort"
+nn = "fort"
+verified = true
+source = "ordbokene.no"
+
+[against]
+pos = "part"
+ar = "ḍidda"
+verified = true
+source = "arabic-grammar-check"
+
+[toward]
+pos = "part"
+ar = "naḥwa"
+alt = ["towards"]
+verified = true
+source = "arabic-grammar-check"
+
+[during]
+pos = "part"
+ar = "khilāla"
+verified = true
+source = "arabic-grammar-check"
+
+[near]
+pos = "part"
+ar = "qurba"
+verified = true
+source = "arabic-grammar-check"
+
+[reference]
+pos = "noun"
+bm = "referanse"
+nn = "referanse"
+gender = "m"
+bm_forms = ["referansen", "referanser", "referansene"]
+nn_forms = ["referansen", "referansar", "referansane"]
+verified = true
+source = "ordbokene.no"
+
+[forget]
+pos = "verb"
+bm = "glemme"
+nn = "gløyme"
+en_pp = ["forgotten", "forgot"]
+verified = true
+source = "ordbokene.no"
+
+[enter]
+pos = "verb"
+bm = "entre"
+nn = "entre"
+verified = true
+source = "ordbokene.no"
+
+[mix]
+pos = "verb"
+bm = "blande"
+nn = "blande"
+verified = true
+source = "ordbokene.no"
+
+[tear]
+pos = "verb"
+bm = "rive"
+nn = "rive"
+en_pp = ["torn", "tore"]
+verified = true
+source = "ordbokene.no"
+
+[suspend]
+pos = "verb"
+bm = "suspendere"
+nn = "suspendere"
+verified = true
+source = "ordbokene.no"
+
+[duplicate]
+pos = "verb"
+bm = "duplisere"
+nn = "duplisere"
+verified = true
+source = "ordbokene.no"
+
+[combine]
+pos = "verb"
+bm = "kombinere"
+nn = "kombinere"
+verified = true
+source = "ordbokene.no"
+
+[discard]
+pos = "verb"
+bm = "forkaste"
+nn = "forkaste"
+verified = true
+source = "ordbokene.no"
+
+[locate]
+pos = "verb"
+bm = "lokalisere"
+nn = "lokalisere"
+verified = true
+source = "ordbokene.no"
+
+[interpolate]
+pos = "verb"
+bm = "interpolere"
+nn = "interpolere"
+verified = true
+source = "ordbokene.no"
+
+["support#verb"]
+pos = "verb"
+bm = "støtte"
+nn = "støtte"
+verified = true
+source = "ordbokene.no"
+
+["order#verb"]
+pos = "verb"
+bm = "bestille"
+nn = "bestille"
+verified = true
+source = "ordbokene.no"
+
+[relate]
+pos = "verb"
+bm = "relatere"
+nn = "relatere"
+verified = true
+source = "ordbokene.no"
+
+[miss]
+pos = "verb"
+bm = "savne"
+nn = "sakne"
+verified = true
+source = "ordbokene.no"
+
+[tuple]
+pos = "noun"
+bm = "rekke"
+nn = "rekkje"
+gender = "f"
+bm_forms = ["rekka", "rekker", "rekkene"]
+nn_forms = ["rekkja", "rekkjer", "rekkjene"]
+verified = true
+source = "ordbokene.no"
+
+[structure]
+pos = "noun"
+bm = "struktur"
+nn = "struktur"
+gender = "m"
+bm_forms = ["strukturen", "strukturer", "strukturene"]
+nn_forms = ["strukturen", "strukturar", "strukturane"]
+verified = true
+source = "ordbokene.no"
+
+[representation]
+pos = "noun"
+bm = "representasjon"
+nn = "representasjon"
+gender = "m"
+bm_forms = ["representasjonen", "representasjoner", "representasjonene"]
+nn_forms = ["representasjonen", "representasjonar", "representasjonane"]
+verified = true
+source = "ordbokene.no"
+
+[slot]
+pos = "noun"
+bm = "luke"
+nn = "luke"
+gender = "f"
+bm_forms = ["luka", "luker", "lukene"]
+nn_forms = ["luka", "luker", "lukene"]
+verified = true
+source = "ordbokene.no"
+
+[slash]
+pos = "noun"
+bm = "skråstrek"
+nn = "skråstrek"
+gender = "m"
+bm_forms = ["skråstreken", "skråstreker", "skråstrekene"]
+nn_forms = ["skråstreken", "skråstrekar", "skråstrekane"]
+verified = true
+source = "ordbokene.no"
+
+[daemon]
+pos = "noun"
+bm = "demon"
+nn = "demon"
+gender = "m"
+bm_forms = ["demonen", "demoner", "demonene"]
+nn_forms = ["demonen", "demonar", "demonane"]
+verified = true
+source = "ordbokene.no"
+
+[consistency]
+pos = "noun"
+bm = "konsistens"
+nn = "konsistens"
+gender = "m"
+bm_forms = ["konsistensen", "konsistenser", "konsistensene"]
+nn_forms = ["konsistensen", "konsistensar", "konsistensane"]
+verified = true
+source = "ordbokene.no"
+
+[equality]
+pos = "noun"
+bm = "likhet"
+nn = "likskap"
+bm_gender = "f"
+nn_gender = "m"
+bm_forms = ["likheta", "likheter", "likhetene"]
+nn_forms = ["likskapen", "likskapar", "likskapane"]
+verified = true
+source = "ordbokene.no"
+
+[literal]
+pos = "adj"
+bm = "bokstavelig"
+nn = "bokstaveleg"
+bm_forms = ["bokstavelig", "bokstavelige", "bokstavelige"]
+nn_forms = ["bokstaveleg", "bokstavelege", "bokstavelege"]
+verified = true
+source = "ordbokene.no"
+
+[unsafe]
+pos = "adj"
+bm = "utrygg"
+nn = "utrygg"
+bm_forms = ["utrygt", "utrygge", "utrygge"]
+nn_forms = ["utrygt", "utrygge", "utrygge"]
+verified = true
+source = "ordbokene.no"
+
+[circular]
+pos = "adj"
+bm = "sirkulær"
+nn = "sirkulær"
+bm_forms = ["sirkulært", "sirkulære", "sirkulære"]
+nn_forms = ["sirkulært", "sirkulære", "sirkulære"]
+verified = true
+source = "ordbokene.no"
+
+[effective]
+pos = "adj"
+bm = "effektiv"
+nn = "effektiv"
+bm_forms = ["effektivt", "effektive", "effektive"]
+nn_forms = ["effektivt", "effektive", "effektive"]
+verified = true
+source = "ordbokene.no"
+
+[automatic]
+pos = "adj"
+bm = "automatisk"
+nn = "automatisk"
+bm_forms = ["automatisk", "automatiske", "automatiske"]
+nn_forms = ["automatisk", "automatiske", "automatiske"]
+verified = true
+source = "ordbokene.no"
+
+[outside]
+pos = "part"
+ar = "khārija"
+verified = true
+source = "arabic-grammar-check"

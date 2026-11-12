@@ -170,3 +170,81 @@ fn glossary_check_catches_names_already_in_the_repo() {
     let out = nbma(&["glossary", "check", dir.to_str().unwrap()]);
     assert_eq!(out.status.code(), Some(1));
 }
+
+#[test]
+fn abbreviations_and_acronyms_can_be_proposed() {
+    let dir = temp_dir("shorthand");
+    let g = dir.join("ordbok.nbma.toml");
+    let gs = g.to_str().unwrap();
+    assert_eq!(
+        nbma(&["ident", "frob_mcp", "--role", "var"]).status.code(),
+        Some(3)
+    );
+    for args in [
+        vec![
+            "propose",
+            "frob",
+            "--abbrev",
+            "file handle",
+            "--glossary",
+            gs,
+        ],
+        vec!["propose", "MCP", "--acronym", "--glossary", gs],
+    ] {
+        let out = nbma(&args);
+        assert!(
+            out.status.success(),
+            "{args:?}: {}",
+            String::from_utf8_lossy(&out.stderr)
+        );
+    }
+    let v = json(&["ident", "frobs", "--role", "var", "--glossary", gs]);
+    assert_eq!(v["output"], "hanker_ad_den_fila");
+    assert_eq!(v["words"][1]["from"], "frobs");
+    assert_eq!(v["words"][1]["via"], "abbreviation");
+    let v = json(&["ident", "get_mcp", "--role", "fn", "--glossary", gs]);
+    assert_eq!(v["output"], "uhnut_ad_det_mcp_et");
+    assert_eq!(v["words"][1]["kind"], "acronym");
+    let src = std::fs::read_to_string(&g).unwrap();
+    assert!(
+        src.contains("[proposed.mcp]") && src.contains("written = \"MCP\""),
+        "{src}"
+    );
+}
+
+#[test]
+fn shorthand_that_cannot_work_is_rejected() {
+    let dir = temp_dir("bad-shorthand");
+    let g = dir.join("ordbok.nbma.toml");
+    let gs = g.to_str().unwrap();
+    for args in [
+        // Expands to a word the lexicon lacks.
+        vec![
+            "propose",
+            "frob",
+            "--abbrev",
+            "file robot",
+            "--glossary",
+            gs,
+        ],
+        // Hides a lexicon word: `file` would always be read first.
+        vec!["propose", "file", "--abbrev", "name", "--glossary", gs],
+        vec!["propose", "USER", "--acronym", "--glossary", gs],
+        // Not letters.
+        vec!["propose", "C3PO", "--acronym", "--glossary", gs],
+        // An abbreviation needs no lemma.
+        vec![
+            "propose",
+            "frob",
+            "--abbrev",
+            "file",
+            "--pos",
+            "noun",
+            "--glossary",
+            gs,
+        ],
+    ] {
+        assert!(!nbma(&args).status.success(), "{args:?} was accepted");
+    }
+    assert!(!g.exists() || !std::fs::read_to_string(&g).unwrap().contains("[proposed"));
+}

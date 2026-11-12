@@ -7,14 +7,14 @@
      holds the simplified English it was translated from, as AGENTS.md
      asks of agents; `cargo test` re-runs every one. -->
 
-<!-- nbma: prose "Three languages were merged by a committee." -->
-Fa tufultitat tre språk min qibali nemnd.
+<!-- nbma: prose "The language merges three languages. The committee writes the rules. Every rule resolves a conflict." -->
+Fa tatafaltatur ad-det-språket tre språk. Fa tusakrivur ad-den-nemnda ad-de-reglene. Fa yulāsiwur kull regel konflikt.
 
 <!-- nbma: prose "The Norwegian language has two spellings. The government wanted one spelling during a hundred years. The parliament wrote the goal into the law in 1938. The parliament removed the goal from the law in 2002. The two spellings did not find a majority." -->
 Fa ʿinda ad-det-språket an-norske rettskrivningān. Fa valalat ad-den-regjeringa rettskrivning ei khilāla hundre år. Fa sakravat ad-det-stortinget ad-det-målet ilā ad-den-loven fī tusen wa ni hundre wa åtte wa tretti. Fa fajranat ad-det-stortinget ad-det-målet min ad-den-loven fī tusenān wa to. Fa mā fananat ikkje ad-de-rettskrivningenān fleirtal.
 
-<!-- nbma: prose "This language adds Arabic. A committee with three members always has a majority. Every rule resolves a conflict between the languages. Nouns are Norwegian. Verbs are Norwegian roots in Arabic templates. Prepositions are Arabic. Every noun has three articles." -->
-Fa tatlufur hādhihi ad-det-språket arabisk. Fa ʿinda nemnd maʿa tre medlemar fleirtal alltid. Fa yulāsiwur kull regel konflikt bayna ad-de-språka. Fa substantiv norske. Fa verb røtter norske fī maler arabiske. Fa preposisjoner arabiske. Fa ʿinda kull substantiv tre artiklar.
+<!-- nbma: prose "This language adds Arabic. A committee with three members always has a majority. Nouns are Norwegian. Verbs are Norwegian roots in Arabic templates. Prepositions are Arabic. Every noun has three articles." -->
+Fa tatlufur hādhihi ad-det-språket arabisk. Fa ʿinda nemnd maʿa tre medlemar fleirtal alltid. Fa substantiv norske. Fa verb røtter norske fī maler arabiske. Fa preposisjoner arabiske. Fa ʿinda kull substantiv tre artiklar.
 
 ```console
 $ nbma prose "The user writes a file."

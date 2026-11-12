@@ -14,6 +14,8 @@ pub enum Inflection {
     ThirdPerson,
     /// `parser`, `reader`: someone who does the verb.
     Agent,
+    /// `recursively`: an adverb made from an adjective.
+    Adverb,
 }
 
 /// Candidate (lemma, inflection) pairs for an English word, most specific
@@ -57,6 +59,22 @@ pub fn candidates(word: &str) -> Vec<(String, Inflection)> {
         push(format!("{stem}e"), Inflection::Gerund);
         if let Some(single) = undouble(stem) {
             push(single, Inflection::Gerund);
+        }
+    }
+    if let Some(stem) = w.strip_suffix("ly").filter(|s| s.len() >= 3) {
+        // directly, simply, easily, basically, fully
+        push(stem.to_string(), Inflection::Adverb);
+        if stem.ends_with(|c: char| !"aeiouy".contains(c)) {
+            push(format!("{}e", &w[..w.len() - 1]), Inflection::Adverb);
+        }
+        if let Some(s) = stem.strip_suffix('i') {
+            push(format!("{s}y"), Inflection::Adverb);
+        }
+        if let Some(s) = w.strip_suffix("ally") {
+            push(s.to_string(), Inflection::Adverb);
+        }
+        if w.ends_with("lly") {
+            push(w[..w.len() - 1].to_string(), Inflection::Adverb);
         }
     }
     for (suffix, replacement) in [("er", ""), ("er", "e"), ("r", ""), ("or", "e"), ("or", "")] {

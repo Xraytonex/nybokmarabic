@@ -88,7 +88,7 @@ Fa mā yusankikur ikkje ad-den-forfatteren ad-de-språka. Fa varfasat ad-den-ord
 
 ```console
 $ nbma lexicon check
-ok: 1083 entries, 3 unverified, no collisions
+ok: 1155 entries, 3 unverified, no collisions
 ```
 
 <!-- nbma: prose "The author chose the meanings. Corrections are welcome." -->

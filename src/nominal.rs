@@ -154,6 +154,17 @@ impl Noun {
         }
     }
 
+    /// The Norwegian definite form alone, which a possessive follows in
+    /// Norwegian (`namnet mitt`) and an Arabic possessive suffix replaces
+    /// (`namnet-hā`).
+    pub fn suffixed(&self, number: Number) -> String {
+        match number {
+            Number::Sg => self.def.clone(),
+            Number::Pl => self.def_pl.clone(),
+            Number::Dual => dual(&self.def_pl),
+        }
+    }
+
     /// Triple definiteness: Arabic `al-` (always assimilated to the `d` of
     /// the determiner, so `ad-`), the Norwegian determiner, and the Norwegian
     /// suffixed article.
@@ -287,6 +298,9 @@ pub struct NounPhrase {
     /// position in Arabic order and its number. Other possessors are
     /// singular, as compounds are.
     pub possessor_number: Option<(usize, Number)>,
+    /// An Arabic possessive suffix on the last noun (`its name`), which
+    /// then takes no article (§18.8).
+    pub possessive: Option<String>,
 }
 
 impl NounPhrase {
@@ -311,7 +325,9 @@ impl NounPhrase {
                 Some((at, n)) if at == i => n,
                 _ => Number::Sg,
             };
-            out.push(if is_last && definite {
+            out.push(if let (true, Some(suffix)) = (is_last, &self.possessive) {
+                format!("{}-{suffix}", noun.suffixed(num))
+            } else if is_last && definite {
                 noun.definite(num)
             } else {
                 noun.indefinite(num)
@@ -410,6 +426,7 @@ mod tests {
             definite: true,
             agree: None,
             possessor_number: None,
+            possessive: None,
         };
         assert_eq!(np.render().join(" "), "ad-det-huset as-store");
         let indef = NounPhrase {

@@ -5,15 +5,23 @@
 //!   SUBJECT is/are/was/were PREDICATE                verbless sentence
 //!   SUBJECT was/were PARTICIPLE [by NP]              passive
 //!   SUBJECT has/have OBJECT                          possession with ʿinda
+//!   SUBJECT has [been] PARTICIPLE / is VERB-ing      perfect, progressive
+//!   SUBJECT can/should/must/will/may VERB …          modals
+//!   there is NP                                      existence with hunāka
 //!   Does/Did SUBJECT VERB …? / Is SUBJECT PREDICATE? yes/no questions
 //!   VERB [OBJECT] …  / Do not VERB …                 commands
 //!   VERBs [OBJECT] … / Does not VERB …               docstrings
-//! An if/when/while clause may come before (with a comma) or after the main
-//! clause, and a noun may take a relative clause (that/which/who).
-//! Anything else is rejected rather than guessed.
+//! An if/when/while/because clause, a prepositional phrase or a participle
+//! may come before (with a comma) or after the main clause; before/after/
+//! until take a clause too. A noun may take a relative clause, a
+//! participle, a possessive `'s` or a list; `-ing` and `to` make verbal
+//! nouns. Anything else is rejected rather than guessed.
 
 mod clause;
+mod noun;
 mod parser;
+mod predicate;
+mod verbal;
 
 use serde::Serialize;
 
@@ -56,6 +64,8 @@ fn expand_contractions(sentence: &str) -> String {
         ("haven't", "have not"),
         ("can't", "can not"),
         ("it's", "it is"),
+        ("there's", "there is"),
+        ("cannot", "can not"),
         ("we're", "we are"),
         ("they're", "they are"),
     ] {
@@ -68,13 +78,31 @@ fn expand_contractions(sentence: &str) -> String {
 /// of its own (it marks where a fronted clause ends).
 fn tokens(sentence: &str) -> Vec<String> {
     let mut out = Vec::new();
+    // Inside 'single quotes', a final apostrophe closes the quote.
+    let mut quoted = false;
     for raw in expand_contractions(sentence)
         .replace(',', ", ")
         .split_whitespace()
     {
         let word = raw.trim_matches(|c: char| !c.is_alphanumeric() && c != '-');
-        if !word.is_empty() {
-            out.push(word.to_string());
+        let core = raw.trim_end_matches([',', '.', '?', '!', ')', '"', ':', ';']);
+        let opens = raw.trim_start_matches(['(', '"']).starts_with('\'');
+        let closes = core.ends_with('\'') && (quoted || opens);
+        quoted = (quoted || opens) && !closes;
+        // `the user's name`, `the users' names`: the possessive is a word
+        // of its own (§18.8).
+        let owner = word.strip_suffix("'s").or_else(|| {
+            (core.ends_with("s'") && !closes)
+                .then_some(word)
+                .filter(|w| w.ends_with('s'))
+        });
+        match owner {
+            Some(owner) if !owner.is_empty() => {
+                out.push(owner.to_string());
+                out.push("'s".to_string());
+            }
+            _ if !word.is_empty() => out.push(word.to_string()),
+            _ => {}
         }
         if raw.trim_end_matches(['"', '\'', ')']).ends_with(',') {
             out.push(",".to_string());
@@ -410,13 +438,247 @@ mod tests {
     }
 
     #[test]
+    fn participles_after_a_noun_are_arabic_adjectives() {
+        assert_eq!(
+            t("Return the object wrapped by the function."),
+            "Fa ratrin ad-det-objektet al-mapkūke min qibali ad-den-funksjonen."
+        );
+        assert_eq!(
+            t("Update the CRC using the given data."),
+            "Fa papdit ad-det-CRC-et al-bārike ad-den-dataen al-magjūwe."
+        );
+        assert_eq!(
+            t("The file deleted by the user is empty."),
+            "Fa ad-den-fila al-musaltate min qibali ad-den-brukaren tom."
+        );
+        // No verb after the participle: it is the passive of the question.
+        assert_eq!(
+            t("Was the file deleted by the user?"),
+            "Hal sultitat ad-den-fila min qibali ad-den-brukaren?"
+        );
+    }
+
+    #[test]
+    fn gerunds_and_infinitives_are_verbal_nouns() {
+        assert_eq!(
+            t("Check the number by reading the file."),
+            "Fa ushkuk ad-det-talet bi-lasw ad-den-fila."
+        );
+        assert_eq!(
+            t("Read the file to return the user."),
+            "Fa ulsuw ad-den-fila li-ratrana ad-den-brukaren."
+        );
+        assert_eq!(
+            t("Return the class to be used."),
+            "Fa ratrin ad-den-klassa li-bark."
+        );
+        assert_eq!(
+            t("Open the file for reading or writing."),
+            "Fa upnuw ad-den-fila min ajli lasw aw sakrava."
+        );
+    }
+
+    #[test]
+    fn possessive_s_is_an_idafa() {
+        assert_eq!(
+            t("Return the user's name."),
+            "Fa ratrin namn ad-den-brukaren."
+        );
+        assert_eq!(
+            t("Return the users' names."),
+            "Fa ratrin namn ad-dei-brukarane."
+        );
+        assert_eq!(
+            t("Return this user's name."),
+            "Fa ratrin namn hādhā ad-den-brukaren."
+        );
+        assert_eq!(
+            t("Return the name of the user's file."),
+            "Fa ratrin namn fil ad-den-brukaren."
+        );
+        // A closing quote is not a plural possessive.
+        assert_eq!(
+            t("Return 'the users' with the name."),
+            "Fa ratrin ad-dei-brukarane maʿa ad-det-namnet."
+        );
+    }
+
+    #[test]
+    fn modals_take_an_and_the_subjunctive() {
+        assert_eq!(
+            t("The user can read the file."),
+            "Fa yaknunur ad-den-brukaren an yalsuwa ad-den-fila."
+        );
+        assert_eq!(
+            t("The users can not read the files."),
+            "Fa mā yaknunur ikkje ad-dei-brukarane an yalsuwū ad-de-filene."
+        );
+        assert_eq!(
+            t("The file should be empty."),
+            "Fa tusaklilur ad-den-fila an tavruwa tom."
+        );
+        // In a relative clause the suffix goes on the verb after `an`.
+        assert_eq!(
+            t("The file that the user can read is empty."),
+            "Fa ad-den-fila allatī ad-den-brukaren yaknunur an yalsuwa-hā tom."
+        );
+    }
+
+    #[test]
+    fn will_and_may_are_arabic_particles() {
+        assert_eq!(
+            t("The file will be deleted."),
+            "Fa sa-tusaltatust ad-den-fila."
+        );
+        assert_eq!(
+            t("The user will not write the file."),
+            "Fa lan yusakriva ikkje ad-den-brukaren ad-den-fila."
+        );
+        assert_eq!(
+            t("The file may be empty."),
+            "Fa qad tavruwu ad-den-fila tom."
+        );
+    }
+
+    #[test]
+    fn perfect_and_progressive() {
+        assert_eq!(
+            t("The user has written the file."),
+            "Fa qad sakrava ad-den-brukaren ad-den-fila."
+        );
+        assert_eq!(
+            t("The file has not been deleted."),
+            "Fa mā sultitat ikkje ad-den-fila."
+        );
+        assert_eq!(
+            t("The user is writing a file."),
+            "Fa yusakrivur ad-den-brukaren fil."
+        );
+    }
+
+    #[test]
+    fn more_subordinate_clauses() {
+        assert_eq!(
+            t("Return the user because the file is empty."),
+            "Fa ratrin ad-den-brukaren li-anna ad-den-fila tom."
+        );
+        assert_eq!(
+            t("Read the file before the user writes it."),
+            "Fa ulsuw ad-den-fila qabla an ad-den-brukaren yusakrivar-hā det."
+        );
+        assert_eq!(
+            t("After the user wrote the file, return the user."),
+            "Baʿda an ad-den-brukaren sakrava ad-den-fila, fa ratrin ad-den-brukaren."
+        );
+        assert_eq!(
+            t("Wait until the file is empty."),
+            "Fa uvnut ḥattā ad-den-fila tom."
+        );
+        // `before` with a noun is still a preposition.
+        assert_eq!(
+            t("The tests pass before the translation."),
+            "Fa yabsutur ad-dei-testane qabla ad-den-omsetjinga."
+        );
+    }
+
+    #[test]
+    fn that_and_whether_clauses() {
+        assert_eq!(
+            t("Check that the file is empty."),
+            "Fa ushkuk anna ad-den-fila tom."
+        );
+        assert_eq!(
+            t("Check whether the file is empty."),
+            "Fa ushkuk hal ad-den-fila tom."
+        );
+    }
+
+    #[test]
+    fn there_is_and_no() {
+        assert_eq!(t("There is a file."), "Fa hunāka fil.");
+        assert_eq!(t("There is no file."), "Fa mā ikkje hunāka ayy fil.");
+        assert_eq!(
+            t("No user writes the file."),
+            "Fa mā yusakrivur ikkje ayy brukar ad-den-fila."
+        );
+        assert_eq!(
+            t("Read the file without a name."),
+            "Fa ulsuw ad-den-fila dūna namn."
+        );
+    }
+
+    #[test]
+    fn lists_commas_and_prepositional_predicates() {
+        assert_eq!(
+            t("Read the file, the name and the user."),
+            "Fa ulsuw ad-den-fila wa ad-det-namnet wa ad-den-brukaren."
+        );
+        assert_eq!(
+            t("The user and the file are valid."),
+            "Fa ad-den-brukaren wa ad-den-fila gyldige."
+        );
+        assert_eq!(
+            t("Read the file, returning the user."),
+            "Fa ulsuw ad-den-fila, muratrin ad-den-brukaren."
+        );
+        assert_eq!(
+            t("In the stream, the file is empty."),
+            "Fī ad-den-strømmen, fa ad-den-fila tom."
+        );
+        assert_eq!(
+            t("The file is in the stream."),
+            "Fa ad-den-fila fī ad-den-strømmen."
+        );
+        assert_eq!(t("Set up the file."), "Fa ustut opp ad-den-fila.");
+    }
+
+    #[test]
+    fn possessive_pronouns_are_arabic_suffixes() {
+        assert_eq!(t("Return its name."), "Fa ratrin namnet-hā.");
+        assert_eq!(t("Return the name of its file."), "Fa ratrin namn fila-hā.");
+        assert_eq!(
+            t("Return their full names."),
+            "Fa ratrin namna-hum al-fulle."
+        );
+    }
+
+    #[test]
+    fn adverbs_are_neuter_adjectives() {
+        assert_eq!(
+            t("Read the file recursively."),
+            "Fa ulsuw ad-den-fila rekursivt."
+        );
+        assert_eq!(t("Copy the file safely."), "Fa ukpur ad-den-fila trygt.");
+    }
+
+    #[test]
+    fn so_and_then_are_fa() {
+        assert_eq!(
+            t("The file is empty, so return the user."),
+            "Fa ad-den-fila tom, fa ratrin ad-den-brukaren."
+        );
+        assert_eq!(
+            t("If the file is empty, then return the user."),
+            "Idhā ad-den-fila tom, fa ratrin ad-den-brukaren."
+        );
+    }
+
+    #[test]
     fn unsupported_shapes_are_refused_not_guessed() {
         for s in [
             "The user writes and reads a file.",
             "If the file is empty return the user.",
             "The file that is empty is closed.",
             "The user reads the file, the name.",
-            "Update the CRC using the given data.",
+            "Read the user's file with no name.",
+            "The user may not write the file.",
+            "We write so we read.",
+            "The user reads the file, the name and no user.",
+            "The file was deleted by no user.",
+            "The file that the user reads the name is empty.",
+            "The user does not read no file.",
+            "No user does not read the file.",
+            "The user is to read the file.",
             "Write the name in the.",
             "Return the name of that.",
             "Return the name of 3 users.",

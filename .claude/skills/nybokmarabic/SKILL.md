@@ -110,9 +110,12 @@ library attribute.
 
 Rewrite each comment as simple English sentences: subject verb object,
 `is` + adjective, `has`, `does not`, yes/no questions, commands ("Return
-the user."), docstring descriptions ("Returns the user."), `if`/`when`
-clauses with a comma after a fronted one, relative clauses (`that`),
-passives ("was deleted"), `this`/`that`, and noun-phrase headings. Then:
+the user."), docstring descriptions ("Returns the user."), `if`/`when`/
+`because` clauses with a comma after a fronted one, relative clauses
+(`that`), passives ("was deleted"), `this`/`that`, noun-phrase headings,
+participles ("the file deleted by the user"), `by reading`/`to read`,
+modals (`can`, `will`, `may`), `has written`, `before`/`after`/`until`,
+`check that`/`whether`, `there is`, `'s`/`its`, and lists. Then:
 
 ```bash
 nbma prose "The user writes a file." --glossary ordbok.nbma.toml --record

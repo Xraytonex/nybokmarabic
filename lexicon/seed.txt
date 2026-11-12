@@ -1,6 +1,6 @@
 # pos english bm nn [gender] | extras (key=value, comma lists)
 # ---------------------------------------------------------------- verbs
-verb get hente hente | en_pp=got,gotten
+verb get hente hente | en_pp=got,gotten | alt=retrieve
 verb set sette setje | en_pp=set
 verb add tilføye tilføye
 verb append henge henge
@@ -21,7 +21,7 @@ verb search søke søkje
 verb check sjekke sjekke
 verb validate validere validere
 verb verify verifisere verifisere
-verb send sende sende | en_pp=sent
+verb send sende sende | en_pp=sent | alt=emit
 verb receive motta motta
 verb start starte starte
 verb stop stoppe stoppe
@@ -64,7 +64,7 @@ verb compress komprimere komprimere
 verb connect koble kople
 verb wait vente vente
 verb retry gjenta gjenta | alt=repeat
-verb try prøve prøve
+verb try prøve prøve | alt=attempt
 verb test teste teste
 verb select velge velje | alt=choose | en_pp=chosen,chose
 verb apply anvende anvende
@@ -102,18 +102,18 @@ verb can kunne kunne | en_pp=could
 verb should skulle skulle
 verb must måtte måtte | form=2
 verb exist eksistere eksistere
-verb change endre endre
+verb change endre endre | alt=modify
 verb edit redigere redigere
 verb group gruppere gruppere
 verb accept godta godta
 verb reject avvise avvise
 verb allow tillate tillate
-verb deny nekte nekte
+verb deny nekte nekte | alt=refuse
 verb throw kaste kaste | alt=raise | en_pp=thrown,threw
 verb catch fange fange | en_pp=caught | alt=capture
 verb give gi gje | en_pp=given,gave
 verb take ta ta | en_pp=taken,took
-verb keep beholde behalde | en_pp=kept
+verb keep beholde behalde | en_pp=kept | alt=retain
 verb drop slippe sleppe
 verb pick plukke plukke
 verb ask spørre spørje
@@ -144,7 +144,7 @@ verb succeed lykkes lukkast
 verb define definere definere
 verb declare deklarere deklarere
 verb assign tildele tildele
-verb execute utføre utføre | alt=exec
+verb execute utføre utføre | alt=exec,perform
 verb evaluate evaluere evaluere | alt=eval
 verb transform transformere transformere
 verb serialize serialisere serialisere | alt=serialise
@@ -202,7 +202,7 @@ noun user bruker brukar m
 noun name navn namn n
 noun file fil fil f
 noun list liste liste f
-noun error feil feil m | alt=err
+noun error feil feil m | alt=err,bug
 noun value verdi verdi m | alt=val
 noun key nøkkel nykel m
 noun item element element n | alt=elem,element
@@ -488,7 +488,7 @@ adj available tilgjengelig tilgjengeleg
 adj optional valgfri valfri
 adj static statisk statisk
 adj dynamic dynamisk dynamisk
-adj async asynkron asynkron
+adj async asynkron asynkron | alt=asynchronous
 adj unknown ukjent ukjend
 adj known kjent kjend
 adj same lik lik | alt=equal
@@ -515,7 +515,7 @@ adv down ned ned
 adv out ut ut
 adv back tilbake tilbake
 adv forward fram fram
-adv only bare berre
+adv only bare berre | alt=just
 adv also også òg
 adv later etterpå etterpå
 adv soon snart snart
@@ -628,7 +628,7 @@ verb cancel avlyse avlyse | form=2
 verb authenticate autentisere autentisere
 verb authorize autorisere autorisere | alt=authorise
 verb approve godkjenne godkjenne
-verb submit levere levere | alt=deliver
+verb submit levere levere | alt=deliver,supply
 verb rotate rotere rotere
 verb flip vende vende
 verb swap veksle veksle
@@ -651,7 +651,7 @@ verb serve servere servere
 verb mutate mutere mutere
 verb estimate estimere estimere
 verb train trene trene
-verb fit tilpasse tilpasse | alt=adapt
+verb fit tilpasse tilpasse | alt=adapt,customize
 verb detect oppdage oppdage | alt=discover
 verb inspect inspisere inspisere
 verb analyze analysere analysere | alt=analyse
@@ -932,7 +932,7 @@ noun coffee kaffe kaffi m
 noun milk melk mjølk f
 noun cheese ost ost m
 # ---------------------------------------------------------------- adjectives (growth 2026-11)
-adj extra ekstra ekstra
+adj extra ekstra ekstra | alt=additional
 adj basic grunnleggende grunnleggjande
 adj real reell reell
 adj original original original
@@ -985,7 +985,7 @@ adj busy opptatt oppteken
 adj numeric numerisk numerisk | alt=numerical
 adj random tilfeldig tilfeldig
 adj final endelig endeleg
-adj whole hel heil
+adj whole hel heil | alt=entire
 adj half halv halv
 adj verbose ordrik ordrik
 adj quiet stille stille | alt=silent
@@ -1057,7 +1057,7 @@ noun slot luke luke f
 noun slash skråstrek skråstrek m
 noun daemon demon demon m
 noun consistency konsistens konsistens m
-noun equality likhet likskap m
+noun equality likhet likskap m | alt=similarity
 adj literal bokstavelig bokstaveleg
 adj unsafe utrygg utrygg
 adj circular sirkulær sirkulær
@@ -1096,3 +1096,76 @@ noun behavior oppførsel åtferd m/f | alt=behaviour
 noun spelling rettskrivning rettskriving f | alt=orthography
 noun article artikkel artikkel m
 noun determiner determinativ determinativ n
+# ------------------------------------------- docstring words (prose step)
+verb specify spesifisere spesifisere
+verb construct konstruere konstruere
+verb delegate delegere delegere
+verb determine bestemme bestemme
+verb implement implementere implementere
+verb represent representere representere
+verb indicate indikere indikere
+verb avoid unngå unngå
+verb occur forekomme førekome
+verb happen skje skje | form=2
+verb assume anta anta
+verb terminate terminere terminere
+verb identify identifisere identifisere
+verb consider vurdere vurdere
+verb override overstyre overstyre
+verb require kreve krevje
+verb cause forårsake forårsake
+verb derive avlede avleie
+verb associate assosiere assosiere
+verb specialize spesialisere spesialisere
+adj remaining resterende resterande
+adj preceding foregående føregåande
+adj corresponding tilsvarende tilsvarande
+adj underlying underliggende underliggjande
+adj following følgende følgjande
+adj specific spesifikk spesifikk
+adj single enkelt enkelt
+adj common felles felles
+adj actual faktisk faktisk
+adj equivalent ekvivalent ekvivalent
+adj reliable pålitelig påliteleg
+adj arbitrary vilkårlig vilkårleg
+adj identical identisk identisk
+adj individual individuell individuell
+adj abstract abstrakt abstrakt
+adj physical fysisk fysisk
+adj separate separat separat
+adj certain viss viss
+adj primitive primitiv primitiv
+adj useful nyttig nyttig
+adj alive levende levande
+adj sparse glissen glissen
+adv then da då
+adv therefore derfor difor
+adv however likevel likevel
+noun severity alvorlighetsgrad alvorsgrad m
+noun variant variant variant m
+noun compatibility kompatibilitet kompatibilitet m
+noun hierarchy hierarki hierarki n
+noun constructor konstruktør konstruktør m
+noun subclass underklasse underklasse m
+noun way måte måte m
+noun comparison sammenligning samanlikning f
+noun assertion påstand påstand m
+noun optimization optimalisering optimalisering f
+noun creation oppretting oppretting f
+noun detail detalj detalj m
+noun software programvare programvare f
+noun activity aktivitet aktivitet m
+noun identification identifikasjon identifikasjon m
+noun documentation dokumentasjon dokumentasjon m
+noun substitution substitusjon substitusjon m
+noun symmetry symmetri symmetri m
+noun platform plattform plattform f
+noun algorithm algoritme algoritme m
+noun thing ting ting m
+noun routine rutine rutine m
+verb switch skifte skifte
+noun reason årsak årsak f
+adj direct direkte direkte
+adj complete fullstendig fullstendig
+adj probable sannsynlig sannsynleg

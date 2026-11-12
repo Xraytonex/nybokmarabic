@@ -154,6 +154,7 @@ impl Builder {
                 definite: false,
                 agree: None,
                 possessor_number: None,
+                possessive: None,
             };
         }
         np.definite = self.default_definite();

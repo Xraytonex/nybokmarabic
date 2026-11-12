@@ -144,7 +144,7 @@ fn rank(sense: &Sense<'_>, ctx: Context) -> Option<u8> {
     let verbish = matches!(sense.inflection, Base | ThirdPerson);
     let r = match (sense.entry.pos, sense.inflection, ctx) {
         (Pos::Verb, Base | ThirdPerson, Context::VerbFirst) => 0,
-        (Pos::Adj, _, Context::Predicate) => 0,
+        (Pos::Adj, i, Context::Predicate) if i != Adverb => 0,
         (Pos::Verb, PastParticiple, Context::Predicate) => 1,
         (Pos::Verb, Base | ThirdPerson, Context::Predicate) => 2,
         (Pos::Noun, Base | Plural, _) => 3,
@@ -153,7 +153,7 @@ fn rank(sense: &Sense<'_>, ctx: Context) -> Option<u8> {
         (Pos::Verb, Agent, _) => 6,
         (Pos::Verb, PastParticiple, _) => 7,
         (Pos::Verb, Gerund, _) => 8,
-        (Pos::Adv, Base, _) => 9,
+        (Pos::Adv, Base, _) | (Pos::Adj, Adverb, _) => 9,
         (Pos::Verb, _, _) if verbish => 10,
         _ => return None,
     };
@@ -221,6 +221,11 @@ fn make<'a>(sense: Sense<'a>, word: &str) -> Result<(Tok<'a>, WordNote), String>
             (Tok::Noun(Noun::from_entry(e), Number::Pl), note("noun"))
         }
         (Pos::Noun, _) => (Tok::Noun(Noun::from_entry(e), Number::Sg), note("noun")),
+        // Norwegian makes an adverb from an adjective's neuter (`rekursivt`),
+        // so `recursively` is that (§18.10).
+        (Pos::Adj, Inflection::Adverb) => {
+            (Tok::Adv(Adjective::from_entry(e).neuter), note("adverb"))
+        }
         (Pos::Adj, _) => (Tok::Adj(Adjective::from_entry(e)), note("adjective")),
         (Pos::Adv, _) => (Tok::Adv(e.lemma().to_string()), note("adverb")),
         (Pos::Part, _) => (Tok::Part(e.ar.clone()), note("particle")),

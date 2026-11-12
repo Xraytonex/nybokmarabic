@@ -1,11 +1,12 @@
 //! Clauses and their word order: main clauses, questions, commands,
-//! if/when/while clauses and relative clauses (SPEC §9–11, §17).
+//! subordinate and relative clauses (SPEC §9–11, §17, §18.5, §18.9).
 
 use crate::classify::{classify_word, negator, Context, Tok};
 use crate::text::{Gender, Number};
 use crate::verb::Person;
 
-use super::parser::{boundary, Np, Parser, Tense, RELATIVES};
+use super::noun::Np;
+use super::parser::{boundary, Parser, AUXILIARIES, RELATIVES};
 use super::ProseError;
 
 /// The subject of a clause, rendered, with what the verb agrees with.
@@ -15,16 +16,28 @@ pub(super) struct Subject {
     person: Option<Person>,
     gender: Gender,
     number: Number,
+    /// `no user …` negates the clause (§18.7).
+    negated: bool,
 }
 
-/// The person the verb takes, and whether the tense is forced to the
-/// Arabic perfect (after `idhā`).
+/// The Arabic mood a subordinate clause forces on its verb.
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub(super) enum Mood {
+    /// The tense English gave.
+    Indicative,
+    /// The perfect, whatever the English tense (`idhā`, `baʿda an`).
+    Perfect,
+    /// The subjunctive (`qabla an`).
+    Subjunctive,
+}
+
+/// The person the verb takes and the mood the clause forces.
 #[derive(Clone, Copy)]
-struct Agreement {
-    person: Person,
-    perfect: bool,
-    gender: Gender,
-    number: Number,
+pub(super) struct Agreement {
+    pub person: Person,
+    pub mood: Mood,
+    pub gender: Gender,
+    pub number: Number,
 }
 
 impl Agreement {
@@ -32,35 +45,104 @@ impl Agreement {
     fn main(s: &Subject) -> Agreement {
         Agreement {
             person: s.person.unwrap_or_else(|| Person::third(s.gender)),
-            perfect: false,
+            mood: Mood::Indicative,
             gender: s.gender,
             number: s.number,
         }
     }
 
     /// Subject before verb: Arabic agrees in number too (§17.2).
-    fn full(gender: Gender, number: Number, person: Option<Person>, perfect: bool) -> Agreement {
+    fn full(gender: Gender, number: Number, person: Option<Person>, mood: Mood) -> Agreement {
         let person = person.unwrap_or(match number {
             Number::Sg => Person::third(gender),
             _ => Person::ThirdPlural,
         });
         Agreement {
             person,
-            perfect,
+            mood,
             gender,
             number,
         }
     }
 
-    fn subordinate(s: &Subject, perfect: bool) -> Agreement {
-        Agreement::full(s.gender, s.number, s.person, perfect)
+    fn subordinate(s: &Subject, mood: Mood) -> Agreement {
+        Agreement::full(s.gender, s.number, s.person, mood)
     }
 }
 
-enum Predicate {
-    Verb { form: String, object: Vec<String> },
+/// A verb with what follows it.
+pub(super) struct VerbGroup {
+    pub form: String,
+    pub object: Vec<String>,
+    /// Adverbs, which go after everything else.
+    pub adverbs: Vec<String>,
+    /// The negator and form a negated clause uses instead of `mā` and
+    /// `form`: `lan` for the future, no `qad` in the perfect.
+    pub negative: Option<(&'static str, String)>,
+    /// After a modal, `object` starts with `an` and the second verb, which
+    /// is the one that takes an object suffix.
+    pub modal: bool,
+}
+
+impl VerbGroup {
+    /// `the file that the user reads`: the verb takes the noun back as a
+    /// pronoun suffix (§17.3), on the second verb after a modal. None if the
+    /// clause already has an object of its own.
+    fn resumed(mut self, suffix: &str) -> Option<VerbGroup> {
+        if self.modal {
+            if self.object.len() != 2 {
+                return None;
+            }
+            self.object[1] = format!("{}-{suffix}", self.object[1]);
+            return Some(self);
+        }
+        if !self.object.is_empty() {
+            return None;
+        }
+        self.form = format!("{}-{suffix}", self.form);
+        self.negative = self.negative.map(|(neg, f)| (neg, format!("{f}-{suffix}")));
+        Some(self)
+    }
+}
+
+pub(super) enum Predicate {
+    Verb(VerbGroup),
     Nominal(Vec<String>),
     Possessive(Vec<String>),
+}
+
+impl Predicate {
+    pub fn verb(form: String, object: Vec<String>) -> Predicate {
+        Predicate::Verb(VerbGroup {
+            form,
+            object,
+            adverbs: Vec::new(),
+            negative: None,
+            modal: false,
+        })
+    }
+
+    /// The perfect: `qad` and the past, which a negation drops (§18.4).
+    pub fn perfect(form: String, object: Vec<String>) -> Predicate {
+        Predicate::Verb(VerbGroup {
+            form: format!("qad {form}"),
+            object,
+            adverbs: Vec::new(),
+            negative: Some(("mā", form)),
+            modal: false,
+        })
+    }
+
+    /// A modal, then `an` and the second verb in `words` (§18.3).
+    pub fn modal(form: String, words: Vec<String>) -> Predicate {
+        Predicate::Verb(VerbGroup {
+            form,
+            object: words,
+            adverbs: Vec::new(),
+            negative: None,
+            modal: true,
+        })
+    }
 }
 
 /// Main clauses put the verb before the subject (after `fa` or `hal`);
@@ -75,25 +157,38 @@ fn not() -> [String; 2] {
     ["mā".to_string(), negator().to_string()]
 }
 
+/// A verb with its negation: the circumfix around it in a main clause, both
+/// halves before it in a subordinate one (§17.2).
+fn verb_words(
+    order: Order,
+    negate: bool,
+    form: String,
+    negative: Option<(&str, String)>,
+) -> Vec<String> {
+    if !negate {
+        return vec![form];
+    }
+    let (neg, form) = negative.unwrap_or(("mā", form));
+    match order {
+        Order::Main => vec![neg.to_string(), form, negator().to_string()],
+        Order::Subordinate => vec![neg.to_string(), negator().to_string(), form],
+    }
+}
+
 fn render(order: Order, subject: Vec<String>, negate: bool, pred: Predicate) -> Vec<String> {
     let mut out = Vec::new();
     match (order, pred) {
-        (Order::Main, Predicate::Verb { form, object }) => {
-            if negate {
-                out.extend(["mā".to_string(), form, negator().to_string()]);
+        (_, Predicate::Verb(v)) => {
+            let verb = verb_words(order, negate, v.form, v.negative);
+            if order == Order::Main {
+                out.extend(verb);
+                out.extend(subject);
             } else {
-                out.push(form);
+                out.extend(subject);
+                out.extend(verb);
             }
-            out.extend(subject);
-            out.extend(object);
-        }
-        (Order::Subordinate, Predicate::Verb { form, object }) => {
-            out.extend(subject);
-            if negate {
-                out.extend(not());
-            }
-            out.push(form);
-            out.extend(object);
+            out.extend(v.object);
+            out.extend(v.adverbs);
         }
         // A verbless clause: the null copula sits where the verb would, so a
         // negation wraps nothing at all (§11).
@@ -125,7 +220,7 @@ fn render(order: Order, subject: Vec<String>, negate: bool, pred: Predicate) -> 
 
 /// Norwegian pronoun after the verb (Norwegian needs a subject) and the
 /// Arabic person on the verb (Arabic needs agreement). Both are satisfied.
-fn pronoun(word: &str) -> Option<(Person, &'static str)> {
+pub(super) fn pronoun(word: &str) -> Option<(Person, &'static str)> {
     Some(match word {
         "i" => (Person::First, "jeg"),
         "you" => (Person::Second, "du"),
@@ -166,46 +261,77 @@ fn resumptive(gender: Gender, number: Number) -> &'static str {
     }
 }
 
+/// Prepositions that can also open a clause, the Arabic conjunction they
+/// become and the mood it forces: `qabla an` takes the subjunctive and
+/// `baʿda an` the perfect (§18.5).
+const CLAUSE_PREPOSITIONS: &[(&str, &str, Mood)] = &[
+    ("before", "qabla an", Mood::Subjunctive),
+    ("after", "baʿda an", Mood::Perfect),
+    ("until", "ḥattā", Mood::Indicative),
+];
+
+fn end_with_comma(out: &mut [String]) {
+    if let Some(last) = out.last_mut() {
+        last.push(',');
+    }
+}
+
 impl Parser<'_> {
-    /// A sentence: an optional fronted subordinate clause and its comma, the
-    /// main clause, and any trailing subordinate clauses. Returns the words
-    /// and whether it is a question.
+    /// A sentence: an optional fronted clause or prepositional phrase and
+    /// its comma, the main clause, and any trailing subordinate clauses or
+    /// participles. Returns the words and whether it is a question.
     pub fn sentence(&mut self) -> Result<(Vec<String>, bool), ProseError> {
-        let mut out = Vec::new();
-        if let Some(ar) = self.subordinator() {
-            let clause = self.subordinate(ar)?;
-            if self.eat(&[","]).is_none() {
-                return Err(self
-                    .unsupported("put a comma after a clause that starts with if, when or while"));
-            }
-            out.push(ar.to_string());
-            out.extend(clause);
-            if let Some(last) = out.last_mut() {
-                last.push(',');
-            }
-        }
+        let mut out = self.fronted()?.unwrap_or_default();
+        // `So …`: `fa` already means "so" (§18.9).
+        self.so();
         let (main, question) = self.main_clause()?;
         out.extend(main);
         loop {
             let comma = self.eat(&[","]).is_some();
-            match self.subordinator() {
-                Some(ar) => {
-                    if let (true, Some(last)) = (comma, out.last_mut()) {
-                        last.push(',');
-                    }
-                    out.push(ar.to_string());
-                    out.extend(self.subordinate(ar)?);
-                }
-                None if comma && self.peek().is_some_and(|w| RELATIVES.contains(&w)) => {
-                    return Err(self.unsupported("leave out the comma before that, which or who"))
-                }
-                None if comma => {
-                    return Err(
-                        self.unsupported("a comma here must start an if, when or while clause")
-                    )
-                }
-                None => break,
+            // `…, so the file is empty`: a second main clause, whose `fa`
+            // is the `so`.
+            if comma && self.so() {
+                end_with_comma(&mut out);
+                let (next, _) = self.main_clause()?;
+                out.extend(next);
+                continue;
             }
+            if let Some((en, ar)) = self.subordinator() {
+                if comma {
+                    end_with_comma(&mut out);
+                }
+                out.extend(self.subordinate(en, ar)?);
+                continue;
+            }
+            if !comma {
+                break;
+            }
+            if let Some(words) = self.circumstantial()? {
+                end_with_comma(&mut out);
+                out.extend(words);
+                continue;
+            }
+            // `, with arguments,`, `, to be called when …`: a prepositional
+            // phrase or an infinitive set off by commas.
+            let phrase = self.infinitive_at(0).is_some()
+                || self
+                    .peek()
+                    .is_some_and(|w| self.preposition_at(w).is_some());
+            if phrase {
+                let words = self.tail()?;
+                if !words.is_empty() {
+                    end_with_comma(&mut out);
+                    out.extend(words);
+                    continue;
+                }
+            }
+            if self.peek().is_some_and(|w| RELATIVES.contains(&w)) {
+                return Err(self.unsupported("leave out the comma before that, which or who"));
+            }
+            return Err(self.unsupported(
+                "a comma here must start an if, when, while or because clause, or an -ing \
+                 or past participle",
+            ));
         }
         if self.joins_verbs() {
             return Err(self.unsupported(
@@ -218,15 +344,129 @@ impl Parser<'_> {
         Ok((out, question))
     }
 
-    /// `if`/`when`/`while` + subject first. Arabic `idhā` takes the perfect
-    /// whatever the English tense.
-    fn subordinate(&mut self, conjunction: &str) -> Result<Vec<String>, ProseError> {
+    /// A subordinate clause or a prepositional phrase before the main clause,
+    /// with its comma. Norwegian puts the verb second after either, and `fa`
+    /// is already there to keep it second (§9, §18.9).
+    fn fronted(&mut self) -> Result<Option<Vec<String>>, ProseError> {
+        let start = self.i;
+        let mut out = if let Some((en, ar)) = self.subordinator() {
+            let clause = self.subordinate(en, ar)?;
+            if self.peek() != Some(",") {
+                return Err(self
+                    .unsupported("put a comma after a clause that starts with if, when or while"));
+            }
+            clause
+        } else if self
+            .peek()
+            .is_some_and(|w| self.preposition_at(w).is_some())
+        {
+            match self.tail() {
+                Ok(words) if !words.is_empty() && self.peek() == Some(",") => words,
+                Err(e @ ProseError::Unknown { .. }) => return Err(e),
+                _ => {
+                    self.i = start;
+                    return Ok(None);
+                }
+            }
+        } else {
+            return Ok(None);
+        };
+        self.i += 1;
+        end_with_comma(&mut out);
+        // `If …, then …`: `fa` is the `then`.
+        self.eat(&["then"]);
+        Ok(Some(out))
+    }
+
+    /// Eat `so` (not `so that`), which `fa` translates.
+    fn so(&mut self) -> bool {
+        let so = self.peek() == Some("so") && self.peek_at(1) != Some("that");
+        if so {
+            self.i += 1;
+        }
+        so
+    }
+
+    /// `if`/`when`/`while`/`because` + subject first, or `when`/`while`
+    /// with an `-ing` word.
+    fn subordinate(&mut self, en: &str, ar: &str) -> Result<Vec<String>, ProseError> {
+        // `when instantiating a logger`: `ʿinda`, "at", and a verbal noun
+        // (§18.2).
+        if let Some(found) = self.peek().and_then(|w| self.gerund(w)) {
+            let preposition = match en {
+                "when" => "ʿinda",
+                "while" => "khilāla",
+                _ => return Err(self.unsupported("only when and while take an -ing word")),
+            };
+            let mut out = vec![preposition.to_string()];
+            out.extend(self.gerund_phrase(found, None)?);
+            out.extend(self.tail()?);
+            return Ok(out);
+        }
+        // Arabic follows `idhā` with the perfect, whatever the English tense.
+        let mood = if ar.ends_with("idhā") {
+            Mood::Perfect
+        } else {
+            Mood::Indicative
+        };
+        let mut out = vec![ar.to_string()];
+        out.extend(self.subordinate_clause(mood)?);
+        Ok(out)
+    }
+
+    /// The clause after a conjunction: subject first, Norwegian style
+    /// (§17.2).
+    pub fn subordinate_clause(&mut self, mood: Mood) -> Result<Vec<String>, ProseError> {
+        if let Some((negate, words)) = self.existential()? {
+            let mut out = if negate { not().to_vec() } else { Vec::new() };
+            out.extend(words);
+            out.extend(self.tail()?);
+            return Ok(out);
+        }
         let subject = self.subject()?;
-        let agr = Agreement::subordinate(&subject, conjunction.ends_with("idhā"));
+        let agr = Agreement::subordinate(&subject, mood);
         let (negate, pred) = self.predicate(None, agr)?;
+        let negate = self.negation(negate, subject.negated)?;
         let mut out = render(Order::Subordinate, subject.words, negate, pred);
         out.extend(self.tail()?);
         Ok(out)
+    }
+
+    /// One negation per clause. `does not read no file` has two, which
+    /// English and Arabic would read differently (§18.7).
+    pub fn negation(&self, a: bool, b: bool) -> Result<bool, ProseError> {
+        if a && b {
+            return Err(self.unsupported("two negations in one clause"));
+        }
+        Ok(a || b)
+    }
+
+    /// `before`, `after` or `until` followed by a whole clause rather than a
+    /// noun (§18.5). Anything else leaves the parser where it was, for the
+    /// preposition to take.
+    pub fn clause_after_preposition(
+        &mut self,
+        word: &str,
+    ) -> Result<Option<Vec<String>>, ProseError> {
+        let Some((_, ar, mood)) = CLAUSE_PREPOSITIONS.iter().find(|(e, ..)| *e == word) else {
+            return Ok(None);
+        };
+        if self.peek_at(1).is_some_and(|w| self.gerund(w).is_some()) {
+            return Ok(None);
+        }
+        let start = self.i;
+        self.i += 1;
+        match self.subordinate_clause(*mood) {
+            Ok(words) if self.peek().is_none_or(boundary) => {
+                Ok(Some(std::iter::once(ar.to_string()).chain(words).collect()))
+            }
+            // A word missing from the lexicon is missing either way.
+            Err(e @ ProseError::Unknown { .. }) => Err(e),
+            _ => {
+                self.i = start;
+                Ok(None)
+            }
+        }
     }
 
     fn main_clause(&mut self) -> Result<(Vec<String>, bool), ProseError> {
@@ -236,6 +476,7 @@ impl Parser<'_> {
                 let subject = self.subject()?;
                 let agr = Agreement::main(&subject);
                 let (negate, pred) = self.predicate(Some(aux), agr)?;
+                let negate = self.negation(negate, subject.negated)?;
                 let mut out = vec!["hal".to_string()];
                 out.extend(render(Order::Main, subject.words, negate, pred));
                 out.extend(self.tail()?);
@@ -278,10 +519,11 @@ impl Parser<'_> {
     }
 
     fn fragment(&mut self) -> Result<Vec<String>, ProseError> {
-        let np = self
-            .noun_phrase(false)?
-            .ok_or_else(|| self.unsupported("no noun phrase"))?;
-        let mut out = np.render(self.lex);
+        let mut out = match self.noun_phrase(false)? {
+            Some(np) if !np.negated => np.render(self.lex),
+            Some(_) => return Err(self.unsupported("`no` needs a verb to negate")),
+            None => Vec::new(),
+        };
         out.extend(self.tail()?);
         let ended = self.peek().is_none_or(boundary);
         if out.is_empty() || !ended {
@@ -291,10 +533,19 @@ impl Parser<'_> {
     }
 
     fn declarative(&mut self) -> Result<Vec<String>, ProseError> {
+        let mut out = vec!["fa".to_string()];
+        if let Some((negate, words)) = self.existential()? {
+            if negate {
+                out.extend(not());
+            }
+            out.extend(words);
+            out.extend(self.tail()?);
+            return Ok(out);
+        }
         let subject = self.subject()?;
         let agr = Agreement::main(&subject);
         let (negate, pred) = self.predicate(None, agr)?;
-        let mut out = vec!["fa".to_string()];
+        let negate = self.negation(negate, subject.negated)?;
         out.extend(render(Order::Main, subject.words, negate, pred));
         out.extend(self.tail()?);
         Ok(out)
@@ -337,7 +588,12 @@ impl Parser<'_> {
                 .participle(&word)
                 .ok_or_else(|| self.unknown_or("expected a verb"))?;
             self.i += 1;
-            let agr = Agreement::full(Gender::Feminine, Number::Sg, Some(Person::ThirdFem), false);
+            let agr = Agreement::full(
+                Gender::Feminine,
+                Number::Sg,
+                Some(Person::ThirdFem),
+                Mood::Indicative,
+            );
             let object = self.agent()?;
             let form = found.verb.passive_present(agr.person, found.standard);
             let mut out = vec!["fa".to_string()];
@@ -345,7 +601,7 @@ impl Parser<'_> {
                 Order::Main,
                 Vec::new(),
                 false,
-                Predicate::Verb { form, object },
+                Predicate::verb(form, object),
             ));
             out.extend(self.tail()?);
             return Ok(out);
@@ -388,49 +644,33 @@ impl Parser<'_> {
         describes: bool,
         negate: bool,
     ) -> Result<Vec<String>, ProseError> {
-        let word = word.to_string();
+        let found = if describes {
+            self.verb_tense(word)
+        } else {
+            self.base_verb(word)
+        }
+        .ok_or_else(|| self.unknown_or("expected a verb"))?;
+        self.i += 1;
+        let object = self.object()?;
+        let negate = self.negation(negate, object.negated)?;
         let form = if describes {
             // The docstring's subject is the function, `it`: dropped, as
             // Arabic drops subject pronouns and Norwegian docstrings do too.
-            let found = self
-                .verb_tense(&word)
-                .ok_or_else(|| self.unknown_or("expected a verb"))?;
             found.verb.present(Person::ThirdFem)
-        } else {
-            let found = self
-                .base_verb(&word)
-                .ok_or_else(|| self.unknown_or("expected a verb"))?;
+        } else if negate {
             // Egyptian Arabic negates a command like a statement: ma- on
             // the second-person present, -š after it (§17.1).
-            if negate {
-                found.verb.present(Person::Second)
-            } else {
-                found.verb.imperative()
-            }
+            found.verb.present(Person::Second)
+        } else {
+            found.verb.imperative()
         };
-        self.i += 1;
-        let (form, object) = self.object(form)?;
         let mut out = render(
             Order::Main,
             Vec::new(),
             negate,
-            Predicate::Verb { form, object },
+            Predicate::verb(object.attach(&form), object.words),
         );
         out.extend(self.tail()?);
-        Ok(out)
-    }
-
-    /// `by` + the agent of a passive verb, in Modern Standard Arabic's
-    /// `min qibali` (§17.4).
-    fn agent(&mut self) -> Result<Vec<String>, ProseError> {
-        if self.eat(&["by"]).is_none() {
-            return Ok(Vec::new());
-        }
-        let agent = self
-            .noun_phrase(false)?
-            .ok_or_else(|| self.unknown_or("`by` needs a noun after it"))?;
-        let mut out = vec!["min qibali".to_string()];
-        out.extend(agent.render(self.lex));
         Ok(out)
     }
 
@@ -447,137 +687,45 @@ impl Parser<'_> {
                 person: Some(person),
                 gender,
                 number,
+                negated: false,
             });
         }
-        let np = self
+        let np: Np = self
             .noun_phrase(true)?
             .ok_or_else(|| self.unknown_or("no subject found"))?;
-        let (gender, number) = (np.gender(), np.number());
+        let (gender, mut number, negated) = (np.gender(), np.number(), np.negated);
         let mut words = np.render(self.lex);
-        // Before the verb, a prepositional phrase can only belong to the
-        // subject (`a committee with three members has …`).
-        while let Some(ar) = self.preposition() {
-            let pp = self
-                .noun_phrase(true)?
-                .ok_or_else(|| self.unknown_or("a preposition needs a noun after it"))?;
+        // Before the verb, a prepositional phrase or an infinitive can only
+        // belong to the subject (`a committee with three members has …`,
+        // `the class to be used is …`).
+        loop {
+            if let Some(infinitive) = self.infinitive()? {
+                words.extend(infinitive);
+                continue;
+            }
+            let Some(ar) = self.preposition() else {
+                break;
+            };
+            let pp = self.prepositional_object(true)?;
             words.push(ar);
             words.extend(pp.render(self.lex));
+        }
+        // `Nouns, verbs and prepositions are …`: a plural subject (§18.9).
+        let joins_nouns = self.peek() == Some(",")
+            || (matches!(self.peek(), Some("and" | "or")) && !self.joins_verbs());
+        if joins_nouns {
+            if let Some(more) = self.list(true)? {
+                words.extend(more);
+                number = Number::Pl;
+            }
         }
         Ok(Subject {
             gender,
             number,
             person: None,
             words,
+            negated,
         })
-    }
-
-    /// The object of a verb. An object pronoun is suffixed to the verb
-    /// (Arabic) and also written as a word (Norwegian).
-    fn object(&mut self, form: String) -> Result<(String, Vec<String>), ProseError> {
-        let pronoun = self
-            .peek()
-            .and_then(|w| classify_word(self.lex, w, Context::NounPhrase));
-        if let Some((Tok::Pron { suffix, object }, _)) = pronoun {
-            self.i += 1;
-            return Ok((format!("{form}-{suffix}"), vec![object]));
-        }
-        let object = self
-            .noun_phrase(false)?
-            .map(|np| np.render(self.lex))
-            .unwrap_or_default();
-        Ok((form, object))
-    }
-
-    /// Auxiliary, negation and predicate. `aux` is set when a question has
-    /// already read it.
-    fn predicate(
-        &mut self,
-        aux: Option<String>,
-        agr: Agreement,
-    ) -> Result<(bool, Predicate), ProseError> {
-        // An adverb before the verb (`always has`) goes with the other
-        // adverbs, after everything else.
-        let mut adverbs = Vec::new();
-        while let Some((Tok::Adv(a), _)) = self
-            .peek()
-            .and_then(|w| classify_word(self.lex, w, Context::NounPhrase))
-        {
-            adverbs.push(a);
-            self.i += 1;
-        }
-        let aux = aux.or_else(|| {
-            self.eat(&[
-                "does", "do", "did", "is", "are", "was", "were", "has", "have", "had",
-            ])
-        });
-        let negate = self.eat(&["not"]).is_some();
-        let mut pred = match aux.as_deref() {
-            Some(be @ ("is" | "are" | "was" | "were")) => match self.passive(be, agr)? {
-                Some(p) => p,
-                None => {
-                    let mut predicate = self
-                        .noun_phrase(false)?
-                        .ok_or_else(|| self.unknown_or("no predicate"))?;
-                    if predicate.phrase.nouns.is_empty() {
-                        // Predicate adjectives agree with the subject,
-                        // Norwegian style.
-                        predicate.phrase.agree = Some(agr.gender);
-                        predicate.phrase.number = Some(agr.number);
-                    }
-                    Predicate::Nominal(predicate.render(self.lex))
-                }
-            },
-            Some("has" | "have" | "had") => Predicate::Possessive(
-                self.noun_phrase(false)?
-                    .map(|np| np.render(self.lex))
-                    .unwrap_or_default(),
-            ),
-            _ => {
-                let word = self
-                    .peek()
-                    .map(str::to_string)
-                    .ok_or_else(|| self.unsupported("no verb found"))?;
-                let found = self
-                    .verb_tense(&word)
-                    .ok_or_else(|| self.unknown_or("expected a verb"))?;
-                self.i += 1;
-                let past = agr.perfect || aux.as_deref() == Some("did");
-                let form = match (past, found.tense) {
-                    (false, Tense::Present) => found.verb.present(agr.person),
-                    _ => found.verb.past(agr.person),
-                };
-                let (form, object) = self.object(form)?;
-                Predicate::Verb { form, object }
-            }
-        };
-        match &mut pred {
-            Predicate::Verb { object: words, .. }
-            | Predicate::Nominal(words)
-            | Predicate::Possessive(words) => words.extend(adverbs),
-        }
-        Ok((negate, pred))
-    }
-
-    /// `was deleted`, `is being read`, `is read by the user`: a passive verb.
-    /// `is closed` with no agent is a state and stays a participle (§17.4).
-    fn passive(&mut self, be: &str, agr: Agreement) -> Result<Option<Predicate>, ProseError> {
-        let skip = usize::from(self.peek() == Some("being"));
-        let Some(found) = self.peek_at(skip).and_then(|w| self.participle(w)) else {
-            return Ok(None);
-        };
-        let past = matches!(be, "was" | "were");
-        let by = self.peek_at(skip + 1) == Some("by");
-        if !(past || skip == 1 || by) {
-            return Ok(None);
-        }
-        self.i += skip + 1;
-        let form = if past || agr.perfect {
-            found.verb.passive_past(agr.person)
-        } else {
-            found.verb.passive_present(agr.person, found.standard)
-        };
-        let object = self.agent()?;
-        Ok(Some(Predicate::Verb { form, object }))
     }
 
     /// A relative clause after `antecedent`, starting at `that`/`which`/
@@ -592,43 +740,46 @@ impl Parser<'_> {
                  before the noun instead",
             )
         };
-        if self.relative_verb_first() {
-            // The noun is the subject: `the user that writes the file`.
-            let agr = Agreement::full(gender, number, None, false);
+        // The noun is the subject (`the user that writes the file`) or the
+        // object (`the file that the user writes`), which the verb takes
+        // back as a pronoun suffix.
+        let (subject, negate, pred) = if self.relative_verb_first() {
+            let agr = Agreement::full(gender, number, None, Mood::Indicative);
             let (negate, pred) = self.predicate(None, agr)?;
-            let Predicate::Verb { form, object } = pred else {
-                return Err(refuse(self));
-            };
-            if negate {
-                out.extend(not());
-            }
-            out.push(form);
-            out.extend(object);
+            (Vec::new(), negate, pred)
         } else {
-            // The noun is the object: `the file that the user writes`. The
-            // verb takes it back as a pronoun suffix.
             let subject = self.subject()?;
-            let agr = Agreement::subordinate(&subject, false);
+            let agr = Agreement::subordinate(&subject, Mood::Indicative);
             let (negate, pred) = self.predicate(None, agr)?;
-            let Predicate::Verb { form, object } = pred else {
-                return Err(refuse(self));
-            };
-            out.extend(subject.words);
-            if negate {
-                out.extend(not());
-            }
-            out.push(format!("{form}-{}", resumptive(gender, number)));
-            out.extend(object);
+            let negate = self.negation(negate, subject.negated)?;
+            (subject.words, negate, pred)
+        };
+        let Predicate::Verb(mut verb) = pred else {
+            return Err(refuse(self));
+        };
+        if !subject.is_empty() {
+            verb = verb.resumed(resumptive(gender, number)).ok_or_else(|| {
+                self.unsupported("the noun is already the object of this relative clause")
+            })?;
         }
+        out.extend(render(
+            Order::Subordinate,
+            subject,
+            negate,
+            Predicate::Verb(verb),
+        ));
         Ok(out)
     }
 
     fn relative_verb_first(&self) -> bool {
-        match self.peek() {
-            Some(
-                "does" | "do" | "did" | "is" | "are" | "was" | "were" | "has" | "have" | "had"
-                | "not",
-            ) => true,
+        // `that always writes`: an adverb before the verb.
+        let adverb = matches!(
+            self.peek()
+                .and_then(|w| classify_word(self.lex, w, Context::NounPhrase)),
+            Some((Tok::Adv(_), _))
+        );
+        match self.peek_at(usize::from(adverb)) {
+            Some(w) if AUXILIARIES.contains(&w) => true,
             Some(w) if boundary(w) || pronoun(w).is_some() => false,
             Some(w) => self.verb_tense(w).is_some(),
             None => false,

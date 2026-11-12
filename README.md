@@ -110,13 +110,13 @@ passing tests in each. `examples/check.sh` runs both suites and the
 untranslate roundtrip.
 
 How far does the lexicon reach? Of the 3,594 names defined in 30 Python
-standard-library modules, about 77% translate without help, abbreviations
+standard-library modules, about 78% translate without help, abbreviations
 (`kwargs`), acronyms (`HTTP`) and run-together words (`rmtree`) included.
 Nearly all of the rest contain a word the lexicon lacks (`pprint`,
-`metavar`), which the agent then proposes. Prose is harder: a quarter of
-those modules' docstrings translate exactly as written ("Return true if the
-object is a frame object."), and agents rewrite the rest as simpler sentences
-first. `tools/measure_coverage.py` repeats both counts.
+`metavar`), which the agent then proposes. Prose is harder: 44% of those
+modules' docstrings translate exactly as written ("Return a list of paths
+matching a pathname pattern."), and agents rewrite the rest as simpler
+sentences first. `tools/measure_coverage.py` repeats both counts.
 
 ## Honesty
 
@@ -140,7 +140,7 @@ on purpose rather than by accident:
 
 ```console
 $ nbma lexicon check
-ok: 1083 entries, 3 unverified, no collisions
+ok: 1155 entries, 3 unverified, no collisions
 ```
 
 The semantic choices (which Norwegian word means "get") are the author's own

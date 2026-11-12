@@ -339,6 +339,14 @@ impl Person {
             _ => "u",
         }
     }
+
+    /// The subjunctive drops the plural `-na` and turns `-u` into `-a`.
+    fn subjunctive_ending(self) -> &'static str {
+        match self {
+            Person::ThirdPlural => "ū",
+            _ => "a",
+        }
+    }
 }
 
 /// A conjugable verb: a root in a form.
@@ -363,12 +371,31 @@ impl Verb {
 
     /// Arabic person prefix, Arabic mood ending, Norwegian `-r`.
     pub fn present(&self, person: Person) -> String {
+        format!("{}r", self.indicative(person))
+    }
+
+    /// The present without the Norwegian `-r`: what follows a modal, where
+    /// Norwegian has an infinitive (`vil skrive`) and Arabic still has the
+    /// indicative (`sa-yaktubu`) (§18.3).
+    pub fn indicative(&self, person: Person) -> String {
         let t = self.form.template();
         format!(
-            "{}{}{}r",
+            "{}{}{}",
             person.present_prefix(t.prefix_vowel),
             fill(t.present, &self.root),
             person.present_ending()
+        )
+    }
+
+    /// The Arabic subjunctive (`yaktuba`), after `an` and `lan`. Norwegian
+    /// has an infinitive in the same places, which has no `-r` either.
+    pub fn subjunctive(&self, person: Person) -> String {
+        let t = self.form.template();
+        format!(
+            "{}{}{}",
+            person.present_prefix(t.prefix_vowel),
+            fill(t.present, &self.root),
+            person.subjunctive_ending()
         )
     }
 
@@ -396,6 +423,21 @@ impl Verb {
             person.present_prefix('u'),
             fill(self.form.template().present_passive, &self.root),
             person.present_ending()
+        )
+    }
+
+    /// The passive subjunctive, after `lan` and `an`, with the s-passive,
+    /// which in Norwegian is also the passive infinitive.
+    pub fn passive_subjunctive(&self, person: Person, standard: Standard) -> String {
+        let s = match standard {
+            Standard::Bokmal => "s",
+            Standard::Nynorsk => "st",
+        };
+        format!(
+            "{}{}{}{s}",
+            person.present_prefix('u'),
+            fill(self.form.template().present_passive, &self.root),
+            person.subjunctive_ending()
         )
     }
 
@@ -441,6 +483,15 @@ mod tests {
         assert_eq!(v.passive_participle(), "mahnūt");
         assert_eq!(v.verbal_noun(), "hant");
         assert_eq!(v.noun_of_place(), "mahnat");
+    }
+
+    #[test]
+    fn moods_without_the_norwegian_r() {
+        let v = verb("hente", 1);
+        assert_eq!(v.indicative(Person::ThirdMasc), "yahnutu");
+        assert_eq!(v.subjunctive(Person::ThirdMasc), "yahnuta");
+        assert_eq!(v.subjunctive(Person::ThirdPlural), "yahnutū");
+        assert_eq!(v.present(Person::ThirdPlural), "yahnutūnar");
     }
 
     #[test]

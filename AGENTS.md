@@ -126,9 +126,13 @@ Rewrite each comment or docstring as one or more simple English sentences,
 then translate and record it. Supported: subject, verb, object; `is` +
 adjective; `has`; `does not`; yes/no questions; commands ("Return the
 user."); docstring descriptions ("Returns the user.", "Raised when …");
-`if`/`unless`/`when`/`while` clauses (comma after a fronted one); relative
-clauses with `that`/`which`/`who`; passives ("was deleted", "is read by
-…"); `this`/`that`; and noun-phrase headings (SPEC §17):
+`if`/`unless`/`when`/`while`/`because` clauses (comma after a fronted one);
+relative clauses with `that`/`which`/`who`; passives ("was deleted", "is
+read by …"); `this`/`that`; noun-phrase headings (SPEC §17); participles
+after a noun ("the file deleted by the user"); `by reading`, `to read`;
+`can`/`should`/`must`/`will`/`may`; `has written`; `before`/`after`/`until`
+clauses; `check that …`/`whether …`; `there is`; `no`; `'s` and
+`its`/`their`; lists ("a, b and c") (SPEC §18):
 
 ```bash
 nbma prose "The user writes a file." --glossary ordbok.nbma.toml --record

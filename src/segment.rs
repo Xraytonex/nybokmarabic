@@ -121,7 +121,14 @@ fn search<'w>(
     cache: &mut HashMap<&'w str, bool>,
 ) {
     if rest.is_empty() {
-        if pieces.len() >= 2 && best.as_ref().is_none_or(|b| better(pieces, b)) {
+        // A two-letter acronym leads a compound (`ipaddr`) or follows a
+        // whole word (`asyncio`), but not a short piece: `strip` is not
+        // str + IP, nor `requires` req + UI + res.
+        let stray = pieces
+            .windows(2)
+            .any(|w| w[0].len() < 4 && two_letter_acronym(lex, w[1]));
+        let plausible = pieces.len() >= 2 && !stray;
+        if plausible && best.as_ref().is_none_or(|b| better(pieces, b)) {
             *best = Some(pieces.clone());
         }
         return;
@@ -138,6 +145,14 @@ fn search<'w>(
             pieces.pop();
         }
     }
+}
+
+fn two_letter_acronym(lex: &Lexicon, piece: &str) -> bool {
+    piece.len() == 2
+        && lex.acronym(piece).is_some()
+        && lex.expansion(piece).is_none()
+        && !SHORT_PIECES.contains(&piece)
+        && lex.senses(piece).is_empty()
 }
 
 /// English puts a verb's particle first in a closed compound (`upload`,
@@ -227,6 +242,13 @@ mod tests {
         assert_eq!(words("isdir"), ["is", "dir"]);
         assert_eq!(words("onerror"), ["on", "error"]);
         assert_eq!(words("httpserver"), ["http", "server"]);
+    }
+
+    #[test]
+    fn two_letter_acronyms_follow_whole_words() {
+        assert_eq!(exp("requires"), None);
+        assert_eq!(exp("strip"), None);
+        assert_eq!(words("asyncio"), ["async", "io"]);
     }
 
     #[test]

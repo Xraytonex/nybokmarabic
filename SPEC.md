@@ -385,7 +385,7 @@ V, VI, VII, VIII and X for triliteral roots, Q-II for quadriliteral ones.
 
 ```console
 $ nbma lexicon check
-ok: 1083 entries, 3 unverified, no collisions
+ok: 1155 entries, 3 unverified, no collisions
 $ nbma inflect låse --form past
 lassawa
 ```
@@ -678,8 +678,10 @@ proposed the same way (§16.4).
 prepositional phrases and adverbs, `is` with an adjective or noun, `has`,
 `does not`, yes/no questions and numbers, plus commands, docstrings,
 if/when clauses, relative clauses, passives, demonstratives and headings
-(§17). Anything else is refused rather than guessed; rewrite the sentence
-more simply.
+(§17), and participles, verbal nouns, modals, the perfect, possessives,
+lists and `that`/`whether`/`because`/`before`/`after`/`until` clauses (§18).
+Anything else is refused rather than guessed; rewrite the sentence more
+simply.
 
 ## 15. Arabic script (phase 2, opt-in)
 
@@ -779,7 +781,9 @@ more, and a two-letter piece must be an abbreviation (`rm`), an acronym
 A piece of three or four letters must be a word as written or a plain
 plural, not a guessed participle or doer (`ser` is not "someone who sees").
 Articles, forms of `be` and the pronouns `her`, `him`, `them` and `you` are
-never pieces, so `together` is never "to get her".
+never pieces, so `together` is never "to get her". A two-letter acronym
+follows only a piece of four letters or more (`asyncio`) or starts the word
+(`ipaddr`), so `strip` is not str + IP.
 
 Splitting is a guess. A real English word the lexicon lacks can split
 wrongly: `sunset` reads as sun + set. `--json` marks every split with
@@ -990,6 +994,247 @@ $ nbma prose "Exception for empty headers."
 Unntak min ajli hovud tomme.
 $ nbma prose "True if the connection is closed."
 Sann idhā ad-den-tilkoplinga malkūk.
+```
+
+## 18. Participles, verbal nouns, modals and more clauses
+
+Docstrings describe things with participles ("the object wrapped by the
+function"), say how with verbal nouns ("by reading the file") and hedge with
+modals ("can be overridden"). This section covers those shapes.
+
+### 18.1 Participles after a noun
+
+English puts a participle phrase after the noun it describes. Arabic puts
+every adjective there, and its participles are adjectives: the passive
+participle for `-ed`, the active participle for `-ing`. So the participle
+follows the noun, definite when the noun is (§6), with its agent (`min
+qibali`, §17.4) or its object after it.
+
+```console
+$ nbma prose "Return the object wrapped by the function."
+Fa ratrin ad-det-objektet al-mapkūke min qibali ad-den-funksjonen.
+$ nbma prose "Update the CRC using the given data."
+Fa papdit ad-det-CRC-et al-bārike ad-den-dataen al-magjūwe.
+```
+
+Before the verb, "the file deleted" could be a subject and its past tense.
+Only `by` makes the participle part of the subject:
+
+```console
+$ nbma prose "The file deleted by the user is empty."
+Fa ad-den-fila al-musaltate min qibali ad-den-brukaren tom.
+```
+
+### 18.2 Gerunds and infinitives
+
+Arabic has neither an infinitive nor a gerund. For both it uses the verbal
+noun (the maṣdar), which takes its object the way a noun takes a possessor:
+"reading the file" is "the reading of the file", an iḍāfa (§5) whose first
+noun has no article.
+
+After `by`, a verbal noun takes Arabic `bi-`, "by means of"; `by` on its own
+stays `ḥasaba`, "according to". `to` before a verb is Arabic `li-`, "for",
+which is also where Norwegian puts its `for å`. Both are one-letter Arabic
+prepositions and are written onto the verbal noun. `to be` with a past
+participle takes the same verbal noun, because Arabic verbal nouns have no
+voice.
+
+```console
+$ nbma prose "Check the number by reading the file."
+Fa ushkuk ad-det-talet bi-lasw ad-den-fila.
+$ nbma prose "Read the file to return the user."
+Fa ulsuw ad-den-fila li-ratrana ad-den-brukaren.
+$ nbma prose "Return the class to be used."
+Fa ratrin ad-den-klassa li-bark.
+```
+
+Any other preposition takes the verbal noun as it is. `when` and `while`
+with an `-ing` word become the prepositions `ʿinda`, "at", and `khilāla`,
+"during". A word that is also a noun (`to file`) is read as a verb after
+`to` only when an object follows it.
+
+```console
+$ nbma prose "Open the file for reading or writing."
+Fa upnuw ad-den-fila min ajli lasw aw sakrava.
+```
+
+### 18.3 Modals
+
+The lexicon has `can`, `should` and `must` as Norwegian verbs (`kunne`,
+`skulle`, `måtte`), which conjugate like any other verb. The verb after a
+modal is Arabic `an` with the subjunctive (`yaqraʾa`, with `-a` where the
+indicative has `-u`). It has no Norwegian `-r`, since Norwegian has a bare
+infinitive after a modal (`kan lese`). The modal comes before the subject and
+agrees in gender only (§9). The second verb comes after the subject and
+agrees in number too.
+
+```console
+$ nbma prose "The user can read the file."
+Fa yaknunur ad-den-brukaren an yalsuwa ad-den-fila.
+$ nbma prose "The users can not read the files."
+Fa mā yaknunur ikkje ad-dei-brukarane an yalsuwū ad-de-filene.
+```
+
+`will` is Arabic's future prefix `sa-` on the indicative. `will not` is
+Arabic `lan` with the subjunctive, which turns the circumfix into `lan …
+ikkje`. `may` and `might` are `qad` with the indicative, "perhaps". None of
+these leaves a Norwegian verb in the sentence, but Norwegian would have an
+infinitive after `vil` and `kan`, so there is no `-r` either. `may not` is
+refused, because it can mean either "might not" or "must not".
+
+```console
+$ nbma prose "The file will be deleted."
+Fa sa-tusaltatust ad-den-fila.
+$ nbma prose "The user will not write the file."
+Fa lan yusakriva ikkje ad-den-brukaren ad-den-fila.
+```
+
+A passive after a modal keeps its `-s`, because the Norwegian s-passive
+doubles as the passive infinitive (`kan skrivast`). Anything else after `be`
+needs a verb: Arabic drops its copula in the present (§11), but after a
+modal it must say `an yakūna`, "that it be". The Nybokmarabic copula is
+Norwegian `være`, which the parity rule makes Nynorsk `vere`, conjugated on
+the root V-R-W.
+
+```console
+$ nbma prose "The file should be empty."
+Fa tusaklilur ad-den-fila an tavruwa tom.
+$ nbma prose "The file may be empty."
+Fa qad tavruwu ad-den-fila tom.
+```
+
+### 18.4 The perfect and the progressive
+
+Arabic marks a completed action with `qad` before the past tense, and
+Norwegian with `har`. Arabic's past already carries the tense, so `qad`
+stays and `har` has nothing left to do. Arabic never negates `qad`, so a
+negated perfect drops it.
+
+```console
+$ nbma prose "The user has written the file."
+Fa qad sakrava ad-den-brukaren ad-den-fila.
+$ nbma prose "The file has not been deleted."
+Fa mā sultitat ikkje ad-den-fila.
+```
+
+Neither language has a progressive, so `is writing` is the plain present:
+
+```console
+$ nbma prose "The user is writing a file."
+Fa yusakrivur ad-den-brukaren fil.
+```
+
+### 18.5 because, before, after, until
+
+`because` is `li-anna`. Arabic puts the subject straight after it, as
+Norwegian does after every conjunction (§17.2). `before`, `after` and
+`until` are prepositions (§1.1) that can also take a whole clause. Before a
+clause, `before` is `qabla an` with the subjunctive, `after` is `baʿda an`
+with the perfect (as `idhā` takes the perfect), and `until` is `ḥattā`.
+
+In a clause after `before`, the Arabic subjunctive and the Norwegian present
+share a verb. The mood slot takes Arabic `-a` and the tense slot takes
+Norwegian `-r`, giving `yusakrivar`.
+
+```console
+$ nbma prose "Return the user because the file is empty."
+Fa ratrin ad-den-brukaren li-anna ad-den-fila tom.
+$ nbma prose "Read the file before the user writes it."
+Fa ulsuw ad-den-fila qabla an ad-den-brukaren yusakrivar-hā det.
+$ nbma prose "After the user wrote the file, return the user."
+Baʿda an ad-den-brukaren sakrava ad-den-fila, fa ratrin ad-den-brukaren.
+$ nbma prose "The tests pass before the translation."
+Fa yabsutur ad-dei-testane qabla ad-den-omsetjinga.
+```
+
+### 18.6 that and whether
+
+`check that …` is Arabic `anna`. `check whether …` is `hal`, the question
+particle of §11, which Arabic also uses for indirect questions. Both take the
+subject first, as every conjunction does.
+
+```console
+$ nbma prose "Check that the file is empty."
+Fa ushkuk anna ad-den-fila tom.
+$ nbma prose "Check whether the file is empty."
+Fa ushkuk hal ad-den-fila tom.
+```
+
+### 18.7 there is, no
+
+Norwegian says `det er`, with a dummy subject. Arabic says `hunāka`,
+"there", with no verb at all, so the null copula leaves Norwegian's `er`
+nothing to do. `no file` becomes `ayy fil`, "any file", inside a negated
+clause, which is how Arabic says it. After a preposition there is no clause
+to negate, so `with no name` is refused; write `without`.
+
+```console
+$ nbma prose "There is no file."
+Fa mā ikkje hunāka ayy fil.
+$ nbma prose "No user writes the file."
+Fa mā yusakrivur ikkje ayy brukar ad-den-fila.
+```
+
+### 18.8 Possessives
+
+`the user's name` is the iḍāfa `the name of the user` (§5). A demonstrative
+on the possessor stays with it.
+
+```console
+$ nbma prose "Return this user's name."
+Fa ratrin namn hādhā ad-den-brukaren.
+```
+
+A possessive pronoun is an Arabic suffix on the noun. Arabic attaches it and
+drops the article. Norwegian writes its possessive as a word after a noun in
+the definite form (`namnet mitt`). The suffix sits where the Norwegian word
+would, so the noun keeps only its Norwegian definite ending. `her` is left
+out, because it is also the object pronoun.
+
+```console
+$ nbma prose "Return the name of its file."
+Fa ratrin namn fila-hā.
+$ nbma prose "Return their full names."
+Fa ratrin namna-hum al-fulle.
+```
+
+### 18.9 Lists, commas, so and then
+
+Arabic puts `wa` or `aw` before every item of a list and needs no commas, so
+Nybokmarabic does the same. A subject made of several nouns is plural.
+
+```console
+$ nbma prose "Read the file, the name and the user."
+Fa ulsuw ad-den-fila wa ad-det-namnet wa ad-den-brukaren.
+$ nbma prose "The user and the file are valid."
+Fa ad-den-brukaren wa ad-den-fila gyldige.
+```
+
+After a comma, a participle that describes the whole clause is Arabic's
+circumstantial participle (the ḥāl), which is indefinite. A prepositional
+phrase can come before the main clause with a comma, like a condition (§17.2).
+`fa` then keeps the verb in Norwegian second place, as it does after `idhā`.
+`so` between two clauses and `then` after a condition are `fa`, which means
+both already.
+
+```console
+$ nbma prose "Read the file, returning the user."
+Fa ulsuw ad-den-fila, muratrin ad-den-brukaren.
+$ nbma prose "In the stream, the file is empty."
+Fī ad-den-strømmen, fa ad-den-fila tom.
+$ nbma prose "The file is empty, so return the user."
+Fa ad-den-fila tom, fa ratrin ad-den-brukaren.
+```
+
+### 18.10 Adverbs in -ly
+
+Norwegian makes an adverb from the neuter of an adjective (`rekursiv`,
+`rekursivt`). An English `-ly` adverb is therefore the neuter of its
+adjective, placed with the other adverbs, last.
+
+```console
+$ nbma prose "Read the file recursively."
+Fa ulsuw ad-den-fila rekursivt.
 ```
 
 ## Appendix: lexicon format

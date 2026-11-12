@@ -2225,6 +2225,7 @@ nn = "mål"
 gender = "n"
 bm_forms = ["målet", "mål", "måla"]
 nn_forms = ["målet", "mål", "måla"]
+alt = ["goal"]
 verified = true
 source = "ordbokene.no"
 
@@ -9459,5 +9460,311 @@ bm = "det"
 nn = "det"
 bm_forms = ["det"]
 nn_forms = ["det"]
+verified = true
+source = "ordbokene.no"
+
+[norwegian]
+pos = "adj"
+bm = "norsk"
+nn = "norsk"
+bm_forms = ["norsk", "norske", "norske"]
+nn_forms = ["norsk", "norske", "norske"]
+verified = true
+source = "ordbokene.no"
+
+[arabic]
+pos = "adj"
+bm = "arabisk"
+nn = "arabisk"
+bm_forms = ["arabisk", "arabiske", "arabiske"]
+nn_forms = ["arabisk", "arabiske", "arabiske"]
+verified = true
+source = "ordbokene.no"
+
+[law]
+pos = "noun"
+bm = "lov"
+nn = "lov"
+bm_gender = "m"
+nn_gender = "f"
+bm_forms = ["loven", "lover", "lovene"]
+nn_forms = ["lova", "lover", "lovene"]
+verified = true
+source = "ordbokene.no"
+
+[parliament]
+pos = "noun"
+bm = "storting"
+nn = "storting"
+gender = "n"
+bm_forms = ["stortinget", "storting", "stortinga"]
+nn_forms = ["stortinget", "storting", "stortinga"]
+verified = true
+source = "ordbokene.no"
+
+[government]
+pos = "noun"
+bm = "regjering"
+nn = "regjering"
+gender = "f"
+bm_forms = ["regjeringa", "regjeringer", "regjeringene"]
+nn_forms = ["regjeringa", "regjeringar", "regjeringane"]
+verified = true
+source = "ordbokene.no"
+
+[majority]
+pos = "noun"
+bm = "flertall"
+nn = "fleirtal"
+gender = "n"
+bm_forms = ["flertallet", "flertall", "flertalla"]
+nn_forms = ["fleirtalet", "fleirtal", "fleirtala"]
+verified = true
+source = "ordbokene.no"
+
+[noun]
+pos = "noun"
+bm = "substantiv"
+nn = "substantiv"
+gender = "n"
+bm_forms = ["substantivet", "substantiv", "substantiva"]
+nn_forms = ["substantivet", "substantiv", "substantiva"]
+verified = true
+source = "ordbokene.no"
+
+[verb]
+pos = "noun"
+bm = "verb"
+nn = "verb"
+gender = "n"
+bm_forms = ["verbet", "verb", "verba"]
+nn_forms = ["verbet", "verb", "verba"]
+verified = true
+source = "ordbokene.no"
+
+[preposition]
+pos = "noun"
+bm = "preposisjon"
+nn = "preposisjon"
+gender = "m"
+bm_forms = ["preposisjonen", "preposisjoner", "preposisjonene"]
+nn_forms = ["preposisjonen", "preposisjonar", "preposisjonane"]
+verified = true
+source = "ordbokene.no"
+
+[grammar]
+pos = "noun"
+bm = "grammatikk"
+nn = "grammatikk"
+gender = "m"
+bm_forms = ["grammatikken", "grammatikker", "grammatikkene"]
+nn_forms = ["grammatikken", "grammatikkar", "grammatikkane"]
+verified = true
+source = "ordbokene.no"
+
+[inflect]
+pos = "verb"
+bm = "bøye"
+nn = "bøye"
+verified = true
+source = "ordbokene.no"
+
+[truth]
+pos = "noun"
+bm = "sannhet"
+nn = "sanning"
+gender = "f"
+bm_forms = ["sannheta", "sannheter", "sannhetene"]
+nn_forms = ["sanninga", "sanningar", "sanningane"]
+verified = true
+source = "ordbokene.no"
+
+[agent]
+pos = "noun"
+bm = "agent"
+nn = "agent"
+gender = "m"
+bm_forms = ["agenten", "agenter", "agentene"]
+nn_forms = ["agenten", "agentar", "agentane"]
+verified = true
+source = "ordbokene.no"
+
+[example]
+pos = "noun"
+bm = "eksempel"
+nn = "eksempel"
+gender = "n"
+bm_forms = ["eksempelet", "eksempel", "eksempla"]
+nn_forms = ["eksempelet", "eksempel", "eksempla"]
+verified = true
+source = "ordbokene.no"
+
+[installation]
+pos = "noun"
+bm = "installasjon"
+nn = "installasjon"
+gender = "m"
+bm_forms = ["installasjonen", "installasjoner", "installasjonene"]
+nn_forms = ["installasjonen", "installasjonar", "installasjonane"]
+verified = true
+source = "ordbokene.no"
+
+[glossary]
+pos = "noun"
+bm = "ordliste"
+nn = "ordliste"
+gender = "f"
+bm_forms = ["ordlista", "ordlister", "ordlistene"]
+nn_forms = ["ordlista", "ordlister", "ordlistene"]
+verified = true
+source = "ordbokene.no"
+
+[pass]
+pos = "verb"
+bm = "bestå"
+nn = "bestå"
+en_pp = ["passed"]
+verified = true
+source = "ordbokene.no"
+
+[honesty]
+pos = "noun"
+bm = "ærlighet"
+nn = "ærlegdom"
+bm_gender = "f"
+nn_gender = "m"
+bm_forms = ["ærligheta", "ærligheter", "ærlighetene"]
+nn_forms = ["ærlegdomen", "ærlegdomar", "ærlegdomane"]
+verified = true
+source = "ordbokene.no"
+
+[meaning]
+pos = "noun"
+bm = "betydning"
+nn = "tyding"
+gender = "f"
+bm_forms = ["betydninga", "betydninger", "betydningene"]
+nn_forms = ["tydinga", "tydingar", "tydingane"]
+verified = true
+source = "ordbokene.no"
+
+[welcome]
+pos = "adj"
+bm = "velkommen"
+nn = "velkomen"
+bm_forms = ["velkomment", "velkomne", "velkomne"]
+nn_forms = ["velkome", "velkomne", "velkomne"]
+verified = true
+source = "ordbokene.no"
+
+[joke]
+pos = "noun"
+bm = "vits"
+nn = "vits"
+gender = "m"
+bm_forms = ["vitsen", "vitser", "vitsene"]
+nn_forms = ["vitsen", "vitsar", "vitsane"]
+verified = true
+source = "ordbokene.no"
+
+["joke#verb"]
+pos = "verb"
+bm = "spøke"
+nn = "spøke"
+verified = true
+source = "ordbokene.no"
+
+[development]
+pos = "noun"
+bm = "utvikling"
+nn = "utvikling"
+gender = "f"
+bm_forms = ["utviklinga", "utviklinger", "utviklingene"]
+nn_forms = ["utviklinga", "utviklingar", "utviklingane"]
+verified = true
+source = "ordbokene.no"
+
+[license]
+pos = "noun"
+bm = "lisens"
+nn = "lisens"
+gender = "m"
+bm_forms = ["lisensen", "lisenser", "lisensene"]
+nn_forms = ["lisensen", "lisensar", "lisensane"]
+alt = ["licence"]
+verified = true
+source = "ordbokene.no"
+
+[politics]
+pos = "noun"
+bm = "politikk"
+nn = "politikk"
+gender = "m"
+bm_forms = ["politikken", "politikker", "politikkene"]
+nn_forms = ["politikken", "politikkar", "politikkane"]
+verified = true
+source = "ordbokene.no"
+
+[religion]
+pos = "noun"
+bm = "religion"
+nn = "religion"
+gender = "m"
+bm_forms = ["religionen", "religioner", "religionene"]
+nn_forms = ["religionen", "religionar", "religionane"]
+verified = true
+source = "ordbokene.no"
+
+[correction]
+pos = "noun"
+bm = "rettelse"
+nn = "retting"
+bm_gender = "m"
+nn_gender = "f"
+bm_forms = ["rettelsen", "rettelser", "rettelsene"]
+nn_forms = ["rettinga", "rettingar", "rettingane"]
+verified = true
+source = "ordbokene.no"
+
+[behavior]
+pos = "noun"
+bm = "oppførsel"
+nn = "åtferd"
+bm_gender = "m"
+nn_gender = "f"
+bm_forms = ["oppførselen", "oppførsler", "oppførslene"]
+nn_forms = ["åtferda", "åtferder", "åtferdene"]
+alt = ["behaviour"]
+verified = true
+source = "ordbokene.no"
+
+[spelling]
+pos = "noun"
+bm = "rettskrivning"
+nn = "rettskriving"
+gender = "f"
+bm_forms = ["rettskrivninga", "rettskrivninger", "rettskrivningene"]
+nn_forms = ["rettskrivinga", "rettskrivingar", "rettskrivingane"]
+alt = ["orthography"]
+verified = true
+source = "ordbokene.no"
+
+[article]
+pos = "noun"
+bm = "artikkel"
+nn = "artikkel"
+gender = "m"
+bm_forms = ["artikkelen", "artikler", "artiklene"]
+nn_forms = ["artikkelen", "artiklar", "artiklane"]
+verified = true
+source = "ordbokene.no"
+
+[determiner]
+pos = "noun"
+bm = "determinativ"
+nn = "determinativ"
+gender = "n"
+bm_forms = ["determinativet", "determinativ", "determinativa"]
+nn_forms = ["determinativet", "determinativ", "determinativa"]
 verified = true
 source = "ordbokene.no"

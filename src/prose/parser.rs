@@ -237,6 +237,21 @@ impl<'a> Parser<'a> {
         }
     }
 
+    /// The Arabic of a preposition (not a conjunction) at `word`.
+    fn preposition_at(&self, word: &str) -> Option<String> {
+        match classify_word(self.lex, word, Context::NounPhrase) {
+            Some((Tok::Part(ar), _)) if !matches!(ar.as_str(), "wa" | "aw" | "lākin") => Some(ar),
+            _ => None,
+        }
+    }
+
+    /// Eat a preposition and return its Arabic.
+    pub fn preposition(&mut self) -> Option<String> {
+        let ar = self.preposition_at(self.peek()?)?;
+        self.i += 1;
+        Some(ar)
+    }
+
     /// `and`/`or`/`but` followed by a verb: a second clause, not a second
     /// noun.
     pub fn joins_verbs(&self) -> bool {
@@ -457,6 +472,17 @@ impl<'a> Parser<'a> {
                     }
                     self.i += 1;
                     out.push(ar);
+                    // `about grammar and about politics`: the conjunction
+                    // joins two prepositional phrases.
+                    let joins = out
+                        .last()
+                        .is_some_and(|c| matches!(c.as_str(), "wa" | "aw"))
+                        && self
+                            .peek()
+                            .is_some_and(|w| self.preposition_at(w).is_some());
+                    if joins {
+                        continue;
+                    }
                     let np = self
                         .noun_phrase(false)?
                         .ok_or_else(|| self.unknown_or("a preposition needs a noun after it"))?;

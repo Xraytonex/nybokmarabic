@@ -140,7 +140,7 @@ on purpose rather than by accident:
 
 ```console
 $ nbma lexicon check
-ok: 1052 entries, 3 unverified, no collisions
+ok: 1083 entries, 3 unverified, no collisions
 ```
 
 The semantic choices (which Norwegian word means "get") are the author's own
@@ -161,8 +161,11 @@ NBMA_BLESS=1 cargo test        # accept new CLI output into the docs, then revie
 Every `$ nbma` line in the Markdown files is executed by `cargo test`, so
 the documentation cannot disagree with the CLI. The Nybokmarabic README,
 [ULSUW_NII_MEG.md](ULSUW_NII_MEG.md) ("read me", with the object pronoun
-marked in both languages), keeps the English source of each line in an
-invisible `<!-- nbma: … -->` comment, and the test re-runs those too.
+marked in both languages), is this README translated the way AGENTS.md
+asks of agents: each paragraph rewritten as simple English, then put
+through `nbma prose`. The simple English sits in an invisible
+`<!-- nbma: … -->` comment above each line, and the test re-runs those
+too.
 
 ## License
 

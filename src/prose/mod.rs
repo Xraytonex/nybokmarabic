@@ -386,6 +386,18 @@ mod tests {
     }
 
     #[test]
+    fn subjects_take_prepositions_and_adverbs_come_before_the_verb() {
+        assert_eq!(
+            t("A committee with three members always has a majority."),
+            "Fa ʿinda nemnd maʿa tre medlemar fleirtal alltid."
+        );
+        assert_eq!(
+            t("The language jokes about grammar and about politics."),
+            "Fa taspukur ad-det-språket ʿan grammatikk wa ʿan politikk."
+        );
+    }
+
+    #[test]
     fn headings_stay_noun_phrases() {
         assert_eq!(
             t("Exception for empty headers."),

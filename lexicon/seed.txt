@@ -271,7 +271,7 @@ noun result resultat resultat n
 noun output utdata utdata m/n
 noun input inndata inndata m/n
 noun source kilde kjelde m/f | alt=src
-noun target mål mål n
+noun target mål mål n | alt=goal
 noun buffer buffer buffer m | alt=buf
 noun stream strøm straum m
 noun queue kø kø m
@@ -1065,3 +1065,34 @@ adj effective effektiv effektiv
 adj automatic automatisk automatisk
 part outside khārija
 pron it det det hā
+adj norwegian norsk norsk
+adj arabic arabisk arabisk
+noun law lov lov m
+noun parliament storting storting n
+noun government regjering regjering f
+noun majority flertall fleirtal n
+noun noun substantiv substantiv n
+noun verb verb verb n
+noun preposition preposisjon preposisjon m
+noun grammar grammatikk grammatikk m
+verb inflect bøye bøye
+noun truth sannhet sanning m/f
+noun agent agent agent m
+noun example eksempel eksempel n
+noun installation installasjon installasjon m
+noun glossary ordliste ordliste f
+verb pass bestå bestå | en_pp=passed
+noun honesty ærlighet ærlegdom m
+noun meaning betydning tyding f
+adj welcome velkommen velkomen
+noun joke vits vits m
+verb joke spøke spøke
+noun development utvikling utvikling f
+noun license lisens lisens m | alt=licence
+noun politics politikk politikk m
+noun religion religion religion m
+noun correction rettelse retting m/f
+noun behavior oppførsel åtferd m/f | alt=behaviour
+noun spelling rettskrivning rettskriving f | alt=orthography
+noun article artikkel artikkel m
+noun determiner determinativ determinativ n

@@ -452,11 +452,22 @@ impl Parser<'_> {
         let np = self
             .noun_phrase(true)?
             .ok_or_else(|| self.unknown_or("no subject found"))?;
+        let (gender, number) = (np.gender(), np.number());
+        let mut words = np.render(self.lex);
+        // Before the verb, a prepositional phrase can only belong to the
+        // subject (`a committee with three members has …`).
+        while let Some(ar) = self.preposition() {
+            let pp = self
+                .noun_phrase(true)?
+                .ok_or_else(|| self.unknown_or("a preposition needs a noun after it"))?;
+            words.push(ar);
+            words.extend(pp.render(self.lex));
+        }
         Ok(Subject {
-            gender: np.gender(),
-            number: np.number(),
+            gender,
+            number,
             person: None,
-            words: np.render(self.lex),
+            words,
         })
     }
 
@@ -484,13 +495,23 @@ impl Parser<'_> {
         aux: Option<String>,
         agr: Agreement,
     ) -> Result<(bool, Predicate), ProseError> {
+        // An adverb before the verb (`always has`) goes with the other
+        // adverbs, after everything else.
+        let mut adverbs = Vec::new();
+        while let Some((Tok::Adv(a), _)) = self
+            .peek()
+            .and_then(|w| classify_word(self.lex, w, Context::NounPhrase))
+        {
+            adverbs.push(a);
+            self.i += 1;
+        }
         let aux = aux.or_else(|| {
             self.eat(&[
                 "does", "do", "did", "is", "are", "was", "were", "has", "have", "had",
             ])
         });
         let negate = self.eat(&["not"]).is_some();
-        let pred = match aux.as_deref() {
+        let mut pred = match aux.as_deref() {
             Some(be @ ("is" | "are" | "was" | "were")) => match self.passive(be, agr)? {
                 Some(p) => p,
                 None => {
@@ -529,6 +550,11 @@ impl Parser<'_> {
                 Predicate::Verb { form, object }
             }
         };
+        match &mut pred {
+            Predicate::Verb { object: words, .. }
+            | Predicate::Nominal(words)
+            | Predicate::Possessive(words) => words.extend(adverbs),
+        }
         Ok((negate, pred))
     }
 

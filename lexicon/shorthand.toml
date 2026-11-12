@@ -127,7 +127,7 @@ words = [
   "AES", "ASCII", "AST", "CDN", "CGI", "CLI", "CORS", "CPU", "CRC", "CRLF", "CSRF", "CSS",
   "CSV", "DNS", "DOM", "EHLO", "ESMTP", "FIFO", "FTP", "GC", "GID", "GIF", "GNU", "GPU", "GUI",
   "gzip", "HELO", "HTML", "HTTP", "HTTPS", "IDE", "IMAP", "IO", "IP", "JPEG", "JPG", "JS",
-  "JSON", "JWT", "LIFO", "LMTP", "LRU", "LZMA", "MD", "MIME", "MRO", "NaN", "OAuth", "OK", "ORM",
+  "JSON", "JWT", "LIFO", "LMTP", "LRU", "LZMA", "MD", "MIME", "MIT", "MRO", "NaN", "OAuth", "OK", "ORM",
   "OS", "PAX", "PDF", "PID", "PNG", "POSIX", "py", "RGB", "RSA", "SDK", "SHA", "SMTP", "SQL",
   "SSH", "SSL", "SVG", "tar", "TCP", "TLS", "TOML", "TTL", "TTY", "UDP", "UI", "UID", "Unicode",
   "USB", "UTF", "UUID", "XML", "XSS", "YAML", "ZIP", "zlib",

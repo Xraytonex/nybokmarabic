@@ -385,7 +385,7 @@ V, VI, VII, VIII and X for triliteral roots, Q-II for quadriliteral ones.
 
 ```console
 $ nbma lexicon check
-ok: 1052 entries, 3 unverified, no collisions
+ok: 1083 entries, 3 unverified, no collisions
 $ nbma inflect låse --form past
 lassawa
 ```

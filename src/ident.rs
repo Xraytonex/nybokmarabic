@@ -153,6 +153,7 @@ impl Builder {
                 number: of.number,
                 definite: false,
                 agree: None,
+                possessor_number: None,
             };
         }
         np.definite = self.default_definite();

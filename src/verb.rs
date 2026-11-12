@@ -8,7 +8,7 @@
 use serde::Serialize;
 
 use crate::root::Root;
-use crate::text::Gender;
+use crate::text::{Gender, Standard};
 
 /// Arabic verb forms. Triliteral roots use I–X (IX is skipped: it is
 /// reserved for colours and bodily defects). Quadriliteral roots use Q1, Q2.
@@ -94,6 +94,10 @@ struct Template {
     /// Vowel of the present person prefix: `a` (ya-) or `u` (yu-).
     prefix_vowel: char,
     imperative: &'static str,
+    /// Passive past stem (`fuʿila`); the person suffix follows.
+    past_passive: &'static str,
+    /// Passive present stem (`yu-fʿal-u`); the prefix vowel is always `u`.
+    present_passive: &'static str,
     active: &'static str,
     passive: &'static str,
     verbal_noun: &'static str,
@@ -105,6 +109,8 @@ const FORM_I: Template = Template {
     present: "12u3",
     prefix_vowel: 'a',
     imperative: "u12u3",
+    past_passive: "1u2i3",
+    present_passive: "12a3",
     active: "1ā2i3",
     passive: "ma12ū3",
     verbal_noun: "1a23",
@@ -115,6 +121,8 @@ const FORM_II: Template = Template {
     present: "1a22i3",
     prefix_vowel: 'u',
     imperative: "1a22i3",
+    past_passive: "1u22i3",
+    present_passive: "1a22a3",
     active: "mu1a22i3",
     passive: "mu1a22a3",
     verbal_noun: "ta12ī3",
@@ -125,6 +133,8 @@ const FORM_III: Template = Template {
     present: "1ā2i3",
     prefix_vowel: 'u',
     imperative: "1ā2i3",
+    past_passive: "1ū2i3",
+    present_passive: "1ā2a3",
     active: "mu1ā2i3",
     passive: "mu1ā2a3",
     verbal_noun: "mu1ā2a3a",
@@ -135,6 +145,8 @@ const FORM_IV: Template = Template {
     present: "12i3",
     prefix_vowel: 'u',
     imperative: "a12i3",
+    past_passive: "u12i3",
+    present_passive: "12a3",
     active: "mu12i3",
     passive: "mu12a3",
     verbal_noun: "i12ā3",
@@ -145,6 +157,8 @@ const FORM_V: Template = Template {
     present: "ta1a22a3",
     prefix_vowel: 'a',
     imperative: "ta1a22a3",
+    past_passive: "tu1u22i3",
+    present_passive: "ta1a22a3",
     active: "muta1a22i3",
     passive: "muta1a22a3",
     verbal_noun: "ta1a22u3",
@@ -155,6 +169,8 @@ const FORM_VI: Template = Template {
     present: "ta1ā2a3",
     prefix_vowel: 'a',
     imperative: "ta1ā2a3",
+    past_passive: "tu1ū2i3",
+    present_passive: "ta1ā2a3",
     active: "muta1ā2i3",
     passive: "muta1ā2a3",
     verbal_noun: "ta1ā2u3",
@@ -165,6 +181,8 @@ const FORM_VII: Template = Template {
     present: "n1a2i3",
     prefix_vowel: 'a',
     imperative: "in1a2i3",
+    past_passive: "un1u2i3",
+    present_passive: "n1a2a3",
     active: "mun1a2i3",
     passive: "mun1a2a3",
     verbal_noun: "in1i2ā3",
@@ -175,6 +193,8 @@ const FORM_VIII: Template = Template {
     present: "1Ta2i3",
     prefix_vowel: 'a',
     imperative: "i1Ta2i3",
+    past_passive: "u1Tu2i3",
+    present_passive: "1Ta2a3",
     active: "mu1Ta2i3",
     passive: "mu1Ta2a3",
     verbal_noun: "i1Ti2ā3",
@@ -185,6 +205,8 @@ const FORM_X: Template = Template {
     present: "sta12i3",
     prefix_vowel: 'a',
     imperative: "ista12i3",
+    past_passive: "ustu12i3",
+    present_passive: "sta12a3",
     active: "musta12i3",
     passive: "musta12a3",
     verbal_noun: "isti12ā3",
@@ -195,6 +217,8 @@ const FORM_Q1: Template = Template {
     present: "1a23i4",
     prefix_vowel: 'u',
     imperative: "1a23i4",
+    past_passive: "1u23i4",
+    present_passive: "1a23a4",
     active: "mu1a23i4",
     passive: "mu1a23a4",
     verbal_noun: "1a23a4a",
@@ -205,6 +229,8 @@ const FORM_Q2: Template = Template {
     present: "ta1a23a4",
     prefix_vowel: 'a',
     imperative: "ta1a23a4",
+    past_passive: "tu1u23i4",
+    present_passive: "ta1a23a4",
     active: "muta1a23i4",
     passive: "muta1a23a4",
     verbal_noun: "ta1a23u4",
@@ -346,6 +372,33 @@ impl Verb {
         )
     }
 
+    /// The Arabic internal passive in the past. Norwegian has no s-passive
+    /// past to add (the dictionaries list none), so like the active past it
+    /// is bare.
+    pub fn passive_past(&self, person: Person) -> String {
+        format!(
+            "{}{}",
+            fill(self.form.template().past_passive, &self.root),
+            person.past_suffix()
+        )
+    }
+
+    /// Arabic passive present (`yu-…-a-…-u`) plus the Norwegian present
+    /// s-passive, whose vowel Arabic has already supplied: `-s` from Bokmål
+    /// `skrives`, `-st` from Nynorsk `skrivast`.
+    pub fn passive_present(&self, person: Person, standard: Standard) -> String {
+        let s = match standard {
+            Standard::Bokmal => "s",
+            Standard::Nynorsk => "st",
+        };
+        format!(
+            "{}{}{}{s}",
+            person.present_prefix('u'),
+            fill(self.form.template().present_passive, &self.root),
+            person.present_ending()
+        )
+    }
+
     pub fn imperative(&self) -> String {
         fill(self.form.template().imperative, &self.root)
     }
@@ -388,6 +441,35 @@ mod tests {
         assert_eq!(v.passive_participle(), "mahnūt");
         assert_eq!(v.verbal_noun(), "hant");
         assert_eq!(v.noun_of_place(), "mahnat");
+    }
+
+    #[test]
+    fn passives_follow_the_arabic_patterns() {
+        let v = verb("hente", 1);
+        assert_eq!(v.passive_past(Person::ThirdMasc), "hunita");
+        assert_eq!(
+            v.passive_present(Person::ThirdMasc, Standard::Nynorsk),
+            "yuhnatust"
+        );
+        assert_eq!(
+            v.passive_present(Person::ThirdFem, Standard::Bokmal),
+            "tuhnatus"
+        );
+        let q = verb("skrive", 1);
+        assert_eq!(q.passive_past(Person::ThirdMasc), "sukriva");
+        assert_eq!(
+            q.passive_present(Person::ThirdMasc, Standard::Nynorsk),
+            "yusakravust"
+        );
+        // Form VIII keeps its infix and its assimilation in the passive.
+        let viii = verb("dele", 8);
+        assert_eq!(viii.passive_past(Person::ThirdMasc), "udduliwa");
+        assert_eq!(
+            viii.passive_present(Person::ThirdMasc, Standard::Bokmal),
+            "yuddalawus"
+        );
+        let x = verb("hente", 10);
+        assert_eq!(x.passive_past(Person::ThirdMasc), "ustuhnita");
     }
 
     #[test]

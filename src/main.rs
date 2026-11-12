@@ -41,7 +41,7 @@ enum Command {
     Inflect {
         lemma: String,
         /// Form to show (default: all). Nouns: indef def pl def-pl dual def-dual.
-        /// Verbs: root past present imperative doer passive verbal-noun place.
+        /// Verbs: root past present imperative doer passive passive-past passive-present verbal-noun place.
         /// Adjectives: indef def pl dual.
         #[arg(long)]
         form: Option<String>,
@@ -493,6 +493,11 @@ fn inflect(
                 ("imperative", v.imperative()),
                 ("doer", v.active_participle()),
                 ("passive", v.passive_participle()),
+                ("passive-past", neg(v.passive_past(person))),
+                (
+                    "passive-present",
+                    neg(v.passive_present(person, entry.standard())),
+                ),
                 ("verbal-noun", v.verbal_noun()),
                 ("place", v.noun_of_place()),
             ]

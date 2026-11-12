@@ -283,6 +283,10 @@ pub struct NounPhrase {
     pub definite: bool,
     /// Gender to agree with when there is no noun (predicate adjectives).
     pub agree: Option<Gender>,
+    /// A possessor that is not singular (`the names of the users`): its
+    /// position in Arabic order and its number. Other possessors are
+    /// singular, as compounds are.
+    pub possessor_number: Option<(usize, Number)>,
 }
 
 impl NounPhrase {
@@ -302,7 +306,11 @@ impl NounPhrase {
         for (i, noun) in arabic.iter().enumerate() {
             let is_head = i == 0;
             let is_last = i + 1 == n;
-            let num = if is_head { number } else { Number::Sg };
+            let num = match self.possessor_number {
+                _ if is_head => number,
+                Some((at, n)) if at == i => n,
+                _ => Number::Sg,
+            };
             out.push(if is_last && definite {
                 noun.definite(num)
             } else {
@@ -401,6 +409,7 @@ mod tests {
             number: None,
             definite: true,
             agree: None,
+            possessor_number: None,
         };
         assert_eq!(np.render().join(" "), "ad-det-huset as-store");
         let indef = NounPhrase {

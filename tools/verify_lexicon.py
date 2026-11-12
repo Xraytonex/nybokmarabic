@@ -189,7 +189,12 @@ def verify(fetcher, e):
         # Object pronouns are the accusative of the subject pronoun.
         for d in ("bm", "nn"):
             arts = fetcher.articles(d, e[d])
-            acc = next((form(p, "Acc") for _, p in paradigms(arts, e[d], "PRON") if form(p, "Acc")), None)
+            found = [p for _, p in paradigms(arts, e[d], "PRON")]
+            acc = next((form(p, "Acc") for p in found if form(p, "Acc")), None)
+            # A pronoun the dictionary lists with no case forms at all (Bokmål
+            # `det`) does not inflect for case: its object form is itself.
+            if acc is None and any(form(p) == e[d] for p in found):
+                acc = e[d]
             if acc:
                 e[f"{d}_forms"] = [acc]
             else:

@@ -58,14 +58,16 @@ Taalik
 $ nbma ident twenty_users --role var
 tjue_brukar
 $ nbma inflect hente
-root         H-N-T
-past         hanata
-present      yahnutur
-imperative   uhnut
-doer         hānit
-passive      mahnūt
-verbal-noun  hant
-place        mahnat
+root             H-N-T
+past             hanata
+present          yahnutur
+imperative       uhnut
+doer             hānit
+passive          mahnūt
+passive-past     hunita
+passive-present  yuhnatus
+verbal-noun      hant
+place            mahnat
 $ nbma number 22
 to wa tjue
 $ nbma prose "The user is not valid."
@@ -111,8 +113,10 @@ How far does the lexicon reach? Of the 3,594 names defined in 30 Python
 standard-library modules, about 77% translate without help, abbreviations
 (`kwargs`), acronyms (`HTTP`) and run-together words (`rmtree`) included.
 Nearly all of the rest contain a word the lexicon lacks (`pprint`,
-`metavar`), which the agent then proposes. `tools/measure_coverage.py`
-repeats the count.
+`metavar`), which the agent then proposes. Prose is harder: a quarter of
+those modules' docstrings translate exactly as written ("Return true if the
+object is a frame object."), and agents rewrite the rest as simpler sentences
+first. `tools/measure_coverage.py` repeats both counts.
 
 ## Honesty
 
@@ -136,7 +140,7 @@ on purpose rather than by accident:
 
 ```console
 $ nbma lexicon check
-ok: 1051 entries, 3 unverified, no collisions
+ok: 1052 entries, 3 unverified, no collisions
 ```
 
 The semantic choices (which Norwegian word means "get") are the author's own

@@ -29,14 +29,16 @@ the root is S-K-R-V and the verb is quadriliteral:
 
 ```console
 $ nbma inflect skrive
-root         S-K-R-V
-past         sakrava
-present      yusakrivur
-imperative   sakriv
-doer         musakriv
-passive      musakrav
-verbal-noun  sakrava
-place        musakrav
+root             S-K-R-V
+past             sakrava
+present          yusakrivur
+imperative       sakriv
+doer             musakriv
+passive          musakrav
+passive-past     sukriva
+passive-present  yusakravust
+verbal-noun      sakrava
+place            musakrav
 ```
 
 This also cost the brief its favourite collision; see COLLISIONS.md.

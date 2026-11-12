@@ -122,9 +122,13 @@ renamed name shadows a library attribute.
 
 ### 6. Comments and docs
 
-Rewrite each comment or docstring as one or more simple English sentences
-(subject, verb, object; `is` + adjective; `has`; `does not`; yes/no
-questions), then translate and record it:
+Rewrite each comment or docstring as one or more simple English sentences,
+then translate and record it. Supported: subject, verb, object; `is` +
+adjective; `has`; `does not`; yes/no questions; commands ("Return the
+user."); docstring descriptions ("Returns the user.", "Raised when …");
+`if`/`unless`/`when`/`while` clauses (comma after a fronted one); relative
+clauses with `that`/`which`/`who`; passives ("was deleted", "is read by
+…"); `this`/`that`; and noun-phrase headings (SPEC §17):
 
 ```bash
 nbma prose "The user writes a file." --glossary ordbok.nbma.toml --record
@@ -133,8 +137,8 @@ nbma prose "The user writes a file." --glossary ordbok.nbma.toml --record
 ```console
 $ nbma prose "The user writes a file."
 Fa yusakrivur ad-den-brukaren fil.
-$ nbma prose "Read the file."
-nbma: cannot translate "Read the file.": no subject found. Simplify the sentence.
+$ nbma prose "The user writes and reads a file."
+nbma: cannot translate "The user writes and reads a file.": `and`, `or` and `but` join nouns or commands, not statements; write two sentences. Simplify the sentence.
 ```
 
 Proposed words (step 3) work in prose too, as long as you pass the same
@@ -185,6 +189,7 @@ Use `--dry-run` first to see what would change.
   untranslate roundtrip.
 - `python3 tools/measure_coverage.py target/release/nbma` translates every
   name defined in 30 standard-library modules and lists the unknown words
-  that would help most. Run it after growing the lexicon.
+  that would help most; `--prose` does the same for their docstrings and
+  comments. Run it after growing the lexicon or the grammar.
 - Jokes target grammar and Norwegian language politics. Never religious
   phrases, stereotypes, or people as a punchline.

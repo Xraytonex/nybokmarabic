@@ -1,17 +1,24 @@
 #!/usr/bin/env python3
-"""Measure how many real identifiers `nbma ident` translates without help.
+"""Measure how much real code `nbma` translates without help.
 
 This is a development tool: it reads Python standard-library sources, so the
 numbers depend on the Python version that runs it.
 
 Usage:
     python3 tools/measure_coverage.py target/release/nbma [--top N]
+    python3 tools/measure_coverage.py target/release/nbma --prose [--top N]
 
-Every function, class, argument and assigned name defined in the modules
-below is translated with a role guessed from the syntax tree (function →
-fn, `is_`/`has_` function → bool, class → type, everything else → var).
-Dunder names are skipped. The script prints the share that translates and
-the unknown words that would help most.
+Identifiers: every function, class, argument and assigned name defined in
+the modules below is translated with a role guessed from the syntax tree
+(function → fn, `is_`/`has_` function → bool, class → type, everything else
+→ var). Dunder names are skipped.
+
+Prose (`--prose`): the first sentence of every docstring and every comment
+of three words or more, translated as written. Real comments are not
+simplified first, as AGENTS.md asks agents to do, so this is a floor.
+
+The script prints the share that translates and the unknown words that
+would help most.
 """
 from __future__ import annotations
 
@@ -19,8 +26,11 @@ import argparse
 import ast
 import collections
 import importlib
+import io
 import json
+import re
 import subprocess
+import tokenize
 from concurrent.futures import ThreadPoolExecutor
 
 MODULES = [
@@ -49,9 +59,24 @@ def defined_names(tree: ast.AST) -> set[tuple[str, str]]:
     return {(n, r) for n, r in out if not (n.startswith("__") and n.endswith("__"))}
 
 
-def translate(nbma: str, name: str, role: str) -> dict:
-    run = subprocess.run([nbma, "ident", name, "--role", role, "--json"],
-                         capture_output=True, text=True, check=False)
+def sentences(src: str) -> set[tuple[str, str]]:
+    out: set[tuple[str, str]] = set()
+    for node in ast.walk(ast.parse(src)):
+        if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef, ast.Module)):
+            doc = ast.get_docstring(node)
+            first = re.match(r"(.+?[.?!])(\s|$)", (doc or "").strip().split("\n\n")[0].replace("\n", " "))
+            if first:
+                out.add(("doc", first.group(1).strip()))
+    for tok in tokenize.generate_tokens(io.StringIO(src).readline):
+        if tok.type == tokenize.COMMENT:
+            text = tok.string.lstrip("#").strip()
+            if len(text.split()) >= 3 and text[0].isalpha():
+                out.add(("comment", text))
+    return out
+
+
+def run_nbma(nbma: str, args: list[str]) -> dict:
+    run = subprocess.run([nbma, *args, "--json"], capture_output=True, text=True, check=False)
     try:
         result = json.loads(run.stdout)
     except json.JSONDecodeError:
@@ -63,24 +88,37 @@ def translate(nbma: str, name: str, role: str) -> dict:
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("nbma", help="path to the nbma binary")
+    ap.add_argument("--prose", action="store_true", help="docstrings and comments")
     ap.add_argument("--top", type=int, default=40, help="unknown words to list")
     args = ap.parse_args()
 
-    names: set[tuple[str, str]] = set()
+    items: set[tuple[str, str]] = set()
     for module in MODULES:
         path = importlib.import_module(module).__file__
         with open(path, encoding="utf-8") as fh:
-            names |= defined_names(ast.parse(fh.read()))
-    ordered = sorted(names)
+            src = fh.read()
+        items |= sentences(src) if args.prose else defined_names(ast.parse(src))
+    ordered = sorted(items)
+
+    def one(item: tuple[str, str]) -> dict:
+        if args.prose:
+            return {**run_nbma(args.nbma, ["prose", item[1]]), "kind": item[0]}
+        return run_nbma(args.nbma, ["ident", item[0], "--role", item[1]])
+
     with ThreadPoolExecutor(8) as pool:
-        results = list(pool.map(lambda nr: translate(args.nbma, *nr), ordered))
+        results = list(pool.map(one, ordered))
 
     ok = sum(r["ok"] for r in results)
     errors = collections.Counter(r.get("error", "other") for r in results if not r["ok"])
     unknown = collections.Counter(w for r in results if r.get("error") == "unknown"
                                   for w in r["words"])
-    print(f"{len(results)} identifiers from {len(MODULES)} modules: "
+    what = "sentences" if args.prose else "identifiers"
+    print(f"{len(results)} {what} from {len(MODULES)} modules: "
           f"{ok} translate ({100 * ok / len(results):.1f}%)")
+    if args.prose:
+        docs = [r for r in results if r["kind"] == "doc"]
+        doc_ok = sum(r["ok"] for r in docs)
+        print(f"  docstrings: {doc_ok} of {len(docs)} ({100 * doc_ok / len(docs):.1f}%)")
     for kind, n in errors.most_common():
         print(f"  {kind}: {n}")
     print("most frequent unknown words:")

@@ -9451,3 +9451,13 @@ pos = "part"
 ar = "khārija"
 verified = true
 source = "arabic-grammar-check"
+
+[it]
+pos = "pron"
+ar = "hā"
+bm = "det"
+nn = "det"
+bm_forms = ["det"]
+nn_forms = ["det"]
+verified = true
+source = "ordbokene.no"

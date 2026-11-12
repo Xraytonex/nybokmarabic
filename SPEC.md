@@ -297,6 +297,26 @@ $ nbma root eie
 | Q-I | 1a23a4a | yu1a23i4u + r | 1a23i4 | mu1a23i4 | mu1a23a4 | 1a23a4a | mu1a23a4 |
 | Q-II | ta1a23a4a | yata1a23a4u + r | ta1a23a4 | muta1a23i4 | muta1a23a4 | ta1a23u4 | muta1a23a4 |
 
+Passive verbs (§17.4) use the Arabic internal passive. The present takes the
+Norwegian s-passive, `-s` in Bokmål and `-st` in Nynorsk; the past, like
+the active past, takes nothing.
+
+| Form | Passive past (3sg m) | Passive present (3sg m) |
+|---|---|---|
+| I | 1u2i3a | yu12a3u + s/st |
+| II | 1u22i3a | yu1a22a3u + s/st |
+| III | 1ū2i3a | yu1ā2a3u + s/st |
+| IV | u12i3a | yu12a3u + s/st |
+| V | tu1u22i3a | yuta1a22a3u + s/st |
+| VI | tu1ū2i3a | yuta1ā2a3u + s/st |
+| VII | un1u2i3a | yun1a2a3u + s/st |
+| VIII | u1tu2i3a | yu1ta2a3u + s/st |
+| X | ustu12i3a | yusta12a3u + s/st |
+| Q-I | 1u23i4a | yu1a23a4u + s/st |
+| Q-II | tu1u23i4a | yuta1a23a4u + s/st |
+
+Forms I and IV share a passive present, as they do in Arabic.
+
 The patterns are standard Arabic (Form I uses the u-class vowels). Two
 simplifications: Arabic Form I verbal nouns are unpredictable and
 Nybokmarabic always uses `faʿl`; and for every form except I the noun of
@@ -307,23 +327,27 @@ and bodily defects.
 
 ```console
 $ nbma inflect hente
-root         H-N-T
-past         hanata
-present      yahnutur
-imperative   uhnut
-doer         hānit
-passive      mahnūt
-verbal-noun  hant
-place        mahnat
+root             H-N-T
+past             hanata
+present          yahnutur
+imperative       uhnut
+doer             hānit
+passive          mahnūt
+passive-past     hunita
+passive-present  yuhnatus
+verbal-noun      hant
+place            mahnat
 $ nbma inflect skrive
-root         S-K-R-V
-past         sakrava
-present      yusakrivur
-imperative   sakriv
-doer         musakriv
-passive      musakrav
-verbal-noun  sakrava
-place        musakrav
+root             S-K-R-V
+past             sakrava
+present          yusakrivur
+imperative       sakriv
+doer             musakriv
+passive          musakrav
+passive-past     sukriva
+passive-present  yusakravust
+verbal-noun      sakrava
+place            musakrav
 ```
 
 ### 8.3 The present tense
@@ -361,7 +385,7 @@ V, VI, VII, VIII and X for triliteral roots, Q-II for quadriliteral ones.
 
 ```console
 $ nbma lexicon check
-ok: 1051 entries, 3 unverified, no collisions
+ok: 1052 entries, 3 unverified, no collisions
 $ nbma inflect låse --form past
 lassawa
 ```
@@ -652,8 +676,10 @@ proposed the same way (§16.4).
 
 `nbma prose` handles simple sentences: subject–verb–object with optional
 prepositional phrases and adverbs, `is` with an adjective or noun, `has`,
-`does not`, yes/no questions and numbers. Anything else is refused rather
-than guessed; rewrite the sentence more simply.
+`does not`, yes/no questions and numbers, plus commands, docstrings,
+if/when clauses, relative clauses, passives, demonstratives and headings
+(§17). Anything else is refused rather than guessed; rewrite the sentence
+more simply.
 
 ## 15. Arabic script (phase 2, opt-in)
 
@@ -791,6 +817,180 @@ nbma propose MCP --acronym --glossary ordbok.nbma.toml
 to a word the lexicon lacks, and an abbreviation or acronym that hides a
 lexicon word: the word would always be read first, so the shorthand could
 never be used.
+
+## 17. Commands, conditions, relative clauses and passives
+
+Comments and docstrings are mostly not statements. They give orders
+("Return the user"), describe ("Returns the user"), set conditions and
+name things. This section covers those shapes.
+
+### 17.1 Commands and docstrings
+
+A command uses the imperative, after the same `fa` as every main clause.
+Norwegian puts the imperative first anyway, so `fa` costs it nothing.
+
+```console
+$ nbma prose "Return the user."
+Fa ratrin ad-den-brukaren.
+$ nbma prose "Read and return a line from the stream."
+Fa ulsuw wa ratrin linje min ad-den-strømmen.
+```
+
+A negative command cannot take `mā` in Classical Arabic, which says `lā
+taktub` with a different mood. Egyptian Arabic negates a command exactly as
+it negates a statement: `ma-tiktib-š`, "don't write", the second-person
+present inside the same circumfix. Nybokmarabic follows Egypt and so keeps
+one negation for everything. A negated `or` becomes `and not`, as in Arabic.
+
+```console
+$ nbma prose "Do not read the file."
+Fa mā talsuwur ikkje ad-den-fila.
+$ nbma prose "Do not read or write the file."
+Fa mā talsuwur ikkje wa mā tusakrivur ikkje ad-den-fila.
+```
+
+A docstring's "Returns …" has an unspoken subject, the function. Arabic drops
+subject pronouns, and Norwegian docstrings drop them too ("Returnerer
+brukaren."), so the verb is third person with no subject word. The
+function is `it`, so the verb is feminine (§9).
+
+```console
+$ nbma prose "Returns the user."
+Fa turatrinur ad-den-brukaren.
+```
+
+A sentence that starts with a bare verb is read as a command first, even if
+the word could be a noun (`set`, `log`, `check`). A plural noun first is a
+subject:
+
+```console
+$ nbma prose "Set the debug output level."
+Fa ustut nivå utdata ad-den-valsen.
+$ nbma prose "Logs record events."
+Fa talgugur hendingar ad-den-posten.
+```
+
+### 17.2 if, unless, when, while
+
+`if` is `idhā`, `unless` is `illā idhā`, `when` is `ʿindamā` and `while` is
+`baynamā`. Arabic follows `idhā` with the perfect, whatever the English
+tense, so "if the user writes" is "if the user wrote".
+
+Norwegian subordinate clauses put the subject before the verb and the
+negation before the verb (`hvis brukaren ikkje skriv`). Arabic allows a
+noun before the verb after `idhā`, so subordinate clauses take the Norwegian
+order and the circumfix collapses into `mā ikkje`, as in a verbless clause.
+With the subject first, Arabic also wants the verb to agree in number
+(`yusakrivūnar`, "they write"), which main clauses do not (§9).
+
+```console
+$ nbma prose "If the user writes a file, the file is valid."
+Idhā ad-den-brukaren sakrava fil, fa ad-den-fila gyldig.
+$ nbma prose "If the user is not valid, do not read the file."
+Idhā ad-den-brukaren mā ikkje gyldig, fa mā talsuwur ikkje ad-den-fila.
+$ nbma prose "When the users write files, we read the files."
+ʿIndamā ad-dei-brukarane yusakrivūnar filer, fa nalsuwur vi ad-de-filene.
+$ nbma prose "Return the user unless the name is valid."
+Fa ratrin ad-den-brukaren illā idhā ad-det-namnet gyldig.
+```
+
+After a fronted condition, both languages already agree. Arabic introduces
+the main clause with `fa` ("then"), and Norwegian with `så`. That is the
+word §9 dressed `fa` up as, so nothing about it is a compromise. Put a
+comma after a fronted condition; the CLI needs it to find the main clause.
+
+### 17.3 Relative clauses
+
+After a definite noun Arabic uses a relative pronoun that agrees with the
+noun: `alladhī` (masculine), `allatī` (feminine and, as everywhere,
+neuter), `alladhīna`, `allātī` in the plural and `alladhāni`, `allatāni` in
+the dual. After an indefinite noun Arabic forbids a relative pronoun, and
+Norwegian requires one, so Norwegian `som` fills the gap.
+
+When the noun is the object of the relative clause, Arabic repeats it as a
+pronoun suffix on the verb ("the file that the user writes it").
+
+```console
+$ nbma prose "The user that writes the file is valid."
+Fa ad-den-brukaren alladhī yusakrivur ad-den-fila gyldig.
+$ nbma prose "Read the file that the user writes."
+Fa ulsuw ad-den-fila allatī ad-den-brukaren yusakrivur-hā.
+$ nbma prose "A user that reads files writes names."
+Fa yusakrivur brukar som yalsuwur filer namn.
+```
+
+A relative clause with `is` or `has` would need an Arabic subject pronoun
+inside it, which Nybokmarabic does not have. Put the adjective before the
+noun instead: "the empty file", not "the file that is empty".
+
+### 17.4 Passives
+
+`was` or `were` with a past participle, `is being` with one, or `is` with
+one and `by` make a passive verb. These use the Arabic internal passive
+(`fuʿila`, `yufʿalu`, and the matching pattern in every form). The
+dictionaries give Norwegian an s-passive only in the present (`skrives`,
+`skrivast`), so the present passive ends in `-s` or `-st` by the parity
+rule, in the place where the active present ends in `-r`. The past is bare,
+as in the active. Classical Arabic never names who did the action;
+Modern Standard Arabic says `min qibali`, "from the side of", and so does
+Nybokmarabic.
+
+```console
+$ nbma prose "The file was deleted."
+Fa sultitat ad-den-fila.
+$ nbma prose "The file is read by the user."
+Fa tulsawust ad-den-fila min qibali ad-den-brukaren.
+$ nbma inflect lese --form passive-present
+yulsawust
+$ nbma inflect skrive --form passive-present
+yusakravust
+$ nbma inflect hente --form passive-past
+hunita
+```
+
+`is` with a participle and no `by` is a state, not an event, and stays the
+participle of §6:
+
+```console
+$ nbma prose "The file is closed."
+Fa ad-den-fila malkūk.
+```
+
+An exception's docstring ("Raised when …") is a passive with the subject
+dropped, as in §17.1:
+
+```console
+$ nbma prose "Raised when the file is closed."
+Fa tuksatus ʿindamā ad-den-fila malkūk.
+```
+
+### 17.5 Demonstratives
+
+`this`, `these`, `that` and `those` are Arabic, before the definite noun as
+in Arabic (`hādhā l-kitāb`), so the noun keeps all three articles. On a
+possessor the demonstrative goes inside the construct, before the
+possessor.
+
+```console
+$ nbma prose "These files are valid."
+Fa hāʾulāʾi ad-de-filene gyldige.
+$ nbma prose "Return the fields of this class."
+Fa ratrin felt hādhihi ad-den-klassa.
+$ nbma prose "This is the default."
+Fa hādhā as-standard.
+```
+
+### 17.6 Headings
+
+A class docstring is often just a noun phrase. It stays one: no verb, so no
+`fa`.
+
+```console
+$ nbma prose "Exception for empty headers."
+Unntak min ajli hovud tomme.
+$ nbma prose "True if the connection is closed."
+Sann idhā ad-den-tilkoplinga malkūk.
+```
 
 ## Appendix: lexicon format
 

@@ -1064,3 +1064,4 @@ adj circular sirkulær sirkulær
 adj effective effektiv effektiv
 adj automatic automatisk automatisk
 part outside khārija
+pron it det det hā
